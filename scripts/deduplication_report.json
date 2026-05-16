@@ -1,0 +1,43 @@
+{
+  "original": {
+    "json": 10750,
+    "typescript": 5250,
+    "total": 16000
+  },
+  "afterDedup": {
+    "jsonOnly": 37,
+    "combined": 5265,
+    "final": 110
+  },
+  "removed": {
+    "duplicates": 5155,
+    "lowQuality": 0
+  },
+  "byCategory": {
+    "algorithms": 19,
+    "machine-learning": 14,
+    "deep-learning": 15,
+    "system-design": 13,
+    "data-structures": 14,
+    "python": 15,
+    "sql": 20
+  },
+  "byDifficulty": {
+    "medium": 6,
+    "easy": 104
+  },
+  "byQuestionType": {
+    "choice": 55,
+    "fill": 55
+  },
+  "quality": {
+    "detailedSolution": "0.00%",
+    "detailedExplanation": "0.00%",
+    "hasTestCases": "0.00%"
+  },
+  "recommendations": [
+    "题库不足，建议补充 2890 题",
+    "建议为编程题添加测试用例",
+    "建议提升solution的详细程度"
+  ]
+}

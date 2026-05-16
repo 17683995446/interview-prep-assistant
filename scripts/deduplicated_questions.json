@@ -1,0 +1,1999 @@
+[
+  {
+    "id": "1",
+    "title": "哈希表查找、数组访问的时间复杂度是什么？",
+    "category": "algorithms",
+    "difficulty": "medium",
+    "tags": [
+      "复杂度",
+      "时间复杂度",
+      "哈希表查找、数组访问"
+    ],
+    "description": "以下算法的平均时间复杂度是多少？",
+    "questionType": "choice",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n log n)",
+      "O(n²)",
+      "O(2ⁿ)"
+    ],
+    "correctAnswer": 0,
+    "codeTemplate": null,
+    "solution": "答案是O(1)",
+    "explanation": "哈希表查找、数组访问采用分治策略，平均时间复杂度为O(1)"
+  },
+  {
+    "id": "2",
+    "title": "二分查找的时间复杂度是什么？",
+    "category": "algorithms",
+    "difficulty": "medium",
+    "tags": [
+      "复杂度",
+      "时间复杂度",
+      "二分查找"
+    ],
+    "description": "以下算法的平均时间复杂度是多少？",
+    "questionType": "choice",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n log n)",
+      "O(n²)",
+      "O(2ⁿ)"
+    ],
+    "correctAnswer": 1,
+    "codeTemplate": null,
+    "solution": "答案是O(log n)",
+    "explanation": "二分查找采用分治策略，平均时间复杂度为O(log n)"
+  },
+  {
+    "id": "3",
+    "title": "遍历数组的时间复杂度是什么？",
+    "category": "algorithms",
+    "difficulty": "medium",
+    "tags": [
+      "复杂度",
+      "时间复杂度",
+      "遍历数组"
+    ],
+    "description": "以下算法的平均时间复杂度是多少？",
+    "questionType": "choice",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n log n)",
+      "O(n²)",
+      "O(2ⁿ)"
+    ],
+    "correctAnswer": 2,
+    "codeTemplate": null,
+    "solution": "答案是O(n)",
+    "explanation": "遍历数组采用分治策略，平均时间复杂度为O(n)"
+  },
+  {
+    "id": "4",
+    "title": "归并排序、快速排序的时间复杂度是什么？",
+    "category": "algorithms",
+    "difficulty": "medium",
+    "tags": [
+      "复杂度",
+      "时间复杂度",
+      "归并排序、快速排序"
+    ],
+    "description": "以下算法的平均时间复杂度是多少？",
+    "questionType": "choice",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n log n)",
+      "O(n²)",
+      "O(2ⁿ)"
+    ],
+    "correctAnswer": 3,
+    "codeTemplate": null,
+    "solution": "答案是O(n log n)",
+    "explanation": "归并排序、快速排序采用分治策略，平均时间复杂度为O(n log n)"
+  },
+  {
+    "id": "5",
+    "title": "冒泡排序、插入排序的时间复杂度是什么？",
+    "category": "algorithms",
+    "difficulty": "medium",
+    "tags": [
+      "复杂度",
+      "时间复杂度",
+      "冒泡排序、插入排序"
+    ],
+    "description": "以下算法的平均时间复杂度是多少？",
+    "questionType": "choice",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n log n)",
+      "O(n²)",
+      "O(2ⁿ)"
+    ],
+    "correctAnswer": 4,
+    "codeTemplate": null,
+    "solution": "答案是O(n²)",
+    "explanation": "冒泡排序、插入排序采用分治策略，平均时间复杂度为O(n²)"
+  },
+  {
+    "id": "6",
+    "title": "子集枚举的时间复杂度是什么？",
+    "category": "algorithms",
+    "difficulty": "medium",
+    "tags": [
+      "复杂度",
+      "时间复杂度",
+      "子集枚举"
+    ],
+    "description": "以下算法的平均时间复杂度是多少？",
+    "questionType": "choice",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n log n)",
+      "O(n²)",
+      "O(2ⁿ)"
+    ],
+    "correctAnswer": 5,
+    "codeTemplate": null,
+    "solution": "答案是O(2ⁿ)",
+    "explanation": "子集枚举采用分治策略，平均时间复杂度为O(2ⁿ)"
+  },
+  {
+    "id": "7",
+    "title": "监督学习的特点",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "机器学习",
+      "监督学习"
+    ],
+    "description": "监督学习的主要特点是什么？",
+    "questionType": "choice",
+    "options": [
+      "有标签数据",
+      "无标签数据",
+      "奖励驱动",
+      "全是标签"
+    ],
+    "correctAnswer": 0,
+    "codeTemplate": null,
+    "solution": "有标签数据",
+    "explanation": "监督学习的核心是有标签数据"
+  },
+  {
+    "id": "8",
+    "title": "无监督学习的特点",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "机器学习",
+      "无监督学习"
+    ],
+    "description": "无监督学习的主要特点是什么？",
+    "questionType": "choice",
+    "options": [
+      "无标签数据",
+      "无标签数据",
+      "奖励驱动",
+      "全是标签"
+    ],
+    "correctAnswer": 0,
+    "codeTemplate": null,
+    "solution": "无标签数据",
+    "explanation": "无监督学习的核心是无标签数据"
+  },
+  {
+    "id": "9",
+    "title": "半监督学习的特点",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "机器学习",
+      "半监督学习"
+    ],
+    "description": "半监督学习的主要特点是什么？",
+    "questionType": "choice",
+    "options": [
+      "部分有标签",
+      "无标签数据",
+      "奖励驱动",
+      "全是标签"
+    ],
+    "correctAnswer": 0,
+    "codeTemplate": null,
+    "solution": "部分有标签",
+    "explanation": "半监督学习的核心是部分有标签"
+  },
+  {
+    "id": "10",
+    "title": "强化学习的特点",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "机器学习",
+      "强化学习"
+    ],
+    "description": "强化学习的主要特点是什么？",
+    "questionType": "choice",
+    "options": [
+      "奖励机制",
+      "无标签数据",
+      "奖励驱动",
+      "全是标签"
+    ],
+    "correctAnswer": 0,
+    "codeTemplate": null,
+    "solution": "奖励机制",
+    "explanation": "强化学习的核心是奖励机制"
+  },
+  {
+    "id": "11",
+    "title": "ReLU的作用",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "深度学习",
+      "激活函数",
+      "ReLU"
+    ],
+    "description": "ReLU激活函数的作用是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "引入非线性，使网络可以学习复杂函数",
+    "codeTemplate": null,
+    "solution": "ReLU可以引入非线性",
+    "explanation": "ReLU的优点：缓解梯度消失，注意：dying ReLU"
+  },
+  {
+    "id": "12",
+    "title": "Sigmoid的作用",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "深度学习",
+      "激活函数",
+      "Sigmoid"
+    ],
+    "description": "Sigmoid激活函数的作用是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "引入非线性，使网络可以学习复杂函数",
+    "codeTemplate": null,
+    "solution": "Sigmoid可以引入非线性",
+    "explanation": "Sigmoid的优点：输出(0,1)，注意：梯度消失"
+  },
+  {
+    "id": "13",
+    "title": "Tanh的作用",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "深度学习",
+      "激活函数",
+      "Tanh"
+    ],
+    "description": "Tanh激活函数的作用是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "引入非线性，使网络可以学习复杂函数",
+    "codeTemplate": null,
+    "solution": "Tanh可以引入非线性",
+    "explanation": "Tanh的优点：输出(-1,1)，注意：梯度消失"
+  },
+  {
+    "id": "14",
+    "title": "Softmax的作用",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "深度学习",
+      "激活函数",
+      "Softmax"
+    ],
+    "description": "Softmax激活函数的作用是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "引入非线性，使网络可以学习复杂函数",
+    "codeTemplate": null,
+    "solution": "Softmax可以引入非线性",
+    "explanation": "Softmax的优点：多分类，注意：类别概率"
+  },
+  {
+    "id": "15",
+    "title": "LeakyReLU的作用",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "深度学习",
+      "激活函数",
+      "LeakyReLU"
+    ],
+    "description": "LeakyReLU激活函数的作用是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "引入非线性，使网络可以学习复杂函数",
+    "codeTemplate": null,
+    "solution": "LeakyReLU可以引入非线性",
+    "explanation": "LeakyReLU的优点：解决dying ReLU，注意："
+  },
+  {
+    "id": "16",
+    "title": "CAP的C代表什么？",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "系统设计",
+      "CAP",
+      "一致性"
+    ],
+    "description": "CAP定理中的C代表什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "一致性",
+    "codeTemplate": null,
+    "solution": "一致性",
+    "explanation": "C代表一致性：所有节点同时看到相同数据"
+  },
+  {
+    "id": "17",
+    "title": "CAP的A代表什么？",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "系统设计",
+      "CAP",
+      "可用性"
+    ],
+    "description": "CAP定理中的A代表什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "可用性",
+    "codeTemplate": null,
+    "solution": "可用性",
+    "explanation": "A代表可用性：每个请求都有响应"
+  },
+  {
+    "id": "18",
+    "title": "CAP的P代表什么？",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "系统设计",
+      "CAP",
+      "分区容错"
+    ],
+    "description": "CAP定理中的P代表什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "分区容错",
+    "codeTemplate": null,
+    "solution": "分区容错",
+    "explanation": "P代表分区容错：系统能处理网络分区"
+  },
+  {
+    "id": "19",
+    "title": "数组的时间复杂度",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "数据结构",
+      "数组"
+    ],
+    "description": "数组的访问/插入时间复杂度是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "随机访问O(1)",
+    "codeTemplate": null,
+    "solution": "随机访问O(1)",
+    "explanation": "数组基于连续内存，随机访问O(1)"
+  },
+  {
+    "id": "20",
+    "title": "链表的时间复杂度",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "数据结构",
+      "链表"
+    ],
+    "description": "链表的访问/插入时间复杂度是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "插入删除O(1)",
+    "codeTemplate": null,
+    "solution": "插入删除O(1)",
+    "explanation": "链表基于指针相连，插入删除O(1)"
+  },
+  {
+    "id": "21",
+    "title": "栈的时间复杂度",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "数据结构",
+      "栈"
+    ],
+    "description": "栈的访问/插入时间复杂度是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "后进先出",
+    "codeTemplate": null,
+    "solution": "后进先出",
+    "explanation": "栈基于LIFO，后进先出"
+  },
+  {
+    "id": "22",
+    "title": "队列的时间复杂度",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "数据结构",
+      "队列"
+    ],
+    "description": "队列的访问/插入时间复杂度是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "先进先出",
+    "codeTemplate": null,
+    "solution": "先进先出",
+    "explanation": "队列基于FIFO，先进先出"
+  },
+  {
+    "id": "23",
+    "title": "Python列表推导式的语法",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "Python",
+      "列表推导式"
+    ],
+    "description": "列表推导式的基本语法是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "[x for x in ...]",
+    "codeTemplate": null,
+    "solution": "[x for x in ...]",
+    "explanation": "列表推导式是Python的常用特性，简洁高效创建列表"
+  },
+  {
+    "id": "24",
+    "title": "Python字典推导式的语法",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "Python",
+      "字典推导式"
+    ],
+    "description": "字典推导式的基本语法是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "{k:v for ...}",
+    "codeTemplate": null,
+    "solution": "{k:v for ...}",
+    "explanation": "字典推导式是Python的常用特性，创建字典"
+  },
+  {
+    "id": "25",
+    "title": "Python装饰器的语法",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "Python",
+      "装饰器"
+    ],
+    "description": "装饰器的基本语法是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "@decorator",
+    "codeTemplate": null,
+    "solution": "@decorator",
+    "explanation": "装饰器是Python的常用特性，增强函数"
+  },
+  {
+    "id": "26",
+    "title": "Python生成器的语法",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "Python",
+      "生成器"
+    ],
+    "description": "生成器的基本语法是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "(x for x in ...)",
+    "codeTemplate": null,
+    "solution": "(x for x in ...)",
+    "explanation": "生成器是Python的常用特性，惰性求值"
+  },
+  {
+    "id": "27",
+    "title": "Python上下文管理器的语法",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "Python",
+      "上下文管理器"
+    ],
+    "description": "上下文管理器的基本语法是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "with ...",
+    "codeTemplate": null,
+    "solution": "with ...",
+    "explanation": "上下文管理器是Python的常用特性，资源管理"
+  },
+  {
+    "id": "28",
+    "title": "SQLSELECT的作用",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SQL",
+      "SELECT"
+    ],
+    "description": "SQL中SELECT关键字的作用是什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "查询数据",
+    "codeTemplate": null,
+    "solution": "查询数据",
+    "explanation": "SELECT用于查询数据"
+  },
+  {
+    "id": "29",
+    "title": "SQLINSERT的作用",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SQL",
+      "INSERT"
+    ],
+    "description": "SQL中INSERT关键字的作用是什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "插入数据",
+    "codeTemplate": null,
+    "solution": "插入数据",
+    "explanation": "INSERT用于插入数据"
+  },
+  {
+    "id": "30",
+    "title": "SQLUPDATE的作用",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SQL",
+      "UPDATE"
+    ],
+    "description": "SQL中UPDATE关键字的作用是什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "更新数据",
+    "codeTemplate": null,
+    "solution": "更新数据",
+    "explanation": "UPDATE用于更新数据"
+  },
+  {
+    "id": "31",
+    "title": "SQLDELETE的作用",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SQL",
+      "DELETE"
+    ],
+    "description": "SQL中DELETE关键字的作用是什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "删除数据",
+    "codeTemplate": null,
+    "solution": "删除数据",
+    "explanation": "DELETE用于删除数据"
+  },
+  {
+    "id": "32",
+    "title": "SQLCREATE的作用",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SQL",
+      "CREATE"
+    ],
+    "description": "SQL中CREATE关键字的作用是什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "创建表",
+    "codeTemplate": null,
+    "solution": "创建表",
+    "explanation": "CREATE用于创建表"
+  },
+  {
+    "id": "33",
+    "title": "SQLJOIN的作用",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SQL",
+      "JOIN"
+    ],
+    "description": "SQL中JOIN关键字的作用是什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "连接查询",
+    "codeTemplate": null,
+    "solution": "连接查询",
+    "explanation": "JOIN用于连接查询"
+  },
+  {
+    "id": "34",
+    "title": "SQLWHERE的作用",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SQL",
+      "WHERE"
+    ],
+    "description": "SQL中WHERE关键字的作用是什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "条件过滤",
+    "codeTemplate": null,
+    "solution": "条件过滤",
+    "explanation": "WHERE用于条件过滤"
+  },
+  {
+    "id": "35",
+    "title": "SQLGROUP BY的作用",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SQL",
+      "GROUP BY"
+    ],
+    "description": "SQL中GROUP BY关键字的作用是什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "分组",
+    "codeTemplate": null,
+    "solution": "分组",
+    "explanation": "GROUP BY用于分组"
+  },
+  {
+    "id": "36",
+    "title": "SQLHAVING的作用",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SQL",
+      "HAVING"
+    ],
+    "description": "SQL中HAVING关键字的作用是什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "分组过滤",
+    "codeTemplate": null,
+    "solution": "分组过滤",
+    "explanation": "HAVING用于分组过滤"
+  },
+  {
+    "id": "37",
+    "title": "SQLORDER BY的作用",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SQL",
+      "ORDER BY"
+    ],
+    "description": "SQL中ORDER BY关键字的作用是什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "排序",
+    "codeTemplate": null,
+    "solution": "排序",
+    "explanation": "ORDER BY用于排序"
+  },
+  {
+    "id": "38",
+    "title": "时间复杂度O(n)表示",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "时间复杂度"
+    ],
+    "description": "算法执行时间与输入规模呈线性关系的复杂度是？",
+    "questionType": "choice",
+    "options": [
+      "O(n)",
+      "O(n²)",
+      "O(log n)",
+      "O(1)"
+    ],
+    "correctAnswer": 0,
+    "solution": "O(n)",
+    "explanation": "这是第1道关于时间复杂度的题目。正确答案是O(n)。"
+  },
+  {
+    "id": "39",
+    "title": "时间复杂度O(n²)表示",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "时间复杂度"
+    ],
+    "description": "算法执行时间与输入规模呈平方关系的复杂度是？",
+    "questionType": "choice",
+    "options": [
+      "O(n)",
+      "O(n²)",
+      "O(log n)",
+      "O(1)"
+    ],
+    "correctAnswer": 1,
+    "solution": "O(n²)",
+    "explanation": "这是第1道关于时间复杂度的题目。正确答案是O(n²)。"
+  },
+  {
+    "id": "40",
+    "title": "时间复杂度O(log n)表示",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "时间复杂度"
+    ],
+    "description": "二分查找的时间复杂度是？",
+    "questionType": "choice",
+    "options": [
+      "O(n)",
+      "O(n²)",
+      "O(log n)",
+      "O(1)"
+    ],
+    "correctAnswer": 2,
+    "solution": "O(log n)",
+    "explanation": "这是第10道关于时间复杂度的题目。正确答案是O(log n)。"
+  },
+  {
+    "id": "41",
+    "title": "常数时间复杂度",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "时间复杂度"
+    ],
+    "description": "访问数组特定位置元素的时间复杂度是？",
+    "questionType": "choice",
+    "options": [
+      "O(n)",
+      "O(n²)",
+      "O(log n)",
+      "O(1)"
+    ],
+    "correctAnswer": 3,
+    "solution": "O(1)",
+    "explanation": "这是第1道关于时间复杂度的题目。正确答案是O(1)。"
+  },
+  {
+    "id": "42",
+    "title": "线性时间复杂度",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "时间复杂度"
+    ],
+    "description": "遍历数组的时间复杂度是____",
+    "questionType": "fill",
+    "correctAnswer": "O(n)",
+    "solution": "O(n)",
+    "explanation": "这是第1道关于时间复杂度的题目。正确答案是O(n)。"
+  },
+  {
+    "id": "43",
+    "title": "冒泡排序原理",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "冒泡排序"
+    ],
+    "description": "冒泡排序通过____元素实现排序",
+    "questionType": "fill",
+    "correctAnswer": "交换",
+    "solution": "交换",
+    "explanation": "这是第1道关于冒泡排序的题目。正确答案是交换。"
+  },
+  {
+    "id": "44",
+    "title": "选择排序过程",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "选择排序"
+    ],
+    "description": "选择排序每次选择____放到已排序序列末尾",
+    "questionType": "fill",
+    "correctAnswer": "最小元素",
+    "solution": "最小元素",
+    "explanation": "这是第1道关于选择排序的题目。正确答案是最小元素。"
+  },
+  {
+    "id": "45",
+    "title": "插入排序特点",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "插入排序"
+    ],
+    "description": "插入排序将元素____到已排序序列中",
+    "questionType": "fill",
+    "correctAnswer": "插入",
+    "solution": "插入",
+    "explanation": "这是第1道关于插入排序的题目。正确答案是插入。"
+  },
+  {
+    "id": "46",
+    "title": "快速排序基准",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "快速排序"
+    ],
+    "description": "快速排序选择一个元素作为____",
+    "questionType": "fill",
+    "correctAnswer": "基准",
+    "solution": "基准",
+    "explanation": "这是第1道关于快速排序的题目。正确答案是基准。"
+  },
+  {
+    "id": "47",
+    "title": "归并排序核心",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "归并排序"
+    ],
+    "description": "归并排序核心是____和合并",
+    "questionType": "fill",
+    "correctAnswer": "分治",
+    "solution": "分治",
+    "explanation": "这是第1道关于归并排序的题目。正确答案是分治。"
+  },
+  {
+    "id": "48",
+    "title": "链表遍历",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "链表"
+    ],
+    "description": "链表遍历时需要使用什么变量？",
+    "questionType": "choice",
+    "options": [
+      "临时指针",
+      "数组",
+      "栈",
+      "队列"
+    ],
+    "correctAnswer": 0,
+    "solution": "临时指针",
+    "explanation": "这是第1道关于链表的题目。正确答案是临时指针。"
+  },
+  {
+    "id": "49",
+    "title": "栈的应用场景",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "栈"
+    ],
+    "description": "函数调用栈使用的数据结构是？",
+    "questionType": "choice",
+    "options": [
+      "队列",
+      "栈",
+      "链表",
+      "数组"
+    ],
+    "correctAnswer": 1,
+    "solution": "栈",
+    "explanation": "这是第1道关于栈的题目。正确答案是栈。"
+  },
+  {
+    "id": "50",
+    "title": "队列特点",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "队列"
+    ],
+    "description": "队列的数据处理顺序是？",
+    "questionType": "choice",
+    "options": [
+      "LIFO",
+      "FIFO",
+      "随机",
+      "优先"
+    ],
+    "correctAnswer": 1,
+    "solution": "FIFO",
+    "explanation": "这是第1道关于队列的题目。正确答案是FIFO。"
+  },
+  {
+    "id": "51",
+    "title": "有监督学习需要",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "有监督学习"
+    ],
+    "description": "有监督学习训练数据需要？",
+    "questionType": "choice",
+    "options": [
+      "有标签",
+      "无标签",
+      "半标签",
+      "无数据"
+    ],
+    "correctAnswer": 0,
+    "solution": "有标签",
+    "explanation": "这是第1道关于有监督学习的题目。正确答案是有标签。"
+  },
+  {
+    "id": "52",
+    "title": "无监督学习特点",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "无监督学习"
+    ],
+    "description": "无监督学习通常用于？",
+    "questionType": "choice",
+    "options": [
+      "分类",
+      "聚类",
+      "回归",
+      "预测"
+    ],
+    "correctAnswer": 1,
+    "solution": "聚类",
+    "explanation": "这是第1道关于无监督学习的题目。正确答案是聚类。"
+  },
+  {
+    "id": "53",
+    "title": "分类问题输出",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "分类"
+    ],
+    "description": "分类问题的输出是？",
+    "questionType": "choice",
+    "options": [
+      "连续值",
+      "离散类别",
+      "连续值和离散类别",
+      "任意值"
+    ],
+    "correctAnswer": 1,
+    "solution": "离散类别",
+    "explanation": "这是第1道关于分类的题目。正确答案是离散类别。"
+  },
+  {
+    "id": "54",
+    "title": "回归问题输出",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "回归"
+    ],
+    "description": "回归问题的输出是？",
+    "questionType": "choice",
+    "options": [
+      "连续值",
+      "离散类别",
+      "连续值和离散类别",
+      "任意值"
+    ],
+    "correctAnswer": 0,
+    "solution": "连续值",
+    "explanation": "这是第1道关于回归的题目。正确答案是连续值。"
+  },
+  {
+    "id": "55",
+    "title": "过拟合特征",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "过拟合"
+    ],
+    "description": "过拟合表现为训练集表现____而测试集表现差",
+    "questionType": "fill",
+    "correctAnswer": "好",
+    "solution": "好",
+    "explanation": "这是第1道关于过拟合的题目。正确答案是好。"
+  },
+  {
+    "id": "56",
+    "title": "欠拟合特征",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "欠拟合"
+    ],
+    "description": "欠拟合表现为训练集表现____",
+    "questionType": "fill",
+    "correctAnswer": "差",
+    "solution": "差",
+    "explanation": "这是第1道关于欠拟合的题目。正确答案是差。"
+  },
+  {
+    "id": "57",
+    "title": "L2正则化",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "正则化"
+    ],
+    "description": "L2正则化添加权重平方的____",
+    "questionType": "fill",
+    "correctAnswer": "惩罚",
+    "solution": "惩罚",
+    "explanation": "这是第1道关于正则化的题目。正确答案是惩罚。"
+  },
+  {
+    "id": "58",
+    "title": "L1正则化",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "正则化"
+    ],
+    "description": "L1正则化可以实现____选择",
+    "questionType": "fill",
+    "correctAnswer": "特征",
+    "solution": "特征",
+    "explanation": "这是第1道关于正则化的题目。正确答案是特征。"
+  },
+  {
+    "id": "59",
+    "title": "学习率",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "优化"
+    ],
+    "description": "学习率控制参数更新的____",
+    "questionType": "choice",
+    "options": [
+      "速度",
+      "方向",
+      "大小",
+      "频率"
+    ],
+    "correctAnswer": 2,
+    "solution": "大小",
+    "explanation": "这是第1道关于优化的题目。正确答案是大小。"
+  },
+  {
+    "id": "60",
+    "title": "交叉验证折数",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "交叉验证"
+    ],
+    "description": "常用的交叉验证折数是？",
+    "questionType": "choice",
+    "options": [
+      "3",
+      "10",
+      "50",
+      "100"
+    ],
+    "correctAnswer": 1,
+    "solution": "10",
+    "explanation": "这是第1道关于交叉验证的题目。正确答案是10。"
+  },
+  {
+    "id": "61",
+    "title": "神经网络层",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "神经网络"
+    ],
+    "description": "神经网络的基本组成单元是？",
+    "questionType": "choice",
+    "options": [
+      "神经元",
+      "节点",
+      "突触",
+      "以上都对"
+    ],
+    "correctAnswer": 0,
+    "solution": "神经元",
+    "explanation": "这是第1道关于神经网络的题目。正确答案是神经元。"
+  },
+  {
+    "id": "62",
+    "title": "激活函数",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "激活函数"
+    ],
+    "description": "激活函数的作用是引入？",
+    "questionType": "choice",
+    "options": [
+      "线性",
+      "非线性",
+      "正则化",
+      "优化"
+    ],
+    "correctAnswer": 1,
+    "solution": "非线性",
+    "explanation": "这是第1道关于激活函数的题目。正确答案是非线性。"
+  },
+  {
+    "id": "63",
+    "title": "Sigmoid输出范围",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "Sigmoid"
+    ],
+    "description": "Sigmoid函数的输出范围是？",
+    "questionType": "choice",
+    "options": [
+      "[-1, 1]",
+      "[0, 1]",
+      "[0, ∞)",
+      "(-∞, ∞)"
+    ],
+    "correctAnswer": 1,
+    "solution": "[0, 1]",
+    "explanation": "这是第10道关于Sigmoid的题目。正确答案是[0, 1]。"
+  },
+  {
+    "id": "64",
+    "title": "ReLU函数",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "ReLU"
+    ],
+    "description": "ReLU激活函数的优点是？",
+    "questionType": "choice",
+    "options": [
+      "计算快",
+      "梯度消失",
+      "梯度爆炸",
+      "以上都对"
+    ],
+    "correctAnswer": 0,
+    "solution": "计算快",
+    "explanation": "这是第1道关于ReLU的题目。正确答案是计算快。"
+  },
+  {
+    "id": "65",
+    "title": "Tanh函数",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "Tanh"
+    ],
+    "description": "Tanh函数的输出范围是____到1",
+    "questionType": "fill",
+    "correctAnswer": "-1",
+    "solution": "-1",
+    "explanation": "这是第1道关于Tanh的题目。正确答案是-1。"
+  },
+  {
+    "id": "66",
+    "title": "Softmax层",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "Softmax"
+    ],
+    "description": "Softmax用于____分类问题",
+    "questionType": "fill",
+    "correctAnswer": "多",
+    "solution": "多",
+    "explanation": "这是第1道关于Softmax的题目。正确答案是多。"
+  },
+  {
+    "id": "67",
+    "title": "损失函数",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "损失函数"
+    ],
+    "description": "损失函数衡量预测与真实的____",
+    "questionType": "fill",
+    "correctAnswer": "差距",
+    "solution": "差距",
+    "explanation": "这是第1道关于损失函数的题目。正确答案是差距。"
+  },
+  {
+    "id": "68",
+    "title": "梯度下降",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "梯度下降"
+    ],
+    "description": "梯度下降是____优化算法",
+    "questionType": "fill",
+    "correctAnswer": "迭代",
+    "solution": "迭代",
+    "explanation": "这是第1道关于梯度下降的题目。正确答案是迭代。"
+  },
+  {
+    "id": "69",
+    "title": "反向传播",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "反向传播"
+    ],
+    "description": "反向传播用于计算？",
+    "questionType": "choice",
+    "options": [
+      "梯度",
+      "损失",
+      "准确率",
+      "预测"
+    ],
+    "correctAnswer": 0,
+    "solution": "梯度",
+    "explanation": "这是第1道关于反向传播的题目。正确答案是梯度。"
+  },
+  {
+    "id": "70",
+    "title": "过拟合方法",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "过拟合"
+    ],
+    "description": "防止过拟合的方法是？",
+    "questionType": "choice",
+    "options": [
+      "数据增强",
+      "Dropout",
+      "L2正则化",
+      "以上都对"
+    ],
+    "correctAnswer": 3,
+    "solution": "以上都对",
+    "explanation": "这是第1道关于过拟合的题目。正确答案是以上都对。"
+  },
+  {
+    "id": "71",
+    "title": "可扩展性",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "可扩展性"
+    ],
+    "description": "系统处理更大负载的能力是？",
+    "questionType": "choice",
+    "options": [
+      "可扩展性",
+      "可用性",
+      "一致性",
+      "安全性"
+    ],
+    "correctAnswer": 0,
+    "solution": "可扩展性",
+    "explanation": "这是第1道关于可扩展性的题目。正确答案是可扩展性。"
+  },
+  {
+    "id": "72",
+    "title": "可用性",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "可用性"
+    ],
+    "description": "系统保持正常运行的时间比例是？",
+    "questionType": "choice",
+    "options": [
+      "一致性",
+      "可用性",
+      "分区容错",
+      "性能"
+    ],
+    "correctAnswer": 1,
+    "solution": "可用性",
+    "explanation": "这是第1道关于可用性的题目。正确答案是可用性。"
+  },
+  {
+    "id": "73",
+    "title": "一致性",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "一致性"
+    ],
+    "description": "所有节点数据保持同步的特性是？",
+    "questionType": "choice",
+    "options": [
+      "可用性",
+      "一致性",
+      "分区容错",
+      "性能"
+    ],
+    "correctAnswer": 1,
+    "solution": "一致性",
+    "explanation": "这是第1道关于一致性的题目。正确答案是一致性。"
+  },
+  {
+    "id": "74",
+    "title": "CAP三选一",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "CAP"
+    ],
+    "description": "CAP定理指出分布式系统必须在三者中放弃一个？",
+    "questionType": "choice",
+    "options": [
+      "正确",
+      "错误",
+      "不确定",
+      "视情况而定"
+    ],
+    "correctAnswer": 0,
+    "solution": "正确",
+    "explanation": "这是第1道关于CAP的题目。正确答案是正确。"
+  },
+  {
+    "id": "75",
+    "title": "缓存命中率",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "缓存"
+    ],
+    "description": "缓存命中次数占总请求数的____",
+    "questionType": "fill",
+    "correctAnswer": "比例",
+    "solution": "比例",
+    "explanation": "这是第1道关于缓存的题目。正确答案是比例。"
+  },
+  {
+    "id": "76",
+    "title": "缓存穿透",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "缓存"
+    ],
+    "description": "缓存穿透是查询____的数据",
+    "questionType": "fill",
+    "correctAnswer": "不存在",
+    "solution": "不存在",
+    "explanation": "这是第1道关于缓存的题目。正确答案是不存在。"
+  },
+  {
+    "id": "77",
+    "title": "缓存雪崩",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "缓存"
+    ],
+    "description": "缓存雪崩是大量key____",
+    "questionType": "fill",
+    "correctAnswer": "同时过期",
+    "solution": "同时过期",
+    "explanation": "这是第1道关于缓存的题目。正确答案是同时过期。"
+  },
+  {
+    "id": "78",
+    "title": "数据库索引",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "索引"
+    ],
+    "description": "索引的主要作用是？",
+    "questionType": "choice",
+    "options": [
+      "节省空间",
+      "加速查询",
+      "加密数据",
+      "备份数据"
+    ],
+    "correctAnswer": 1,
+    "solution": "加速查询",
+    "explanation": "这是第1道关于索引的题目。正确答案是加速查询。"
+  },
+  {
+    "id": "79",
+    "title": "负载均衡",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "负载均衡"
+    ],
+    "description": "负载均衡将请求分发到？",
+    "questionType": "choice",
+    "options": [
+      "单台服务器",
+      "多台服务器",
+      "数据库",
+      "缓存"
+    ],
+    "correctAnswer": 1,
+    "solution": "多台服务器",
+    "explanation": "这是第1道关于负载均衡的题目。正确答案是多台服务器。"
+  },
+  {
+    "id": "80",
+    "title": "微服务架构",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "微服务"
+    ],
+    "description": "微服务架构特点是？",
+    "questionType": "choice",
+    "options": [
+      "单进程",
+      "多服务独立部署",
+      "紧耦合",
+      "以上都对"
+    ],
+    "correctAnswer": 1,
+    "solution": "多服务独立部署",
+    "explanation": "这是第1道关于微服务的题目。正确答案是多服务独立部署。"
+  },
+  {
+    "id": "81",
+    "title": "数组访问",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "数组"
+    ],
+    "description": "数组支持什么访问方式？",
+    "questionType": "choice",
+    "options": [
+      "随机访问",
+      "顺序访问",
+      "跳跃访问",
+      "以上都对"
+    ],
+    "correctAnswer": 0,
+    "solution": "随机访问",
+    "explanation": "这是第1道关于数组的题目。正确答案是随机访问。"
+  },
+  {
+    "id": "82",
+    "title": "链表访问",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "链表"
+    ],
+    "description": "链表访问元素需要？",
+    "questionType": "choice",
+    "options": [
+      "随机访问",
+      "顺序访问",
+      "索引访问",
+      "哈希访问"
+    ],
+    "correctAnswer": 1,
+    "solution": "顺序访问",
+    "explanation": "这是第1道关于链表的题目。正确答案是顺序访问。"
+  },
+  {
+    "id": "83",
+    "title": "栈LIFO",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "栈"
+    ],
+    "description": "栈遵循什么原则？",
+    "questionType": "choice",
+    "options": [
+      "FIFO",
+      "LIFO",
+      "优先级",
+      "随机"
+    ],
+    "correctAnswer": 1,
+    "solution": "LIFO",
+    "explanation": "这是第1道关于栈的题目。正确答案是LIFO。"
+  },
+  {
+    "id": "84",
+    "title": "队列FIFO",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "队列"
+    ],
+    "description": "队列遵循什么原则？",
+    "questionType": "choice",
+    "options": [
+      "LIFO",
+      "FIFO",
+      "优先级",
+      "随机"
+    ],
+    "correctAnswer": 1,
+    "solution": "FIFO",
+    "explanation": "这是第1道关于队列的题目。正确答案是FIFO。"
+  },
+  {
+    "id": "85",
+    "title": "树的高度",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "树"
+    ],
+    "description": "树的高度是从根到____的最长路径",
+    "questionType": "fill",
+    "correctAnswer": "叶子",
+    "solution": "叶子",
+    "explanation": "这是第1道关于树的题目。正确答案是叶子。"
+  },
+  {
+    "id": "86",
+    "title": "二叉树度",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "二叉树"
+    ],
+    "description": "二叉树每个节点最多有____个子节点",
+    "questionType": "fill",
+    "correctAnswer": "2",
+    "solution": "2",
+    "explanation": "这是第1道关于二叉树的题目。正确答案是2。"
+  },
+  {
+    "id": "87",
+    "title": "哈希冲突",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "哈希表"
+    ],
+    "description": "哈希冲突是不同键得到____哈希值",
+    "questionType": "fill",
+    "correctAnswer": "相同",
+    "solution": "相同",
+    "explanation": "这是第1道关于哈希表的题目。正确答案是相同。"
+  },
+  {
+    "id": "88",
+    "title": "堆的类型",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "堆"
+    ],
+    "description": "堆的两种类型是？",
+    "questionType": "choice",
+    "options": [
+      "最大堆和最小堆",
+      "树堆和图堆",
+      "静态堆和动态堆",
+      "以上都对"
+    ],
+    "correctAnswer": 0,
+    "solution": "最大堆和最小堆",
+    "explanation": "这是第1道关于堆的题目。正确答案是最大堆和最小堆。"
+  },
+  {
+    "id": "89",
+    "title": "图的表示",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "图"
+    ],
+    "description": "图的常见表示方法是？",
+    "questionType": "choice",
+    "options": [
+      "邻接矩阵",
+      "邻接表",
+      "两者都是",
+      "两者都不是"
+    ],
+    "correctAnswer": 2,
+    "solution": "两者都是",
+    "explanation": "这是第1道关于图的题目。正确答案是两者都是。"
+  },
+  {
+    "id": "90",
+    "title": "二分查找条件",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "二分查找"
+    ],
+    "description": "二分查找要求数组是____的",
+    "questionType": "fill",
+    "correctAnswer": "有序",
+    "solution": "有序",
+    "explanation": "这是第1道关于二分查找的题目。正确答案是有序。"
+  },
+  {
+    "id": "91",
+    "title": "Python类型",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "Python基础"
+    ],
+    "description": "Python是什么类型语言？",
+    "questionType": "choice",
+    "options": [
+      "编译型",
+      "解释型",
+      "机器语言",
+      "汇编语言"
+    ],
+    "correctAnswer": 1,
+    "solution": "解释型",
+    "explanation": "这是第1道关于Python基础的题目。正确答案是解释型。"
+  },
+  {
+    "id": "92",
+    "title": "列表可变",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "列表"
+    ],
+    "description": "Python列表是？",
+    "questionType": "choice",
+    "options": [
+      "可变",
+      "不可变",
+      "半可变",
+      "以上都对"
+    ],
+    "correctAnswer": 0,
+    "solution": "可变",
+    "explanation": "这是第1道关于列表的题目。正确答案是可变。"
+  },
+  {
+    "id": "93",
+    "title": "元组不可变",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "元组"
+    ],
+    "description": "Python元组是？",
+    "questionType": "choice",
+    "options": [
+      "可变",
+      "不可变",
+      "半可变",
+      "以上都对"
+    ],
+    "correctAnswer": 1,
+    "solution": "不可变",
+    "explanation": "这是第1道关于元组的题目。正确答案是不可变。"
+  },
+  {
+    "id": "94",
+    "title": "字典键要求",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "字典"
+    ],
+    "description": "Python字典的键必须是？",
+    "questionType": "choice",
+    "options": [
+      "可变",
+      "不可变",
+      "任意类型",
+      "数值类型"
+    ],
+    "correctAnswer": 1,
+    "solution": "不可变",
+    "explanation": "这是第1道关于字典的题目。正确答案是不可变。"
+  },
+  {
+    "id": "95",
+    "title": "列表推导式",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "列表推导式"
+    ],
+    "description": "列表推导式用____创建列表",
+    "questionType": "fill",
+    "correctAnswer": "表达式",
+    "solution": "表达式",
+    "explanation": "这是第1道关于列表推导式的题目。正确答案是表达式。"
+  },
+  {
+    "id": "96",
+    "title": "装饰器作用",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "装饰器"
+    ],
+    "description": "装饰器用于____函数功能",
+    "questionType": "fill",
+    "correctAnswer": "增强",
+    "solution": "增强",
+    "explanation": "这是第1道关于装饰器的题目。正确答案是增强。"
+  },
+  {
+    "id": "97",
+    "title": "生成器特点",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "生成器"
+    ],
+    "description": "生成器使用____逐个产出值",
+    "questionType": "fill",
+    "correctAnswer": "yield",
+    "solution": "yield",
+    "explanation": "这是第1道关于生成器的题目。正确答案是yield。"
+  },
+  {
+    "id": "98",
+    "title": "lambda函数",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "lambda"
+    ],
+    "description": "lambda函数是？",
+    "questionType": "choice",
+    "options": [
+      "匿名函数",
+      "具名函数",
+      "递归函数",
+      "异步函数"
+    ],
+    "correctAnswer": 0,
+    "solution": "匿名函数",
+    "explanation": "这是第1道关于lambda的题目。正确答案是匿名函数。"
+  },
+  {
+    "id": "99",
+    "title": "Python缩进",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "Python语法"
+    ],
+    "description": "Python使用什么表示代码块？",
+    "questionType": "choice",
+    "options": [
+      "大括号",
+      "缩进",
+      "begin/end",
+      "关键字"
+    ],
+    "correctAnswer": 1,
+    "solution": "缩进",
+    "explanation": "这是第1道关于Python语法的题目。正确答案是缩进。"
+  },
+  {
+    "id": "100",
+    "title": "异常处理",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "异常"
+    ],
+    "description": "Python异常处理使用？",
+    "questionType": "choice",
+    "options": [
+      "try/catch",
+      "try/except",
+      "if/else",
+      "switch/case"
+    ],
+    "correctAnswer": 1,
+    "solution": "try/except",
+    "explanation": "这是第1道关于异常的题目。正确答案是try/except。"
+  },
+  {
+    "id": "101",
+    "title": "SQL全称",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SQL基础"
+    ],
+    "description": "SQL的全称是____查询语言",
+    "questionType": "fill",
+    "correctAnswer": "结构化",
+    "solution": "结构化",
+    "explanation": "这是第1道关于SQL基础的题目。正确答案是结构化。"
+  },
+  {
+    "id": "102",
+    "title": "SELECT查询",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SELECT"
+    ],
+    "description": "SELECT用于什么操作？",
+    "questionType": "choice",
+    "options": [
+      "插入",
+      "查询",
+      "更新",
+      "删除"
+    ],
+    "correctAnswer": 1,
+    "solution": "查询",
+    "explanation": "这是第1道关于SELECT的题目。正确答案是查询。"
+  },
+  {
+    "id": "103",
+    "title": "WHERE条件",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "WHERE"
+    ],
+    "description": "WHERE用于什么操作？",
+    "questionType": "choice",
+    "options": [
+      "分组",
+      "过滤",
+      "排序",
+      "连接"
+    ],
+    "correctAnswer": 1,
+    "solution": "过滤",
+    "explanation": "这是第1道关于WHERE的题目。正确答案是过滤。"
+  },
+  {
+    "id": "104",
+    "title": "ORDER BY排序",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "ORDER BY"
+    ],
+    "description": "ORDER BY用于什么操作？",
+    "questionType": "choice",
+    "options": [
+      "分组",
+      "过滤",
+      "排序",
+      "连接"
+    ],
+    "correctAnswer": 2,
+    "solution": "排序",
+    "explanation": "这是第1道关于ORDER BY的题目。正确答案是排序。"
+  },
+  {
+    "id": "105",
+    "title": "GROUP BY分组",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "GROUP BY"
+    ],
+    "description": "GROUP BY用于什么操作？",
+    "questionType": "choice",
+    "options": [
+      "分组",
+      "过滤",
+      "排序",
+      "连接"
+    ],
+    "correctAnswer": 0,
+    "solution": "分组",
+    "explanation": "这是第1道关于GROUP BY的题目。正确答案是分组。"
+  },
+  {
+    "id": "106",
+    "title": "INNER JOIN内连接",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "JOIN"
+    ],
+    "description": "INNER JOIN返回____匹配的记录",
+    "questionType": "fill",
+    "correctAnswer": "两边",
+    "solution": "两边",
+    "explanation": "这是第1道关于JOIN的题目。正确答案是两边。"
+  },
+  {
+    "id": "107",
+    "title": "LEFT JOIN左连接",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "JOIN"
+    ],
+    "description": "LEFT JOIN返回____的所有记录",
+    "questionType": "fill",
+    "correctAnswer": "左表",
+    "solution": "左表",
+    "explanation": "这是第1道关于JOIN的题目。正确答案是左表。"
+  },
+  {
+    "id": "108",
+    "title": "COUNT聚合",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "聚合函数"
+    ],
+    "description": "COUNT用于？",
+    "questionType": "choice",
+    "options": [
+      "求和",
+      "计数",
+      "求平均",
+      "最大值"
+    ],
+    "correctAnswer": 1,
+    "solution": "计数",
+    "explanation": "这是第1道关于聚合函数的题目。正确答案是计数。"
+  },
+  {
+    "id": "109",
+    "title": "SUM聚合",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "聚合函数"
+    ],
+    "description": "SUM用于？",
+    "questionType": "choice",
+    "options": [
+      "求和",
+      "计数",
+      "求平均",
+      "最大值"
+    ],
+    "correctAnswer": 0,
+    "solution": "求和",
+    "explanation": "这是第1道关于聚合函数的题目。正确答案是求和。"
+  },
+  {
+    "id": "110",
+    "title": "索引加速",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "索引"
+    ],
+    "description": "索引的主要作用是____查询",
+    "questionType": "fill",
+    "correctAnswer": "加速",
+    "solution": "加速",
+    "explanation": "这是第1道关于索引的题目。正确答案是加速。"
+  }
+]

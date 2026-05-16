@@ -1,0 +1,30 @@
+{
+  "totalQuestions": 245,
+  "byCategory": {
+    "algorithms": 44,
+    "machine-learning": 44,
+    "deep-learning": 45,
+    "system-design": 43,
+    "data-structures": 24,
+    "python": 25,
+    "sql": 20
+  },
+  "byDifficulty": {
+    "easy": 134,
+    "medium": 62,
+    "hard": 49
+  },
+  "byQuestionType": {
+    "coding": 20,
+    "choice": 167,
+    "fill": 58
+  },
+  "quality": {
+    "detailedSolution": "15.51%",
+    "detailedExplanation": "57.14%",
+    "hasTestCases": "8.16%"
+  },
+  "recommendations": [
+    "题库不足，建议补充 2755 题"
+  ]
+}

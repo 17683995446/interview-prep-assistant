@@ -1,0 +1,44 @@
+{
+  "name": "面试刷题助手",
+  "short_name": "刷题助手",
+  "description": "人工智能/计算机岗位面试刷题平台",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#06b6d4",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["education", "productivity"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "开始刷题",
+      "url": "/questions",
+      "description": "快速开始刷题"
+    },
+    {
+      "name": "查看进度",
+      "url": "/progress",
+      "description": "查看学习进度"
+    }
+  ],
+  "scope": "/",
+  "lang": "zh-CN",
+  "dir": "ltr"
+}

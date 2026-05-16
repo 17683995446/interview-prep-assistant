@@ -1,0 +1,5109 @@
+[
+  {
+    "id": "1",
+    "title": "两数之和（LeetCode #1）",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "数组",
+      "哈希表",
+      "LeetCode经典",
+      "查找"
+    ],
+    "description": "给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出和为目标值 target 的那两个整数，并返回它们的数组下标。\n\n你可以假设每种输入只会对应一个答案，且同样的元素不能被重复利用。",
+    "questionType": "coding",
+    "codeTemplate": "def twoSum(nums: list[int], target: int) -> list[int]:\n    pass",
+    "solution": "def twoSum(nums, target):\n    num_map = {}\n    for i, num in enumerate(nums):\n        complement = target - num\n        if complement in num_map:\n            return [num_map[complement], i]\n        num_map[num] = i\n    return []",
+    "explanation": "【解题思路】\n1. 使用哈希表存储已遍历的数字和索引\n2. 遍历数组，检查complement是否在哈希表中\n3. 如果存在，返回两个索引\n4. 时间复杂度O(n)，空间复杂度O(n)\n\n【记忆口诀】\"一边走一边找，就像在人群中找人\"",
+    "testCases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "2+7=9"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "2+4=6"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "title": "无重复字符的最长子串",
+    "category": "algorithms",
+    "difficulty": "medium",
+    "tags": [
+      "滑动窗口",
+      "字符串",
+      "哈希表",
+      "LeetCode经典"
+    ],
+    "description": "给定一个字符串s，请你找出其中不含有重复字符的最长子串的长度。",
+    "questionType": "coding",
+    "codeTemplate": "def lengthOfLongestSubstring(s: str) -> int:\n    pass",
+    "solution": "def lengthOfLongestSubstring(s):\n    char_index = {}\n    max_length = 0\n    left = 0\n    for right, char in enumerate(s):\n        if char in char_index and char_index[char] >= left:\n            left = char_index[char] + 1\n        char_index[char] = right\n        max_length = max(max_length, right - left + 1)\n    return max_length",
+    "explanation": "【解题思路】\n1. 使用滑动窗口维护无重复字符的子串\n2. 使用哈希表记录每个字符最后一次出现的位置\n3. 当遇到重复字符时，移动左边界\n4. 时间复杂度O(n)\n\n【记忆口诀】\"双指针配合哈希表，右边走左边追\"",
+    "testCases": [
+      {
+        "input": "\"abcabcbb\"",
+        "output": "3",
+        "explanation": "最长子串是\"abc\""
+      },
+      {
+        "input": "\"bbbbb\"",
+        "output": "1",
+        "explanation": "最长子串是\"b\""
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "title": "合并两个有序链表",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "链表",
+      "递归",
+      "迭代",
+      "LeetCode经典"
+    ],
+    "description": "将两个升序链表合并为一个新的升序链表并返回。",
+    "questionType": "coding",
+    "codeTemplate": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef mergeTwoLists(l1: ListNode, l2: ListNode) -> ListNode:\n    pass",
+    "solution": "def mergeTwoLists(l1, l2):\n    dummy = ListNode(0)\n    current = dummy\n    while l1 and l2:\n        if l1.val <= l2.val:\n            current.next = l1\n            l1 = l1.next\n        else:\n            current.next = l2\n            l2 = l2.next\n        current = current.next\n    current.next = l1 or l2\n    return dummy.next",
+    "explanation": "【解题思路】\n1. 创建哑节点作为新链表的头部\n2. 使用双指针同时遍历两个链表\n3. 每次比较两个指针指向的节点值，将较小的接到新链表后面\n\n【记忆口诀】\"双指针赛跑，小的先跑\"",
+    "testCases": [
+      {
+        "input": "l1=[1,2,4], l2=[1,3,4]",
+        "output": "[1,1,2,3,4,4]",
+        "explanation": "合并两个有序链表"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "title": "爬楼梯",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "动态规划",
+      "斐波那契",
+      "LeetCode经典",
+      "记忆化"
+    ],
+    "description": "假设你正在爬楼梯。需要n阶你才能到达楼顶。每次你可以爬1或2个台阶。有多少种不同的方法可以爬到楼顶？",
+    "questionType": "coding",
+    "codeTemplate": "def climbStairs(n: int) -> int:\n    pass",
+    "solution": "def climbStairs(n):\n    if n <= 2:\n        return n\n    dp = [0] * (n + 1)\n    dp[1], dp[2] = 1, 2\n    for i in range(3, n + 1):\n        dp[i] = dp[i-1] + dp[i-2]\n    return dp[n]",
+    "explanation": "【解题思路】\n1. 第n阶可以从第n-1阶或n-2阶到达\n2. dp[i] = dp[i-1] + dp[i-2]，这是斐波那契数列\n3. 初始值：dp[1]=1, dp[2]=2\n\n【记忆口诀】\"最后一步要么跨1阶，要么跨2阶\"",
+    "testCases": [
+      {
+        "input": "n=2",
+        "output": "2",
+        "explanation": "1+1或2"
+      },
+      {
+        "input": "n=3",
+        "output": "3",
+        "explanation": "1+1+1, 1+2, 2+1"
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "title": "反转链表",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "链表",
+      "双指针",
+      "递归",
+      "LeetCode经典"
+    ],
+    "description": "给你单链表的头节点head，请你反转链表，并返回反转后的链表。",
+    "questionType": "coding",
+    "codeTemplate": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef reverseList(head: ListNode) -> ListNode:\n    pass",
+    "solution": "def reverseList(head):\n    prev = None\n    current = head\n    while current:\n        next_node = current.next\n        current.next = prev\n        prev = current\n        current = next_node\n    return prev",
+    "explanation": "【解题思路】\n1. 使用三个指针：prev、current、next\n2. 反转每个节点的指针方向\n3. 遍历完后prev指向新的头节点\n\n【记忆口诀】\"指向前一个，链表倒过来\"",
+    "testCases": [
+      {
+        "input": "[1,2,3,4,5]",
+        "output": "[5,4,3,2,1]",
+        "explanation": "反转整个链表"
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "title": "买卖股票的最佳时机",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "数组",
+      "贪心",
+      "LeetCode经典"
+    ],
+    "description": "给定一个数组prices，它的第i个元素是一支给定股票第i天的价格。\n\n如果你最多只允许完成一笔交易，设计一个算法来计算你所能获取的最大利润。",
+    "questionType": "coding",
+    "codeTemplate": "def maxProfit(prices: list[int]) -> int:\n    pass",
+    "solution": "def maxProfit(prices):\n    min_price = float(\"inf\")\n    max_profit = 0\n    for price in prices:\n        min_price = min(min_price, price)\n        max_profit = max(max_profit, price - min_price)\n    return max_profit",
+    "explanation": "【解题思路】\n1. 遍历一次，记录到目前为止的最低价格\n2. 计算当前价格与最低价格的差值\n3. 更新最大利润\n\n【记忆口诀】\"记住最低价，算出最高利\"",
+    "testCases": [
+      {
+        "input": "[7,1,5,3,6,4]",
+        "output": "5",
+        "explanation": "最低价1，最高利润6-1=5"
+      },
+      {
+        "input": "[7,6,4,3,1]",
+        "output": "0",
+        "explanation": "单调递减，无利润"
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "title": "环形链表检测",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "链表",
+      "快慢指针",
+      "Floyd算法"
+    ],
+    "description": "给定一个链表，判断链表中是否有环。",
+    "questionType": "coding",
+    "codeTemplate": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef hasCycle(head: ListNode) -> bool:\n    pass",
+    "solution": "def hasCycle(head):\n    if not head or not head.next:\n        return False\n    slow = head\n    fast = head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n        if slow == fast:\n            return True\n    return False",
+    "explanation": "【解题思路】\n1. 使用快慢指针，慢指针每次走一步，快指针每次走两步\n2. 如果有环，快指针一定会追上慢指针\n3. 如果无环，快指针会到达链表末尾\n\n【记忆口诀】\"快慢赛跑，追上就是环\"",
+    "testCases": [
+      {
+        "input": "[3,2,0,-4], pos=1",
+        "output": "True",
+        "explanation": "存在环"
+      },
+      {
+        "input": "[1], pos=-1",
+        "output": "False",
+        "explanation": "无环"
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "title": "有效的括号",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "栈",
+      "字符串",
+      "LeetCode经典"
+    ],
+    "description": "给定一个只包括\"(\"，\")\"，\"{\"，\"}\"，\"[\"，\"]\"的字符串s，判断字符串是否有效。",
+    "questionType": "coding",
+    "codeTemplate": "def isValid(s: str) -> bool:\n    pass",
+    "solution": "def isValid(s):\n    stack = []\n    mapping = {\")\": \"(\", \"}\": \"{\", \"]\": \"[\"}\n    for char in s:\n        if char in mapping:\n            top = stack.pop() if stack else \"#\"\n            if mapping[char] != top:\n                return False\n        else:\n            stack.append(char)\n    return not stack",
+    "explanation": "【解题思路】\n1. 使用栈存储左括号\n2. 遇到右括号时，弹出栈顶检查是否匹配\n3. 最后栈为空说明所有括号都匹配\n\n【记忆口诀】\"左括号进栈，右括号匹配弹出\"",
+    "testCases": [
+      {
+        "input": "\"()\"",
+        "output": "True",
+        "explanation": "简单括号匹配"
+      },
+      {
+        "input": "\"(]\"",
+        "output": "False",
+        "explanation": "不匹配"
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "title": "二分查找",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "二分查找",
+      "数组",
+      "搜索"
+    ],
+    "description": "给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回-1。",
+    "questionType": "coding",
+    "codeTemplate": "def binarySearch(nums: list[int], target: int) -> int:\n    pass",
+    "solution": "def binarySearch(nums, target):\n    left, right = 0, len(nums) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            return mid\n        elif nums[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1",
+    "explanation": "【解题思路】\n1. 维护左右边界指针\n2. 计算中点，比较中点值与目标值\n3. 根据比较结果缩小搜索范围\n4. 时间复杂度O(log n)\n\n【记忆口诀】\"中点划分，比大小缩范围\"",
+    "testCases": [
+      {
+        "input": "nums=[-1,0,3,5,9,12], target=9",
+        "output": "4",
+        "explanation": "找到目标"
+      },
+      {
+        "input": "nums=[-1,0,3,5,9,12], target=2",
+        "output": "-1",
+        "explanation": "目标不存在"
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "title": "岛屿的最大面积",
+    "category": "algorithms",
+    "difficulty": "medium",
+    "tags": [
+      "深度优先搜索",
+      "广度优先搜索",
+      "图",
+      "网格"
+    ],
+    "description": "给定一个包含0和1的二维网格地图，其中1表示陆地，0表示水域。找到给定的二维网格中最大的岛屿面积。",
+    "questionType": "coding",
+    "codeTemplate": "def maxAreaOfIsland(grid: list[list[int]]) -> int:\n    pass",
+    "solution": "def maxAreaOfIsland(grid):\n    if not grid:\n        return 0\n    max_area = 0\n    rows, cols = len(grid), len(grid[0])\n    def dfs(r, c):\n        if r<0 or c<0 or r>=rows or c>=cols or grid[r][c]==0:\n            return 0\n        grid[r][c] = 0\n        return 1 + dfs(r+1,c) + dfs(r-1,c) + dfs(r,c+1) + dfs(r,c-1)\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == 1:\n                max_area = max(max_area, dfs(r, c))\n    return max_area",
+    "explanation": "【解题思路】\n1. 遍历每个格子，遇到岛屿开始DFS\n2. DFS递归访问四个方向，将访问过的岛屿标记为0\n3. 统计每个岛屿的面积，更新最大值\n\n【记忆口诀】\"遇到岛屿就深挖，四个方向都走遍\"",
+    "testCases": [
+      {
+        "input": "[[0,0,1,0,0],[0,0,0,0,0]]",
+        "output": "1",
+        "explanation": "最大岛屿面积1"
+      }
+    ]
+  },
+  {
+    "id": "11",
+    "title": "字符串转整数 (atoi)",
+    "category": "algorithms",
+    "difficulty": "medium",
+    "tags": [
+      "字符串",
+      "自动机",
+      "有限状态机"
+    ],
+    "description": "实现一个myAtoi(string s)函数，将其转换为整数。",
+    "questionType": "coding",
+    "codeTemplate": "def myAtoi(s: str) -> int:\n    pass",
+    "solution": "def myAtoi(s):\n    s = s.strip()\n    if not s:\n        return 0\n    sign = 1\n    result = 0\n    i = 0\n    if s[0] == \"-\":\n        sign = -1\n        i = 1\n    elif s[0] == \"+\":\n        i = 1\n    while i < len(s) and s[i].isdigit():\n        result = result * 10 + int(s[i])\n        i += 1\n    result *= sign\n    INT_MAX, INT_MIN = 2**31 - 1, -2**31\n    if result < INT_MIN:\n        return INT_MIN\n    if result > INT_MAX:\n        return INT_MAX\n    return result",
+    "explanation": "【解题思路】\n1. 跳过前导空格\n2. 处理符号位\n3. 逐字符读取数字，累加结果\n4. 检查溢出\n\n【记忆口诀】\"去空格、判符号、累位数、防溢出\"",
+    "testCases": [
+      {
+        "input": "\"42\"",
+        "output": "42",
+        "explanation": "基本转换"
+      },
+      {
+        "input": "\"   -42\"",
+        "output": "-42",
+        "explanation": "带空格和负号"
+      }
+    ]
+  },
+  {
+    "id": "12",
+    "title": "最长公共前缀",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "字符串",
+      "字典树",
+      "水平扫描"
+    ],
+    "description": "编写一个函数来查找字符串数组中的最长公共前缀。",
+    "questionType": "coding",
+    "codeTemplate": "def longestCommonPrefix(strs: list[str]) -> str:\n    pass",
+    "solution": "def longestCommonPrefix(strs):\n    if not strs:\n        return \"\"\n    prefix = strs[0]\n    for s in strs[1:]:\n        while not s.startswith(prefix):\n            prefix = prefix[:-1]\n            if not prefix:\n                return \"\"\n    return prefix",
+    "explanation": "【解题思路】\n1. 以第一个字符串为初始前缀\n2. 遍历后续字符串，逐渐缩短前缀直到匹配\n3. 如果前缀为空，返回空字符串\n\n【记忆口诀】\"第一个做模板，后面逐个裁\"",
+    "testCases": [
+      {
+        "input": "[\"flower\",\"flow\",\"flight\"]",
+        "output": "\"fl\"",
+        "explanation": "公共前缀是fl"
+      },
+      {
+        "input": "[\"dog\",\"racecar\",\"car\"]",
+        "output": "\"\"",
+        "explanation": "无公共前缀"
+      }
+    ]
+  },
+  {
+    "id": "13",
+    "title": "合并区间",
+    "category": "algorithms",
+    "difficulty": "medium",
+    "tags": [
+      "数组",
+      "排序",
+      "区间合并"
+    ],
+    "description": "给出一个区间的集合，请你合并所有重叠的区间。",
+    "questionType": "coding",
+    "codeTemplate": "def merge(intervals: list[list[int]]) -> list[list[int]]:\n    pass",
+    "solution": "def merge(intervals):\n    if not intervals:\n        return []\n    intervals.sort(key=lambda x: x[0])\n    merged = [intervals[0]]\n    for start, end in intervals[1:]:\n        last_end = merged[-1][1]\n        if start <= last_end:\n            merged[-1][1] = max(last_end, end)\n        else:\n            merged.append([start, end])\n    return merged",
+    "explanation": "【解题思路】\n1. 按起始位置排序区间\n2. 遍历区间，比较当前区间起始与上一区间结束\n3. 如果重叠，合并；否则加入结果\n\n【记忆口诀】\"先排序，后合并，能合就合不能就开\"",
+    "testCases": [
+      {
+        "input": "[[1,3],[2,6],[8,10],[15,18]]",
+        "output": "[[1,6],[8,10],[15,18]]",
+        "explanation": "合并重叠区间"
+      }
+    ]
+  },
+  {
+    "id": "14",
+    "title": "每日温度",
+    "category": "algorithms",
+    "difficulty": "medium",
+    "tags": [
+      "栈",
+      "单调栈",
+      "温度"
+    ],
+    "description": "给定一个整数数组T，表示每天的温度，返回一个数组answer，其中answer[i]表示第i天之后，需要等多少天才能等到更高的温度。",
+    "questionType": "coding",
+    "codeTemplate": "def dailyTemperatures(T: list[int]) -> list[int]:\n    pass",
+    "solution": "def dailyTemperatures(T):\n    n = len(T)\n    answer = [0] * n\n    stack = []\n    for i, temp in enumerate(T):\n        while stack and T[stack[-1]] < temp:\n            prev_index = stack.pop()\n            answer[prev_index] = i - prev_index\n        stack.append(i)\n    return answer",
+    "explanation": "【解题思路】\n1. 使用单调递减栈存储索引\n2. 遍历温度，遇到更高温度就弹出并计算等待天数\n3. 栈中存索引可以计算天数差\n\n【记忆口诀】\"递减栈，暖天来时算天数\"",
+    "testCases": [
+      {
+        "input": "[73,74,75,71,69,72,76,73]",
+        "output": "[1,1,4,2,1,1,0,0]",
+        "explanation": "标准测试"
+      }
+    ]
+  },
+  {
+    "id": "15",
+    "title": "课程表",
+    "category": "algorithms",
+    "difficulty": "medium",
+    "tags": [
+      "图",
+      "拓扑排序",
+      "BFS",
+      "DFS"
+    ],
+    "description": "给定课程总量numCourses和待完成课程对数prerequisites，判断是否可能完成所有课程？",
+    "questionType": "coding",
+    "codeTemplate": "def canFinish(numCourses: int, prerequisites: list[list[int]]) -> bool:\n    pass",
+    "solution": "def canFinish(numCourses, prerequisites):\n    from collections import defaultdict, deque\n    graph = defaultdict(list)\n    in_degree = [0] * numCourses\n    for dest, src in prerequisites:\n        graph[src].append(dest)\n        in_degree[dest] += 1\n    queue = deque([i for i in range(numCourses) if in_degree[i]==0])\n    visited = 0\n    while queue:\n        node = queue.popleft()\n        visited += 1\n        for neighbor in graph[node]:\n            in_degree[neighbor] -= 1\n            if in_degree[neighbor] == 0:\n                queue.append(neighbor)\n    return visited == numCourses",
+    "explanation": "【解题思路】\n1. 构建有向图，记录每个节点的入度\n2. 将入度为0的节点加入队列\n3. BFS遍历，减去相邻节点入度\n4. 如果能访问所有节点，说明无环\n\n【记忆口诀】\"入度为0先学，邻居入度减1\"",
+    "testCases": [
+      {
+        "input": "numCourses=2, prerequisites=[[1,0]]",
+        "output": "True",
+        "explanation": "可以完成"
+      },
+      {
+        "input": "numCourses=2, prerequisites=[[1,0],[0,1]]",
+        "output": "False",
+        "explanation": "存在环"
+      }
+    ]
+  },
+  {
+    "id": "16",
+    "title": "全排列",
+    "category": "algorithms",
+    "difficulty": "medium",
+    "tags": [
+      "回溯",
+      "DFS",
+      "全排列"
+    ],
+    "description": "给定一个不含重复数字的数组nums，返回其所有可能的全排列。",
+    "questionType": "coding",
+    "codeTemplate": "def permute(nums: list[int]) -> list[list[int]]:\n    pass",
+    "solution": "def permute(nums):\n    result = []\n    used = [False] * len(nums)\n    def backtrack(path):\n        if len(path) == len(nums):\n            result.append(path[:])\n            return\n        for i in range(len(nums)):\n            if not used[i]:\n                used[i] = True\n                path.append(nums[i])\n                backtrack(path)\n                path.pop()\n                used[i] = False\n    backtrack([])\n    return result",
+    "explanation": "【解题思路】\n1. 使用回溯法，递归构建排列\n2. 使用used数组标记已使用的元素\n3. 每层选择未使用的元素，继续递归\n\n【记忆口诀】\"选没用过的，递归到底回溯\"",
+    "testCases": [
+      {
+        "input": "[1,2,3]",
+        "output": "6种排列",
+        "explanation": "3个数的全排列有6种"
+      }
+    ]
+  },
+  {
+    "id": "17",
+    "title": "二叉树的中序遍历",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "二叉树",
+      "遍历",
+      "递归",
+      "栈"
+    ],
+    "description": "给定一个二叉树的根节点root，返回它的中序遍历。",
+    "questionType": "coding",
+    "codeTemplate": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef inorderTraversal(root: TreeNode) -> list[int]:\n    pass",
+    "solution": "def inorderTraversal(root):\n    result = []\n    stack = []\n    current = root\n    while current or stack:\n        while current:\n            stack.append(current)\n            current = current.left\n        current = stack.pop()\n        result.append(current.val)\n        current = current.right\n    return result",
+    "explanation": "【解题思路】\n1. 中序遍历顺序：左-根-右\n2. 使用栈模拟递归，先一直向左下探\n3. 弹出节点处理，访问右子树\n\n【记忆口诀】\"左子树全部压栈，弹出处理再向右\"",
+    "testCases": [
+      {
+        "input": "[1,null,2,3]",
+        "output": "[1,3,2]",
+        "explanation": "中序遍历结果"
+      }
+    ]
+  },
+  {
+    "id": "18",
+    "title": "前K个高频元素",
+    "category": "algorithms",
+    "difficulty": "medium",
+    "tags": [
+      "堆",
+      "哈希表",
+      "桶排序",
+      "TopK"
+    ],
+    "description": "给你一个整数数组nums和一个整数k，返回其中出现频率前k高的元素。",
+    "questionType": "coding",
+    "codeTemplate": "def topKFrequent(nums: list[int], k: int) -> list[int]:\n    pass",
+    "solution": "def topKFrequent(nums, k):\n    from collections import Counter\n    import heapq\n    counter = Counter(nums)\n    heap = [(-freq, num) for num, freq in counter.items()]\n    heapq.heapify(heap)\n    return [heapq.heappop(heap)[1] for _ in range(k)]",
+    "explanation": "【解题思路】\n1. 统计每个数字出现的频率（哈希表）\n2. 构建最小堆，堆中元素为(-频率, 数字)\n3. 弹出k次堆顶，得到前k个高频元素\n\n【记忆口诀】\"计数建堆，弹出取top\"",
+    "testCases": [
+      {
+        "input": "nums=[1,1,1,2,2,3], k=2",
+        "output": "[1,2]",
+        "explanation": "1出现3次，2出现2次"
+      }
+    ]
+  },
+  {
+    "id": "19",
+    "title": "LRU缓存",
+    "category": "algorithms",
+    "difficulty": "hard",
+    "tags": [
+      "设计",
+      "哈希表",
+      "双向链表",
+      "缓存"
+    ],
+    "description": "设计和实现一个LRU（最近最少使用）缓存数据结构，使其支持get和put操作。",
+    "questionType": "coding",
+    "codeTemplate": "class LRUCache:\n    def __init__(self, capacity: int):\n        pass\n    def get(self, key: int) -> int:\n        pass\n    def put(self, key: int, value: int) -> None:\n        pass",
+    "solution": "class LRUCache:\n    def __init__(self, capacity):\n        self.capacity = capacity\n        self.cache = {}\n        self.order = []\n    def get(self, key):\n        if key in self.cache:\n            self.order.remove(key)\n            self.order.append(key)\n            return self.cache[key]\n        return -1\n    def put(self, key, value):\n        if key in self.cache:\n            self.order.remove(key)\n        elif len(self.cache) >= self.capacity:\n            oldest = self.order.pop(0)\n            del self.cache[oldest]\n        self.cache[key] = value\n        self.order.append(key)",
+    "explanation": "【解题思路】\n1. 使用哈希表存储键值对，实现O(1)访问\n2. 使用列表维护访问顺序\n3. 容量满时删除列表第一个元素（最久未使用）\n\n【记忆口诀】\"哈希表查得快，列表维护顺序\"",
+    "testCases": [
+      {
+        "input": "capacity=2, put(1,1), put(2,2), get(1)",
+        "output": "1",
+        "explanation": "返回1"
+      }
+    ]
+  },
+  {
+    "id": "20",
+    "title": "接雨水",
+    "category": "algorithms",
+    "difficulty": "hard",
+    "tags": [
+      "数组",
+      "双指针",
+      "动态规划",
+      "单调栈"
+    ],
+    "description": "给定n个非负整数表示每个宽度为1的柱子的高度图，计算按此排列的柱子下雨之后能接多少雨水。",
+    "questionType": "coding",
+    "codeTemplate": "def trap(height: list[int]) -> int:\n    pass",
+    "solution": "def trap(height):\n    if not height:\n        return 0\n    left, right = 0, len(height) - 1\n    left_max, right_max = 0, 0\n    water = 0\n    while left < right:\n        if height[left] < height[right]:\n            if height[left] >= left_max:\n                left_max = height[left]\n            else:\n                water += left_max - height[left]\n            left += 1\n        else:\n            if height[right] >= right_max:\n                right_max = height[right]\n            else:\n                water += right_max - height[right]\n            right -= 1\n    return water",
+    "explanation": "【解题思路】\n1. 使用双指针从两端向中间遍历\n2. 每个位置能接的水量由左右两侧最大高度中的较小值决定\n3. 移动较小的一侧，继续计算\n\n【记忆口诀】\"两端往中扫，短板决定水多少\"",
+    "testCases": [
+      {
+        "input": "[0,1,0,2,1,0,1,3,2,1,2,1]",
+        "output": "6",
+        "explanation": "能接6单位雨水"
+      }
+    ]
+  },
+  {
+    "id": "21",
+    "title": "排序算法时间复杂度",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "排序",
+      "时间复杂度",
+      "基础概念"
+    ],
+    "description": "以下哪种排序算法在最好情况下的时间复杂度是O(n)？",
+    "questionType": "choice",
+    "options": [
+      "冒泡排序",
+      "插入排序",
+      "快速排序",
+      "归并排序"
+    ],
+    "correctAnswer": 1,
+    "solution": "插入排序",
+    "explanation": "【解析】\n各种排序算法最好情况时间复杂度：\n- 冒泡排序：O(n)（已排序时优化版本）\n- 插入排序：O(n)（已排序时只需比较无需移动）\n- 快速排序：O(n log n)\n- 归并排序：O(n log n)\n\n【记忆口诀】\"插排已序O(n)，其他都要log n\""
+  },
+  {
+    "id": "22",
+    "title": "哈希表冲突解决方法",
+    "category": "algorithms",
+    "difficulty": "medium",
+    "tags": [
+      "哈希表",
+      "数据结构",
+      "冲突处理"
+    ],
+    "description": "以下哪项不是处理哈希表冲突的常用方法？",
+    "questionType": "choice",
+    "options": [
+      "链地址法（Chaining）",
+      "开放地址法（Open Addressing）",
+      "再哈希法（Rehashing）",
+      "二分查找法"
+    ],
+    "correctAnswer": 3,
+    "solution": "二分查找法",
+    "explanation": "【解析】\n哈希表冲突处理方法：\n1. 链地址法：将冲突的元素用链表连接\n2. 开放地址法：探测其他空位置\n3. 再哈希法：使用另一个哈希函数\n4. 建立公共溢出区\n\n二分查找法用于有序数组搜索，与哈希表冲突处理无关。\n\n【记忆口诀】\"链式开放再哈希，没有二分这一辙\""
+  },
+  {
+    "id": "23",
+    "title": "动态规划经典问题",
+    "category": "algorithms",
+    "difficulty": "medium",
+    "tags": [
+      "动态规划",
+      "经典问题"
+    ],
+    "description": "动态规划的核心思想是什么？",
+    "questionType": "choice",
+    "options": [
+      "分而治之",
+      "自底向上求解子问题并保存结果",
+      "贪心选择",
+      "回溯搜索"
+    ],
+    "correctAnswer": 1,
+    "solution": "自底向上求解子问题并保存结果",
+    "explanation": "【解析】\n动态规划的核心要素：\n1. 最优子结构：最优解包含子问题的最优解\n2. 无后效性：子问题的解不影响后续决策\n3. 重叠子问题：子问题会被重复计算\n\n两种实现方式：\n- 自底向上（DP表）\n- 自顶向下（记忆化）\n\n【记忆口诀】\"最优子结构加重叠，自底向上是核心\""
+  },
+  {
+    "id": "24",
+    "title": "图遍历算法",
+    "category": "algorithms",
+    "difficulty": "medium",
+    "tags": [
+      "图",
+      "BFS",
+      "DFS",
+      "遍历"
+    ],
+    "description": "BFS（广度优先搜索）算法通常使用什么数据结构实现？",
+    "questionType": "choice",
+    "options": [
+      "栈",
+      "队列",
+      "堆",
+      "树"
+    ],
+    "correctAnswer": 1,
+    "solution": "队列",
+    "explanation": "【解析】\nBFS使用队列实现层序遍历：\n1. 将起点加入队列\n2. 弹出队首，访问并将其邻居加入队列\n3. 重复直到队列为空\n\nDFS使用栈（或递归）实现深度优先遍历。\n\n【记忆口诀】\"BFS用队列层层扩散，DFS用栈深度优先\""
+  },
+  {
+    "id": "25",
+    "title": "递归与迭代",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "递归",
+      "迭代",
+      "基础概念"
+    ],
+    "description": "递归算法相比迭代算法的主要缺点是什么？",
+    "questionType": "choice",
+    "options": [
+      "代码更复杂",
+      "可能有栈溢出风险",
+      "执行速度更慢",
+      "无法解决所有问题"
+    ],
+    "correctAnswer": 1,
+    "solution": "可能有栈溢出风险",
+    "explanation": "【解析】\n递归的缺点：\n1. 栈溢出风险：递归调用过深会导致栈空间耗尽\n2. 重复计算：没有记忆化时会重复计算子问题\n3. 调用开销：函数调用有额外开销\n\n递归的优点：\n1. 代码简洁直观\n2. 天然符合数学归纳法\n3. 适合树/图结构的问题\n\n【记忆口诀】\"递归虽好别太深，栈溢出时要小心\""
+  },
+  {
+    "id": "26",
+    "title": "字符串匹配算法",
+    "category": "algorithms",
+    "difficulty": "hard",
+    "tags": [
+      "字符串",
+      "KMP",
+      "匹配算法"
+    ],
+    "description": "KMP算法的时间复杂度是？",
+    "questionType": "choice",
+    "options": [
+      "O(n*m)",
+      "O(n+m)",
+      "O(n*m)最好情况",
+      "O(m)"
+    ],
+    "correctAnswer": 1,
+    "solution": "O(n+m)",
+    "explanation": "【解析】\nKMP（Knuth-Morris-Pratt）算法：\n- 预处理模式串：O(m)\n- 匹配过程：O(n)\n- 总时间复杂度：O(n+m)\n\n相比朴素算法O(n*m)，KMP通过避免回溯大大提升了效率。\n\n【记忆口诀】\"KMP预处理加匹配，总共n加m\""
+  },
+  {
+    "id": "27",
+    "title": "堆的性质",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "堆",
+      "数据结构",
+      "完全二叉树"
+    ],
+    "description": "对于一个最大堆，堆顶元素与叶子节点的关系是？",
+    "questionType": "choice",
+    "options": [
+      "堆顶是最小值",
+      "堆顶是最大值",
+      "堆顶与叶子无关",
+      "堆顶是中间值"
+    ],
+    "correctAnswer": 1,
+    "solution": "堆顶是最大值",
+    "explanation": "【解析】\n堆的性质：\n1. 完全二叉树：除了最后一层，其他层都是满的\n2. 最大堆：父节点 >= 子节点，堆顶是最大值\n3. 最小堆：父节点 <= 子节点，堆顶是最小值\n\n常用于：\n- 优先队列\n- TopK问题\n- 合并有序序列\n\n【记忆口诀】\"最大堆顶最大，最小堆顶最小\""
+  },
+  {
+    "id": "28",
+    "title": "并查集",
+    "category": "algorithms",
+    "difficulty": "medium",
+    "tags": [
+      "并查集",
+      "数据结构",
+      "集合"
+    ],
+    "description": "并查集（Union-Find）主要用于解决什么问题？",
+    "questionType": "choice",
+    "options": [
+      "排序问题",
+      "动态连通性问题",
+      "最短路径问题",
+      "字符串匹配问题"
+    ],
+    "correctAnswer": 1,
+    "solution": "动态连通性问题",
+    "explanation": "【解析】\n并查集用于处理动态连通性问题：\n1. Find：查找元素所属集合的代表\n2. Union：合并两个集合\n3. Connected：判断两个元素是否连通\n\n应用场景：\n- 社交网络中的好友关系\n- 岛屿数量问题\n- Kruskal最小生成树\n\n【记忆口诀】\"并查集管连通，朋友圈好帮手\""
+  },
+  {
+    "id": "29",
+    "title": "贪心算法",
+    "category": "algorithms",
+    "difficulty": "medium",
+    "tags": [
+      "贪心算法",
+      "算法策略"
+    ],
+    "description": "贪心算法适用的场景需要满足什么条件？",
+    "questionType": "choice",
+    "options": [
+      "必须有重叠子问题",
+      "每一步局部最优能导致全局最优",
+      "问题必须能分解",
+      "需要保存所有子问题解"
+    ],
+    "correctAnswer": 1,
+    "solution": "每一步局部最优能导致全局最优",
+    "explanation": "【解析】\n贪心算法适用条件（贪心选择性质）：\n每一步的选择都是当前状态下最优的，且这个选择能够导致全局最优解。\n\n与动态规划的区别：\n- 贪心：不回溯，只考虑当前最优\n- DP：考虑所有子问题，可能回溯\n\n【记忆口诀】\"贪心只管眼前好，DP要考虑全局\""
+  },
+  {
+    "id": "30",
+    "title": "位运算基础",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "位运算",
+      "基础概念",
+      "技巧"
+    ],
+    "description": "计算 8 & 3 的值（二进制运算）：",
+    "questionType": "fill",
+    "correctAnswer": "0",
+    "solution": "0",
+    "explanation": "【解析】\n8的二进制：1000\n3的二进制：0011\n\n按位与运算：\n  1000\n& 0011\n------\n  0000 = 0\n\n按位与常用于：\n- 判断某一位是否为1\n- 清零特定位\n- 获取某一位的值\n\n【记忆口诀】\"1&1=1，其他都是0\""
+  },
+  {
+    "id": "31",
+    "title": "过拟合的原因和解决方案",
+    "category": "machine-learning",
+    "difficulty": "medium",
+    "tags": [
+      "机器学习基础",
+      "过拟合",
+      "正则化"
+    ],
+    "description": "以下哪项不是防止过拟合的方法？",
+    "questionType": "choice",
+    "options": [
+      "增加训练数据",
+      "使用正则化",
+      "减少模型复杂度",
+      "降低学习率"
+    ],
+    "correctAnswer": 3,
+    "solution": "降低学习率",
+    "explanation": "【解析】\n过拟合是模型在训练数据上表现很好，但在测试数据上表现差。\n\n降低学习率不会直接防止过拟合，它影响的是训练速度和收敛性。\n\n【防止过拟合的方法】\n1. 增加训练数据\n2. 正则化（L1/L2）\n3. 减少模型复杂度\n4. Dropout\n5. 早停（Early Stopping）\n\n【记忆口诀】防过拟合：多数据、正则化、简化模型、Dropout、早停止"
+  },
+  {
+    "id": "32",
+    "title": "交叉熵损失函数",
+    "category": "machine-learning",
+    "difficulty": "medium",
+    "tags": [
+      "损失函数",
+      "信息论",
+      "分类"
+    ],
+    "description": "交叉熵损失函数通常用于什么类型的任务？",
+    "questionType": "choice",
+    "options": [
+      "回归任务",
+      "分类任务",
+      "聚类任务",
+      "降维任务"
+    ],
+    "correctAnswer": 1,
+    "solution": "分类任务",
+    "explanation": "【解析】\n交叉熵（Cross-Entropy）损失函数：\n- 衡量真实分布与预测分布之间的差异\n- 常用于分类任务\n- 梯度包含预测误差，更新稳定\n\n公式：H(p,q) = -Σ p(x)log(q(x))\n\n【记忆口诀】\"分类用交叉熵，概率分布差距度量\""
+  },
+  {
+    "id": "33",
+    "title": "偏差与方差",
+    "category": "machine-learning",
+    "difficulty": "hard",
+    "tags": [
+      "偏差",
+      "方差",
+      "模型评估",
+      "泛化误差"
+    ],
+    "description": "在机器学习中，偏差（Bias）和方差（Variance）的关系是什么？",
+    "questionType": "choice",
+    "options": [
+      "偏差大方差也大",
+      "偏差大方差小",
+      "偏差小方差大",
+      "偏差和方差是此消彼长的关系"
+    ],
+    "correctAnswer": 3,
+    "solution": "偏差和方差是此消彼长的关系",
+    "explanation": "【解析】\n泛化误差 = 偏差² + 方差 + 噪声\n\n偏差-方差权衡（Bias-Variance Tradeoff）：\n- 简单模型：高偏差、低方差\n- 复杂模型：低偏差、高方差\n- 最佳模型：在两者之间取得平衡\n\n【记忆口诀】\"简单模型偏差大方差小，复杂模型偏差小方差大\""
+  },
+  {
+    "id": "34",
+    "title": "特征工程",
+    "category": "machine-learning",
+    "difficulty": "medium",
+    "tags": [
+      "特征工程",
+      "数据预处理",
+      "特征选择"
+    ],
+    "description": "以下哪项不是特征工程的常用方法？",
+    "questionType": "choice",
+    "options": [
+      "标准化",
+      "独热编码",
+      "主成分分析",
+      "梯度下降"
+    ],
+    "correctAnswer": 3,
+    "solution": "梯度下降",
+    "explanation": "【解析】\n特征工程方法：\n1. 标准化/归一化\n2. 独热编码（One-Hot）\n3. 主成分分析（PCA）\n4. 特征选择\n5. 多项式特征\n\n梯度下降是优化算法，不是特征工程方法。\n\n【记忆口诀】\"特征工程：缩放编码PCA，特征选择顶呱呱\""
+  },
+  {
+    "id": "35",
+    "title": "支持向量机",
+    "category": "machine-learning",
+    "difficulty": "hard",
+    "tags": [
+      "SVM",
+      "支持向量",
+      "核函数"
+    ],
+    "description": "SVM（支持向量机）的核心思想是什么？",
+    "questionType": "choice",
+    "options": [
+      "最近邻分类",
+      "最大化分类间隔",
+      "决策树分裂",
+      "聚类中心"
+    ],
+    "correctAnswer": 1,
+    "solution": "最大化分类间隔",
+    "explanation": "【解析】\nSVM的核心思想：\n1. 找到能够正确分类数据的超平面\n2. 最大化两个类别之间的间隔（margin）\n3. 间隔边界上的点称为支持向量\n\n核函数（Kernel）：\n- 线性核：处理线性可分数据\n- RBF核：处理非线性数据\n- 多项式核：多项式特征空间\n\n【记忆口诀】\"SVM找最大间隔，支持向量是关键\""
+  },
+  {
+    "id": "36",
+    "title": "梯度下降算法",
+    "category": "machine-learning",
+    "difficulty": "medium",
+    "tags": [
+      "梯度下降",
+      "优化算法",
+      "学习率"
+    ],
+    "description": "在梯度下降中，学习率过大会导致什么问题？",
+    "questionType": "choice",
+    "options": [
+      "欠拟合",
+      "过拟合",
+      "震荡或发散",
+      "训练变慢"
+    ],
+    "correctAnswer": 2,
+    "solution": "震荡或发散",
+    "explanation": "【解析】\n学习率（Learning Rate）的影响：\n- 过大：参数在最优解附近震荡，可能发散\n- 过小：收敛速度慢，容易陷入局部最优\n- 合适：稳定收敛到最优解\n\n常见策略：\n1. 学习率衰减\n2. 动量（Momentum）\n3. 自适应学习率（Adam、RMSprop）\n\n【记忆口诀】\"学习率太大易震荡，太小收敛慢如虫\""
+  },
+  {
+    "id": "37",
+    "title": "模型评估指标",
+    "category": "machine-learning",
+    "difficulty": "medium",
+    "tags": [
+      "评估指标",
+      "混淆矩阵",
+      "分类"
+    ],
+    "description": "对于类别严重不平衡的数据集，哪个评估指标更合适？",
+    "questionType": "choice",
+    "options": [
+      "准确率",
+      "精确率",
+      "召回率",
+      "F1分数",
+      "AUC-ROC"
+    ],
+    "correctAnswer": 4,
+    "solution": "AUC-ROC",
+    "explanation": "【解析】\n不平衡数据集的评估：\n- 准确率：容易被多数类主导\n- 精确率：预测为正类的准确性\n- 召回率：正类被预测出来的比例\n- F1分数：精确率和召回率的调和平均\n- AUC-ROC：不随阈值变化，全面评估分类器性能\n\nAUC-ROC优势：对类别不平衡不敏感。\n\n【记忆口诀】\"不平衡数据看AUC，ROC曲线全面评估\""
+  },
+  {
+    "id": "38",
+    "title": "集成学习",
+    "category": "machine-learning",
+    "difficulty": "medium",
+    "tags": [
+      "集成学习",
+      "Bagging",
+      "Boosting",
+      "随机森林"
+    ],
+    "description": "随机森林（Random Forest）属于哪种集成方法？",
+    "questionType": "choice",
+    "options": [
+      "Bagging",
+      "Boosting",
+      "Stacking",
+      "Voting"
+    ],
+    "correctAnswer": 0,
+    "solution": "Bagging",
+    "explanation": "【解析】\n集成学习方法：\n\nBagging（Bootstrap Aggregating）：\n- 并行训练多个模型\n- 每个模型使用不同的数据子集\n- 最终结果投票/平均\n- 代表：随机森林\n\nBoosting：\n- 串行训练\n- 关注之前模型的错误\n- 代表：AdaBoost、GBDT、XGBoost\n\n【记忆口诀】\"随机森林Bagging，并行采样效果好\""
+  },
+  {
+    "id": "39",
+    "title": "K-means聚类",
+    "category": "machine-learning",
+    "difficulty": "medium",
+    "tags": [
+      "聚类",
+      "K-means",
+      "无监督学习"
+    ],
+    "description": "K-means算法的主要步骤是什么？",
+    "questionType": "choice",
+    "options": [
+      "计算距离 -> 分配中心 -> 更新中心 -> 重复",
+      "初始化中心 -> 分配样本 -> 更新中心 -> 重复",
+      "分配样本 -> 计算距离 -> 初始化中心 -> 重复",
+      "初始化中心 -> 计算距离 -> 更新中心 -> 结束"
+    ],
+    "correctAnswer": 1,
+    "solution": "初始化中心 -> 分配样本 -> 更新中心 -> 重复",
+    "explanation": "【解析】\nK-means算法流程：\n1. 随机初始化K个聚类中心\n2. 分配：计算每个样本到各中心的距离，归入最近的类\n3. 更新：重新计算每个类的中心（均值）\n4. 重复步骤2-3直到收敛\n\n【记忆口诀】\"先定心，再分配，更新均值再重来\""
+  },
+  {
+    "id": "40",
+    "title": "欠拟合",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "欠拟合",
+      "模型复杂度",
+      "偏差"
+    ],
+    "description": "模型欠拟合时，应该采取什么措施？",
+    "questionType": "choice",
+    "options": [
+      "减少特征",
+      "增加训练数据",
+      "增加模型复杂度",
+      "使用更强的正则化"
+    ],
+    "correctAnswer": 2,
+    "solution": "增加模型复杂度",
+    "explanation": "【解析】\n欠拟合的特征：\n- 训练集和测试集表现都差\n- 高偏差、低方差\n\n解决方法：\n1. 增加模型复杂度\n2. 增加特征\n3. 减少正则化强度\n4. 训练更长时间\n\n【记忆口诀】\"欠拟合就加模型，复杂特征加起来\""
+  },
+  {
+    "id": "41",
+    "title": "正则化类型",
+    "category": "machine-learning",
+    "difficulty": "medium",
+    "tags": [
+      "正则化",
+      "L1",
+      "L2",
+      "过拟合"
+    ],
+    "description": "L1正则化（Lasso）相比L2正则化（Ridge）的特点是什么？",
+    "questionType": "choice",
+    "options": [
+      "L1会使参数变为0，L2不会",
+      "L2会使参数变为0，L1不会",
+      "L1和L2效果完全相同",
+      "L1计算更快"
+    ],
+    "correctAnswer": 0,
+    "solution": "L1会使参数变为0，L2不会",
+    "explanation": "【解析】\nL1正则化（Lasso）：\n- 惩罚项：λ||w||₁\n- 会使部分参数变为0（特征选择）\n- 产生稀疏解\n\nL2正则化（Ridge）：\n- 惩罚项：λ||w||²\n- 使参数趋近于0但不会完全为0\n- 保留所有特征\n\n【记忆口诀】\"L1稀疏选特征，L2平滑保所有\""
+  },
+  {
+    "id": "42",
+    "title": "激活函数",
+    "category": "machine-learning",
+    "difficulty": "medium",
+    "tags": [
+      "激活函数",
+      "神经网络",
+      "Sigmoid",
+      "ReLU"
+    ],
+    "description": "ReLU激活函数相比Sigmoid的优势是什么？",
+    "questionType": "choice",
+    "options": [
+      "输出范围更大",
+      "梯度消失问题更轻，计算更快",
+      "可以处理多分类问题",
+      "不需要归一化输入"
+    ],
+    "correctAnswer": 1,
+    "solution": "梯度消失问题更轻，计算更快",
+    "explanation": "【解析】\nSigmoid的问题：\n- 梯度饱和（两端导数接近0）\n- 计算相对复杂\n- 输出不以0为中心\n\nReLU的优势：\n- 不会梯度饱和\n- 计算简单高效\n- 稀疏激活\n\nReLU的问题：Dying ReLU\n\n【记忆口诀】\"ReLU快而不饱和，但有Dead神经元\""
+  },
+  {
+    "id": "43",
+    "title": "模型验证方法",
+    "category": "machine-learning",
+    "difficulty": "medium",
+    "tags": [
+      "交叉验证",
+      "模型验证",
+      "过拟合"
+    ],
+    "description": "K折交叉验证的主要目的是什么？",
+    "questionType": "choice",
+    "options": [
+      "加快训练速度",
+      "减少数据量需求",
+      "更可靠地评估模型泛化能力",
+      "避免梯度消失"
+    ],
+    "correctAnswer": 2,
+    "solution": "更可靠地评估模型泛化能力",
+    "explanation": "【解析】\nK折交叉验证流程：\n1. 将数据分成K份\n2. 每次用K-1份训练，1份验证\n3. 重复K次\n4. 取K次验证结果的平均\n\n目的：\n- 更可靠地估计模型性能\n- 减少验证结果的方差\n- 充分利用有限数据\n\n常用K值：5或10\n\n【记忆口诀】\"K折交叉轮着来，平均结果更可靠\""
+  },
+  {
+    "id": "44",
+    "title": "距离度量",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "距离度量",
+      "相似度",
+      "KNN"
+    ],
+    "description": "在KNN算法中，如果特征取值范围差异很大，应该使用什么距离？",
+    "questionType": "choice",
+    "options": [
+      "欧氏距离",
+      "曼哈顿距离",
+      "标准化欧氏距离",
+      "余弦相似度"
+    ],
+    "correctAnswer": 2,
+    "solution": "标准化欧氏距离",
+    "explanation": "【解析】\n距离度量方法：\n1. 欧氏距离：对所有特征平等对待\n2. 曼哈顿距离：城市街区距离\n3. 标准化欧氏距离：先标准化再计算\n4. 余弦相似度：方向而非大小\n\n当特征范围差异大时需要标准化。\n\n【记忆口诀】\"特征范围差异大，先做标准化再算距离\""
+  },
+  {
+    "id": "45",
+    "title": "批量归一化",
+    "category": "machine-learning",
+    "difficulty": "hard",
+    "tags": [
+      "BatchNorm",
+      "归一化",
+      "深度学习"
+    ],
+    "description": "Batch Normalization的主要作用是什么？",
+    "questionType": "choice",
+    "options": [
+      "增加模型参数量",
+      "减少内部协变量偏移，加速训练",
+      "防止过拟合",
+      "降低计算复杂度"
+    ],
+    "correctAnswer": 1,
+    "solution": "减少内部协变量偏移，加速训练",
+    "explanation": "【解析】\nBatch Normalization：\n1. 对每个batch计算均值和方差\n2. 归一化：z = (x - μ) / σ\n3. 缩放和平移：γz + β\n\n作用：\n- 减少内部协变量偏移\n- 允许更高学习率\n- 减少对初始化的依赖\n- 有轻微正则化效果\n\n位置：通常在全连接层/卷积层之后，激活函数之前。\n\n【记忆口诀】\"BatchNorm减偏移，加速训练降敏感\""
+  },
+  {
+    "id": "46",
+    "title": "类别不平衡处理",
+    "category": "machine-learning",
+    "difficulty": "medium",
+    "tags": [
+      "类别不平衡",
+      "采样",
+      "SMOTE"
+    ],
+    "description": "SMOTE是一种什么样的技术？",
+    "questionType": "choice",
+    "options": [
+      "欠采样方法",
+      "过采样方法",
+      "特征选择方法",
+      "模型集成方法"
+    ],
+    "correctAnswer": 1,
+    "solution": "过采样方法",
+    "explanation": "【解析】\nSMOTE（Synthetic Minority Over-sampling Technique）：\n- 在少数类样本之间进行插值\n- 合成新的少数类样本\n- 过采样方法\n\n其他处理类别不平衡的方法：\n1. 欠采样：减少多数类样本\n2. 类别权重：调整损失函数\n3. 集成方法\n\n【记忆口诀】\"SMOTE是过采样，少数类里插新芽\""
+  },
+  {
+    "id": "47",
+    "title": "朴素贝叶斯",
+    "category": "machine-learning",
+    "difficulty": "medium",
+    "tags": [
+      "朴素贝叶斯",
+      "概率",
+      "分类"
+    ],
+    "description": "朴素贝叶斯分类器的\"朴素\"假设是什么？",
+    "questionType": "choice",
+    "options": [
+      "所有特征都是连续的",
+      "所有特征之间相互独立",
+      "所有类别的先验概率相等",
+      "数据服从正态分布"
+    ],
+    "correctAnswer": 1,
+    "solution": "所有特征之间相互独立",
+    "explanation": "【解析】\n朴素贝叶斯的\"朴素\"假设：\n特征之间相互独立，即：\nP(x₁,x₂,...,xₙ|y) = P(x₁|y)·P(x₂|y)·...·P(xₙ|y)\n\n常见变体：\n- 高斯朴素贝叶斯（连续特征）\n- 多项式朴素贝叶斯（文本分类）\n- 伯努利朴素贝叶斯（二值特征）\n\n【记忆口诀】\"朴素贝叶斯假设独立，简单高效文本爱\""
+  },
+  {
+    "id": "48",
+    "title": "信息增益",
+    "category": "machine-learning",
+    "difficulty": "hard",
+    "tags": [
+      "信息增益",
+      "决策树",
+      "ID3",
+      "熵"
+    ],
+    "description": "信息增益在决策树中是如何定义的？",
+    "questionType": "choice",
+    "options": [
+      "信息增益 = 父节点熵 - 子节点加权平均熵",
+      "信息增益 = 子节点加权平均熵 - 父节点熵",
+      "信息增益 = 父节点熵 × 子节点数量",
+      "信息增益 = 子节点熵之和"
+    ],
+    "correctAnswer": 0,
+    "solution": "信息增益 = 父节点熵 - 子节点加权平均熵",
+    "explanation": "【解析】\n信息增益（Information Gain）：\nIG(parent, children) = H(parent) - Σ(wᵢ·H(childᵢ))\n\n决策树算法（如ID3）使用信息增益选择最优分裂特征。\n\n缺点：倾向于选择取值多的特征\n改进：C4.5使用增益率\n\n【记忆口诀】\"信息增益是熵减，越大分裂越优秀\""
+  },
+  {
+    "id": "49",
+    "title": "模型选择",
+    "category": "machine-learning",
+    "difficulty": "medium",
+    "tags": [
+      "模型选择",
+      "奥卡姆剃刀",
+      "泛化能力"
+    ],
+    "description": "奥卡姆剃刀原则在模型选择中的含义是？",
+    "questionType": "choice",
+    "options": [
+      "模型越复杂越好",
+      "在性能相近的情况下，选择简单的模型",
+      "所有模型都一样好",
+      "应该始终选择最复杂的模型"
+    ],
+    "correctAnswer": 1,
+    "solution": "在性能相近的情况下，选择简单的模型",
+    "explanation": "【解析】\n奥卡姆剃刀（Occam's Razor）：\n\"如无必要，勿增实体\"\n\n在机器学习中：\n- 简单的模型泛化能力可能更好\n- 避免过拟合\n- 在验证误差相近时，选择简单的\n\n【记忆口诀】\"能用简单就不复杂，够用就好是原则\""
+  },
+  {
+    "id": "50",
+    "title": "梯度消失",
+    "category": "machine-learning",
+    "difficulty": "hard",
+    "tags": [
+      "梯度消失",
+      "梯度爆炸",
+      "深度学习",
+      "初始化"
+    ],
+    "description": "深度神经网络中梯度消失的主要原因是什么？",
+    "questionType": "choice",
+    "options": [
+      "学习率太大",
+      "网络层数过多，激活函数导数小于1时梯度累积衰减",
+      "数据量太少",
+      "使用了太简单的模型"
+    ],
+    "correctAnswer": 1,
+    "solution": "网络层数过多，激活函数导数小于1时梯度累积衰减",
+    "explanation": "【解析】\n梯度消失的原因：\n1. 激活函数饱和（如Sigmoid在两端导数接近0）\n2. 网络层数过深\n3. 梯度在反向传播中不断衰减\n\n解决方案：\n1. ReLU激活函数\n2. 残差连接（ResNet）\n3. 批量归一化\n4. 适当的权重初始化\n\n【记忆口诀】\"层深激活饱和，梯度消失烦恼\""
+  },
+  {
+    "id": "51",
+    "title": "混淆矩阵",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "混淆矩阵",
+      "评估指标",
+      "TP",
+      "TN"
+    ],
+    "description": "在二分类混淆矩阵中，True Positive (TP) 是指？",
+    "questionType": "fill",
+    "correctAnswer": "真正例（预测为正，实际也为正）",
+    "solution": "真正例",
+    "explanation": "【解析】\n混淆矩阵四个元素：\n- TP (True Positive)：预测为正，实际为正\n- TN (True Negative)：预测为负，实际为负\n- FP (False Positive)：预测为正，实际为负\n- FN (False Negative)：预测为负，实际为正\n\n衍生指标：\n- 精确率 = TP / (TP + FP)\n- 召回率 = TP / (TP + FN)\n\n【记忆口诀】\"T开头对，P开头正，P是预测T是真\""
+  },
+  {
+    "id": "52",
+    "title": "主成分分析",
+    "category": "machine-learning",
+    "difficulty": "hard",
+    "tags": [
+      "PCA",
+      "降维",
+      "特征值",
+      "方差"
+    ],
+    "description": "PCA（主成分分析）的核心思想是什么？",
+    "questionType": "choice",
+    "options": [
+      "删除所有相关的特征",
+      "找到最大化方差的方向进行投影",
+      "使用神经网络压缩数据",
+      "删除标签信息"
+    ],
+    "correctAnswer": 1,
+    "solution": "找到最大化方差的方向进行投影",
+    "explanation": "【解析】\nPCA步骤：\n1. 标准化数据\n2. 计算协方差矩阵\n3. 计算特征值和特征向量\n4. 选择前K个最大特征值对应的特征向量\n5. 将数据投影到这K个特征向量上\n\n核心思想：找到数据中方差最大的方向。\n\n【记忆口诀】\"PCA找最大方差方向，投影保留信息量\""
+  },
+  {
+    "id": "53",
+    "title": "学习曲线分析",
+    "category": "machine-learning",
+    "difficulty": "medium",
+    "tags": [
+      "学习曲线",
+      "欠拟合",
+      "过拟合",
+      "诊断"
+    ],
+    "description": "如果训练曲线和验证曲线都很高且接近，说明模型存在什么问题？",
+    "questionType": "choice",
+    "options": [
+      "过拟合",
+      "欠拟合",
+      "数据质量问题",
+      "随机性过大"
+    ],
+    "correctAnswer": 1,
+    "solution": "欠拟合",
+    "explanation": "【解析】\n学习曲线分析：\n\n1. 高偏差（欠拟合）：\n   - 训练和验证误差都很高且接近\n   - 增加数据没用，需要更复杂的模型\n\n2. 高方差（过拟合）：\n   - 训练误差低，验证误差高\n   - 差距大，增加数据可能有效\n\n【记忆口诀】\"两高接近欠拟合，两低差距过拟合\""
+  },
+  {
+    "id": "54",
+    "title": "协同过滤",
+    "category": "machine-learning",
+    "difficulty": "medium",
+    "tags": [
+      "推荐系统",
+      "协同过滤",
+      "相似度"
+    ],
+    "description": "协同过滤推荐算法的基本思想是什么？",
+    "questionType": "choice",
+    "options": [
+      "基于内容的特征匹配",
+      "利用用户行为数据找到相似用户或物品",
+      "使用决策树进行分类",
+      "对用户进行聚类分组"
+    ],
+    "correctAnswer": 1,
+    "solution": "利用用户行为数据找到相似用户或物品",
+    "explanation": "【解析】\n协同过滤（Collaborative Filtering）：\n- 基于用户行为数据\n- 找相似用户或相似物品\n- 进行推荐\n\n两种主要方法：\n1. 基于用户的协同过滤（User-CF）\n2. 基于物品的协同过滤（Item-CF）\n\n优点：不需要物品内容特征\n缺点：冷启动问题\n\n【记忆口诀】\"协同过滤靠大家，喜欢相似你我他\""
+  },
+  {
+    "id": "55",
+    "title": "核函数",
+    "category": "machine-learning",
+    "difficulty": "hard",
+    "tags": [
+      "SVM",
+      "核函数",
+      "特征空间"
+    ],
+    "description": "核函数（Kernel Function）在SVM中的作用是什么？",
+    "questionType": "choice",
+    "options": [
+      "加速训练",
+      "隐式地将数据映射到高维特征空间",
+      "减少特征数量",
+      "提高准确率"
+    ],
+    "correctAnswer": 1,
+    "solution": "隐式地将数据映射到高维特征空间",
+    "explanation": "【解析】\n核函数的作用：\n- 避免显式计算高维映射\n- 在低维空间计算高维空间的内积\n- 让线性不可分问题变得可分\n\n常用核函数：\n1. 线性核：K(x,y) = x·y\n2. 多项式核：K(x,y) = (x·y + c)ᵐ\n3. RBF（高斯）核：K(x,y) = exp(-||x-y||² / 2σ²)\n\n【记忆口诀】\"核函数隐映射，低维计算高维功\""
+  },
+  {
+    "id": "56",
+    "title": "参数与超参数",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "参数",
+      "超参数",
+      "模型训练"
+    ],
+    "description": "以下哪个是模型的超参数而不是参数？",
+    "questionType": "choice",
+    "options": [
+      "线性回归的系数w",
+      "神经网络的权重",
+      "决策树的最大深度",
+      "K-means的聚类中心"
+    ],
+    "correctAnswer": 2,
+    "solution": "决策树的最大深度",
+    "explanation": "【解析】\n模型参数（Model Parameters）：\n- 模型内部可学习的权重\n- 通过训练数据自动学习\n\n超参数（Hyperparameters）：\n- 模型外部的配置\n- 需要人工设定\n- 例如：学习率、最大深度、K值\n\n调超参数的方法：网格搜索、随机搜索、贝叶斯优化\n\n【记忆口诀】\"参数学习超参数设，树深K值要手动\""
+  },
+  {
+    "id": "57",
+    "title": "经验风险与结构风险",
+    "category": "machine-learning",
+    "difficulty": "hard",
+    "tags": [
+      "经验风险",
+      "结构风险",
+      "正则化"
+    ],
+    "description": "结构风险最小化（SRM）的目的是什么？",
+    "questionType": "choice",
+    "options": [
+      "最小化训练误差",
+      "在训练误差和模型复杂度之间取得平衡",
+      "最大化测试集准确率",
+      "减少数据量需求"
+    ],
+    "correctAnswer": 1,
+    "solution": "在训练误差和模型复杂度之间取得平衡",
+    "explanation": "【解析】\n结构风险（Structural Risk）：\nR_srm(f) = R_emp(f) + λ·Ω(f)\n\n其中：\n- R_emp：经验风险（训练误差）\n- Ω(f)：正则化项（模型复杂度）\n- λ：正则化系数\n\n目的：\n- 防止过拟合\n- 在拟合能力和泛化能力间平衡\n\n【记忆口诀】\"结构风险要平衡，误差复杂度都考虑\""
+  },
+  {
+    "id": "58",
+    "title": "GBDT",
+    "category": "machine-learning",
+    "difficulty": "hard",
+    "tags": [
+      "GBDT",
+      "Boosting",
+      "梯度提升",
+      "集成学习"
+    ],
+    "description": "GBDT（梯度提升决策树）每次迭代的目标是什么？",
+    "questionType": "choice",
+    "options": [
+      "最大化当前损失",
+      "最小化当前残差的平方",
+      "与上一棵树无关",
+      "随机选择样本"
+    ],
+    "correctAnswer": 1,
+    "solution": "最小化当前残差的平方",
+    "explanation": "【解析】\nGBDT算法流程：\n1. 初始化模型预测为常数值\n2. 对于每轮迭代：\n   - 计算残差（负梯度）\n   - 用决策树拟合残差\n   - 将新树添加到模型\n\n代表算法：XGBoost、LightGBM、CatBoost\n\n【记忆口诀】\"GBDT每轮学残差，累加预测效果佳\""
+  },
+  {
+    "id": "59",
+    "title": "模型评估划分",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "数据划分",
+      "训练集",
+      "验证集",
+      "测试集"
+    ],
+    "description": "在机器学习中，验证集的主要作用是什么？",
+    "questionType": "choice",
+    "options": [
+      "训练模型参数",
+      "调参和模型选择",
+      "最终性能评估",
+      "数据增强"
+    ],
+    "correctAnswer": 1,
+    "solution": "调参和模型选择",
+    "explanation": "【解析】\n数据集划分：\n\n训练集（Training Set）：训练模型参数\n\n验证集（Validation Set）：调参和模型选择\n\n测试集（Test Set）：最终性能评估\n\n常见划分比例：70/30 或 K折交叉验证\n\n【记忆口诀】\"训练调参验证，测试最终评估\""
+  },
+  {
+    "id": "60",
+    "title": "生成模型与判别模型",
+    "category": "machine-learning",
+    "difficulty": "hard",
+    "tags": [
+      "生成模型",
+      "判别模型",
+      "贝叶斯",
+      "逻辑回归"
+    ],
+    "description": "以下哪个是生成模型而不是判别模型？",
+    "questionType": "choice",
+    "options": [
+      "逻辑回归",
+      "支持向量机",
+      "朴素贝叶斯",
+      "感知机"
+    ],
+    "correctAnswer": 2,
+    "solution": "朴素贝叶斯",
+    "explanation": "【解析】\n判别模型（Discriminative）：\n- 学习 P(y|x) - 条件概率\n- 直接学习决策边界\n- 代表：逻辑回归、SVM、决策树\n\n生成模型（Generative）：\n- 学习 P(x,y) 或 P(x|y) 和 P(y)\n- 学习数据分布\n- 代表：朴素贝叶斯、隐马尔可夫模型、GAN\n\n【记忆口诀】\"判别直接学边界，生成学习分布先\""
+  },
+  {
+    "id": "61",
+    "title": "卷积神经网络基础",
+    "category": "deep-learning",
+    "difficulty": "medium",
+    "tags": [
+      "CNN",
+      "卷积",
+      "卷积核",
+      "特征提取"
+    ],
+    "description": "卷积神经网络（CNN）中，卷积层的主要作用是什么？",
+    "questionType": "choice",
+    "options": [
+      "降低图像分辨率",
+      "自动提取图像的局部特征",
+      "增加网络深度",
+      "归一化数据"
+    ],
+    "correctAnswer": 1,
+    "solution": "自动提取图像的局部特征",
+    "explanation": "【解析】\n卷积层核心概念：\n\n卷积核（Filter/Kernel）：\n- 小矩阵（如3×3、5×5）\n- 扫描整个输入\n- 检测特定特征\n\nCNN优势：\n- 参数少（相比全连接）\n- 捕获空间层次结构\n- 平移不变性\n\n【记忆口诀】\"卷积核扫图像，局部特征自动提\""
+  },
+  {
+    "id": "62",
+    "title": "池化层作用",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "池化",
+      "Pooling",
+      "MaxPooling",
+      "降维"
+    ],
+    "description": "最大池化（Max Pooling）的作用是什么？",
+    "questionType": "choice",
+    "options": [
+      "增加特征图尺寸",
+      "保留显著特征、减少空间尺寸",
+      "改变通道数",
+      "添加偏置项"
+    ],
+    "correctAnswer": 1,
+    "solution": "保留显著特征、减少空间尺寸",
+    "explanation": "【解析】\n池化层（Pooling Layer）：\n\n最大池化：取区域内的最大值，保留最显著的特征\n\n平均池化：取区域内平均值，保留背景信息\n\n作用：\n1. 减少参数和计算量\n2. 控制过拟合\n3. 提供平移不变性\n\n【记忆口诀】\"最大池化选最强，减少尺寸保特征\""
+  },
+  {
+    "id": "63",
+    "title": "循环神经网络",
+    "category": "deep-learning",
+    "difficulty": "medium",
+    "tags": [
+      "RNN",
+      "序列模型",
+      "时间步",
+      "隐藏状态"
+    ],
+    "description": "RNN（循环神经网络）适合处理什么类型的数据？",
+    "questionType": "choice",
+    "options": [
+      "图像分类",
+      "固定大小的向量",
+      "序列数据",
+      "结构化表格数据"
+    ],
+    "correctAnswer": 2,
+    "solution": "序列数据",
+    "explanation": "【解析】\nRNN核心思想：\n- 处理序列数据\n- 维护隐藏状态（记忆）\n- 适合自然语言处理、时间序列预测等\n\n问题：梯度消失/爆炸、长依赖问题\n\n改进：LSTM、GRU\n\n【记忆口诀】\"RNN处理序列，隐藏状态记信息\""
+  },
+  {
+    "id": "64",
+    "title": "LSTM",
+    "category": "deep-learning",
+    "difficulty": "hard",
+    "tags": [
+      "LSTM",
+      "门控机制",
+      "长短期记忆",
+      "记忆单元"
+    ],
+    "description": "LSTM中的遗忘门（Forget Gate）的作用是什么？",
+    "questionType": "choice",
+    "options": [
+      "决定从细胞状态中丢弃哪些信息",
+      "决定添加哪些新信息",
+      "控制输出门的开关",
+      "初始化隐藏状态"
+    ],
+    "correctAnswer": 0,
+    "solution": "决定从细胞状态中丢弃哪些信息",
+    "explanation": "【解析】\nLSTM三个门：\n\n遗忘门（Forget Gate）：控制丢弃细胞状态中的信息\n输入门（Input Gate）：控制添加哪些新信息\n输出门（Output Gate）：控制输出哪些信息\n\n细胞状态（Cell State）：信息传送带，长期记忆的载体\n\n【记忆口诀】\"LSTM三门控，遗忘丢弃输入增\""
+  },
+  {
+    "id": "65",
+    "title": "注意力机制",
+    "category": "deep-learning",
+    "difficulty": "hard",
+    "tags": [
+      "注意力机制",
+      "Attention",
+      "Query",
+      "Key",
+      "Value"
+    ],
+    "description": "注意力机制（Attention Mechanism）的核心思想是什么？",
+    "questionType": "choice",
+    "options": [
+      "关注所有输入同等重要",
+      "根据查询动态分配不同的注意力权重",
+      "固定权重处理输入",
+      "减少模型参数"
+    ],
+    "correctAnswer": 1,
+    "solution": "根据查询动态分配不同的注意力权重",
+    "explanation": "【解析】\n注意力机制：\n\n核心公式：\nAttention(Q, K, V) = softmax(QK^T / √dₖ) · V\n\n三个组件：\n- Query（查询）：当前位置的表示\n- Key（键）：被注意内容的标识\n- Value（值）：实际的内容信息\n\n【记忆口诀】\"Query找Key算相似，权重乘Value得结果\""
+  },
+  {
+    "id": "66",
+    "title": "Transformer架构",
+    "category": "deep-learning",
+    "difficulty": "hard",
+    "tags": [
+      "Transformer",
+      "自注意力",
+      "编码器",
+      "解码器"
+    ],
+    "description": "Transformer架构中使用的主要机制是什么？",
+    "questionType": "choice",
+    "options": [
+      "循环和卷积",
+      "自注意力机制替代循环",
+      "门控循环单元",
+      "长短期记忆"
+    ],
+    "correctAnswer": 1,
+    "solution": "自注意力机制替代循环",
+    "explanation": "【解析】\nTransformer核心：\n\n1. 自注意力（Self-Attention）：序列内部的关系\n2. 多头注意力（Multi-Head Attention）：捕获不同类型的关系\n3. 位置编码（Positional Encoding）：注入序列位置信息\n4. 前馈网络（FFN）：每个位置独立计算\n\n架构：Encoder-Decoder，只用注意力机制，完全并行\n\n【记忆口诀】\"Transformer注意力，不靠循环靠并行\""
+  },
+  {
+    "id": "67",
+    "title": "梯度裁剪",
+    "category": "deep-learning",
+    "difficulty": "medium",
+    "tags": [
+      "梯度裁剪",
+      "梯度爆炸",
+      "训练技巧"
+    ],
+    "description": "梯度裁剪（Gradient Clipping）主要用于解决什么问题？",
+    "questionType": "choice",
+    "options": [
+      "梯度消失",
+      "梯度爆炸",
+      "过拟合",
+      "欠拟合"
+    ],
+    "correctAnswer": 1,
+    "solution": "梯度爆炸",
+    "explanation": "【解析】\n梯度裁剪：\n\n问题场景：\n- RNN训练中容易出现\n- 梯度指数级增长\n- 导致训练不稳定\n\n方法：\n全局裁剪：||g|| > threshold时，g = g × threshold / ||g||\n\n典型阈值：1.0 或 5.0\n\n【记忆口诀】\"梯度爆炸要裁剪，阈值控制保稳定\""
+  },
+  {
+    "id": "68",
+    "title": "Batch Normalization vs Layer Normalization",
+    "category": "deep-learning",
+    "difficulty": "hard",
+    "tags": [
+      "归一化",
+      "BatchNorm",
+      "LayerNorm",
+      "对比"
+    ],
+    "description": "Batch Normalization和Layer Normalization的主要区别是什么？",
+    "questionType": "choice",
+    "options": [
+      "BatchNorm在通道维度归一化，LayerNorm在样本维度",
+      "两者完全相同",
+      "LayerNorm需要batch维度",
+      "BatchNorm不需要计算均值方差"
+    ],
+    "correctAnswer": 0,
+    "solution": "BatchNorm在通道维度归一化，LayerNorm在样本维度",
+    "explanation": "【解析】\nBatchNorm：\n- 对batch维度归一化\n- 依赖batch size\n- 用于CNN和小型网络\n\nLayerNorm：\n- 对单个样本归一化\n- 不依赖batch size\n- 用于RNN和Transformer\n\n【记忆口诀】\"BN按batch归，LN按层归不依赖batch\""
+  },
+  {
+    "id": "69",
+    "title": "Dropout",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "Dropout",
+      "正则化",
+      "过拟合",
+      "训练技巧"
+    ],
+    "description": "Dropout为什么可以防止过拟合？",
+    "questionType": "choice",
+    "options": [
+      "减少网络层数",
+      "训练时随机丢弃神经元，形成子网络集成",
+      "减少参数数量",
+      "加快训练速度"
+    ],
+    "correctAnswer": 1,
+    "solution": "训练时随机丢弃神经元，形成子网络集成",
+    "explanation": "【解析】\nDropout机制：\n\n训练时：\n- 以概率p随机将神经元置0\n- 每轮训练得到不同子网络\n- 相当于训练了大量子网络\n\n测试时：\n- 所有神经元参与\n- 使用缩放后的权重\n\n【记忆口诀】\"Dropout随机丢弃，集成学习防过拟合\""
+  },
+  {
+    "id": "70",
+    "title": "残差网络",
+    "category": "deep-learning",
+    "difficulty": "hard",
+    "tags": [
+      "ResNet",
+      "残差连接",
+      "跳跃连接",
+      "深层网络"
+    ],
+    "description": "ResNet（残差网络）通过什么方式解决了深层网络的训练问题？",
+    "questionType": "choice",
+    "options": [
+      "增加网络宽度",
+      "使用残差连接/跳跃连接",
+      "减少网络层数",
+      "使用更大的卷积核"
+    ],
+    "correctAnswer": 1,
+    "solution": "使用残差连接/跳跃连接",
+    "explanation": "【解析】\n残差块（Residual Block）：\noutput = F(x) + x\n\n其中：\n- F(x)：残差映射\n- x：恒等映射（跳跃连接）\n\n优势：\n- 梯度直接回传\n- 缓解梯度消失\n- 可以训练非常深的网络\n\n【记忆口诀】\"残差连接梯度畅，深层网络训练强\""
+  },
+  {
+    "id": "71",
+    "title": "卷积核尺寸影响",
+    "category": "deep-learning",
+    "difficulty": "medium",
+    "tags": [
+      "卷积核",
+      "感受野",
+      "参数数量"
+    ],
+    "description": "使用更大的卷积核（如7×7）相比小卷积核（如3×3）的缺点是什么？",
+    "questionType": "choice",
+    "options": [
+      "感受野变小",
+      "参数数量大幅增加",
+      "无法提取特征",
+      "训练更稳定"
+    ],
+    "correctAnswer": 1,
+    "solution": "参数数量大幅增加",
+    "explanation": "【解析】\n参数数量对比：\n- 3×3卷积：9个参数\n- 7×7卷积：49个参数\n\n多个3×3 vs 一个7×7：\n- 3个3×3 = 27参数\n- 1个7×7 = 49参数\n\n多个小卷积核优势：\n1. 参数更少\n2. 更多非线性层\n3. 更大的有效感受野\n\n【记忆口诀】\"大卷积参数多，不如小核堆三层\""
+  },
+  {
+    "id": "72",
+    "title": "One-hot编码",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "One-hot",
+      "文本表示",
+      "词向量",
+      "嵌入"
+    ],
+    "description": "在NLP中，为什么常用One-hot编码而不是直接使用单词索引？",
+    "questionType": "choice",
+    "options": [
+      "索引无法表示语义",
+      "One-hot编码是稀疏的",
+      "因为One-hot编码是稠密的",
+      "两者效果完全相同"
+    ],
+    "correctAnswer": 0,
+    "solution": "索引无法表示语义",
+    "explanation": "【解析】\nOne-hot问题：\n- 维度灾难（词表大时）\n- 无法表示语义相似度\n- 词之间相互独立\n\nEmbedding优势：\n- 稠密向量\n- 低维（通常50-300维）\n- 语义相似的词距离近\n\n【记忆口诀】\"One-hot维度灾，Embedding语义来\""
+  },
+  {
+    "id": "73",
+    "title": "目标检测中的NMS",
+    "category": "deep-learning",
+    "difficulty": "hard",
+    "tags": [
+      "NMS",
+      "非极大值抑制",
+      "目标检测",
+      "IoU"
+    ],
+    "description": "NMS（非极大值抑制）在目标检测中的作用是什么？",
+    "questionType": "choice",
+    "options": [
+      "增加检测框数量",
+      "去除重复的检测框",
+      "提高分类准确率",
+      "数据增强"
+    ],
+    "correctAnswer": 1,
+    "solution": "去除重复的检测框",
+    "explanation": "【解析】\nNMS流程：\n1. 按置信度排序所有检测框\n2. 选择置信度最高的框\n3. 删除与该框IoU大于阈值的框\n4. 重复\n\n参数：\n- IoU阈值：通常0.5\n- 过高会漏检\n- 过低会有重复\n\n【记忆口诀】\"NMS去重复，IoU阈值来把关\""
+  },
+  {
+    "id": "74",
+    "title": "学习率调度",
+    "category": "deep-learning",
+    "difficulty": "medium",
+    "tags": [
+      "学习率",
+      "学习率衰减",
+      "Warmup",
+      "优化"
+    ],
+    "description": "学习率预热（Warmup）的主要目的是什么？",
+    "questionType": "choice",
+    "options": [
+      "加快收敛",
+      "在训练初期稳定梯度更新",
+      "减少参数",
+      "增加泛化能力"
+    ],
+    "correctAnswer": 1,
+    "solution": "在训练初期稳定梯度更新",
+    "explanation": "【解析】\n学习率预热（Warmup）：\n\n问题背景：\n- 训练初期参数随机\n- 梯度可能很大\n- 需要小学习率稳定\n\n策略：\n1. 从很小学习率开始\n2. 逐渐增加到目标学习率\n3. 稳定后再衰减\n\n【记忆口诀】\"Warmup从小到大，稳定梯度不慌张\""
+  },
+  {
+    "id": "75",
+    "title": "语义分割",
+    "category": "deep-learning",
+    "difficulty": "medium",
+    "tags": [
+      "语义分割",
+      "FCN",
+      "U-Net",
+      "像素级分类"
+    ],
+    "description": "语义分割和目标检测的主要区别是什么？",
+    "questionType": "choice",
+    "options": [
+      "语义分割不需要卷积层",
+      "语义分割对每个像素进行分类",
+      "目标检测使用更多卷积层",
+      "两者没有区别"
+    ],
+    "correctAnswer": 1,
+    "solution": "语义分割对每个像素进行分类",
+    "explanation": "【解析】\n目标检测：\n- 输出：边界框+类别\n- 粒度：对象级别\n\n语义分割：\n- 输出：每个像素的类别\n- 粒度：像素级别\n- 代表：FCN、U-Net、DeepLab\n\n上采样技术：反卷积、双线性插值、空洞卷积\n\n【记忆口诀】\"检测画框分割像素，粒度不同任务不同\""
+  },
+  {
+    "id": "76",
+    "title": "激活函数比较",
+    "category": "deep-learning",
+    "difficulty": "medium",
+    "tags": [
+      "激活函数",
+      "Sigmoid",
+      "Tanh",
+      "ReLU",
+      "LeakyReLU"
+    ],
+    "description": "Tanh激活函数的输出范围是多少？",
+    "questionType": "fill",
+    "correctAnswer": "(-1, 1)",
+    "solution": "(-1, 1)",
+    "explanation": "【解析】\n常见激活函数输出范围：\n- Sigmoid： (0, 1)\n- Tanh：   (-1, 1)\n- ReLU：   [0, +∞)\n\nTanh特点：\n- 零中心（输出以0为对称）\n- 收敛速度比Sigmoid快\n- 仍有梯度饱和问题\n\n【记忆口诀】\"Sigmoid零到一，Tanh负一到正一\""
+  },
+  {
+    "id": "77",
+    "title": "迁移学习",
+    "category": "deep-learning",
+    "difficulty": "medium",
+    "tags": [
+      "迁移学习",
+      "预训练",
+      "微调",
+      "特征提取"
+    ],
+    "description": "在迁移学习中，\"微调\"（Fine-tuning）通常指什么？",
+    "questionType": "choice",
+    "options": [
+      "完全重新训练网络",
+      "在预训练模型基础上继续训练部分或全部层",
+      "只改变最后一层",
+      "删除所有层重新构建"
+    ],
+    "correctAnswer": 1,
+    "solution": "在预训练模型基础上继续训练部分或全部层",
+    "explanation": "【解析】\n迁移学习策略：\n\n1. 特征提取：冻结预训练层，只训练新加的分类器\n\n2. 微调：解冻部分或全部层，继续训练整个网络\n\n3. 完全训练：从头训练\n\n常见预训练模型：ImageNet预训练的ResNet、BERT\n\n【记忆口诀】\"迁移学习用预训练，小数据冻结大微调\""
+  },
+  {
+    "id": "78",
+    "title": "词向量",
+    "category": "deep-learning",
+    "difficulty": "hard",
+    "tags": [
+      "词向量",
+      "Word2Vec",
+      "Embedding",
+      "分布式表示"
+    ],
+    "description": "Word2Vec中Skip-gram模型的目标是什么？",
+    "questionType": "choice",
+    "options": [
+      "根据上下文词预测中心词",
+      "根据中心词预测上下文词",
+      "判断两个词是否相同",
+      "分类词性"
+    ],
+    "correctAnswer": 1,
+    "solution": "根据中心词预测上下文词",
+    "explanation": "【解析】\nWord2Vec两种模型：\n\nSkip-gram：\n- 输入：中心词\n- 输出：上下文词\n- 从中心词预测周围词\n\nCBOW：\n- 输入：上下文词\n- 输出：中心词\n\n训练技巧：负采样、层次Softmax\n\n【记忆口诀】\"Skip-gram中心预测周围，CBOW周围预测中心\""
+  },
+  {
+    "id": "79",
+    "title": "GAN",
+    "category": "deep-learning",
+    "difficulty": "hard",
+    "tags": [
+      "GAN",
+      "生成对抗",
+      "生成器",
+      "判别器"
+    ],
+    "description": "GAN（生成对抗网络）中，生成器和判别器的目标是什么？",
+    "questionType": "choice",
+    "options": [
+      "生成器欺骗判别器，判别器识别生成数据",
+      "两者合作生成真实数据",
+      "判别器生成数据",
+      "两者目标相同"
+    ],
+    "correctAnswer": 0,
+    "solution": "生成器欺骗判别器，判别器识别生成数据",
+    "explanation": "【解析】\nGAN博弈：\n\n生成器（Generator）：\n- 学习生成逼真的假数据\n- 目标：骗过判别器\n\n判别器（Discriminator）：\n- 判断数据是真实还是生成\n- 目标：正确分类真假数据\n\n训练过程：交替训练，博弈达到纳什均衡\n\n【记忆口诀】\"GAN生成对抗，生成器骗判别器\""
+  },
+  {
+    "id": "80",
+    "title": "卷积类型",
+    "category": "deep-learning",
+    "difficulty": "medium",
+    "tags": [
+      "深度可分离卷积",
+      "逐通道卷积",
+      "MobileNet",
+      "轻量化"
+    ],
+    "description": "深度可分离卷积（Depthwise Separable Convolution）相比普通卷积的优势是什么？",
+    "questionType": "choice",
+    "options": [
+      "精度更高",
+      "大幅减少参数和计算量",
+      "更容易训练",
+      "不需要归一化"
+    ],
+    "correctAnswer": 1,
+    "solution": "大幅减少参数和计算量",
+    "explanation": "【解析】\n深度可分离卷积：\n1. Depthwise：每个通道单独卷积\n2. Pointwise：1×1卷积融合通道\n\n参数量对比：\n- 普通：DK² × M × N\n- 深度可分：(DK² + 1×1×M×N)\n\n应用：MobileNet、Xception\n\n【记忆口诀】\"深度可分两步骤，先通道后1×1大幅省参\""
+  },
+  {
+    "id": "81",
+    "title": "学习率初始化",
+    "category": "deep-learning",
+    "difficulty": "hard",
+    "tags": [
+      "初始化",
+      "Xavier",
+      "He",
+      "权重初始化"
+    ],
+    "description": "对于ReLU激活函数，应该使用哪种权重初始化方法？",
+    "questionType": "choice",
+    "options": [
+      "Xavier初始化",
+      "He初始化",
+      "标准正态分布",
+      "全零初始化"
+    ],
+    "correctAnswer": 1,
+    "solution": "He初始化",
+    "explanation": "【解析】\n权重初始化方法：\n\nXavier/Glorot初始化：\n- 适合Sigmoid和Tanh\n- 方差：2/(n_in + n_out)\n\nHe初始化：\n- 适合ReLU及其变体\n- 方差：2/n_in\n- 更宽的初始范围\n\n【记忆口诀】\"ReLU用He，Sigmoid用Xavier\""
+  },
+  {
+    "id": "82",
+    "title": "Epoch vs Batch",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "Epoch",
+      "Batch",
+      "批量大小",
+      "训练概念"
+    ],
+    "description": "在深度学习中，一个Epoch和Batch的区别是什么？",
+    "questionType": "choice",
+    "options": [
+      "两者含义相同",
+      "Epoch是遍历一次全部数据，Batch是每次更新的数据量",
+      "Batch是遍历全部数据",
+      "Epoch是每次更新的数据量"
+    ],
+    "correctAnswer": 1,
+    "solution": "Epoch是遍历一次全部数据，Batch是每次更新的数据量",
+    "explanation": "【解析】\n基本概念：\n\nBatch（批次）：一次训练更新的样本数\n\nEpoch（轮次）：遍历整个训练集一次\n\nBatch Size的影响：\n- 大Batch：梯度估计稳定，但内存大\n- 小Batch：梯度估计有噪声，可能跳出局部最优\n\n常用设置：Mini-batch：32、64、128\n\n【记忆口诀】\"Epoch跑完一遍，Batch每批更新\""
+  },
+  {
+    "id": "83",
+    "title": "感受野",
+    "category": "deep-learning",
+    "difficulty": "hard",
+    "tags": [
+      "感受野",
+      "Receptive Field",
+      "CNN",
+      "特征图"
+    ],
+    "description": "感受野（Receptive Field）指的是什么？",
+    "questionType": "choice",
+    "options": [
+      "卷积核的大小",
+      "特征图上一个像素对应原始输入的区域大小",
+      "网络的层数",
+      "权重参数的数量"
+    ],
+    "correctAnswer": 1,
+    "solution": "特征图上一个像素对应原始输入的区域大小",
+    "explanation": "【解析】\n感受野定义：\n- 特征图中一个位置\"看到\"的原始输入区域\n- 决定了网络能捕获的输入范围\n\n特点：\n- 越深层感受野越大\n- 大的感受野捕获更全局的信息\n- 小感受野捕获局部细节\n\n【记忆口诀】\"感受野看范围，浅层局部深层全局\""
+  },
+  {
+    "id": "84",
+    "title": "转置卷积",
+    "category": "deep-learning",
+    "difficulty": "hard",
+    "tags": [
+      "转置卷积",
+      "反卷积",
+      "上采样",
+      "语义分割"
+    ],
+    "description": "转置卷积（Transposed Convolution）主要用于什么场景？",
+    "questionType": "choice",
+    "options": [
+      "降低特征图分辨率",
+      "增加特征图分辨率（上采样）",
+      "池化操作",
+      "批量归一化"
+    ],
+    "correctAnswer": 1,
+    "solution": "增加特征图分辨率（上采样）",
+    "explanation": "【解析】\n转置卷积（也称反卷积）：\n\n作用：\n- 上采样，增加空间维度\n- 生成网络、语义分割需要\n\n与普通卷积的关系：\n- 普通卷积：C × H × W → C' × H' × W'\n- 转置卷积：C × H × W ← C' × H' × W'\n\n应用：U-Net的上采样、GAN的生成\n\n【记忆口诀】\"转置卷积来上采样，空间分辨率往上扩\""
+  },
+  {
+    "id": "85",
+    "title": "Early Stopping",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "Early Stopping",
+      "早停",
+      "防止过拟合",
+      "训练技巧"
+    ],
+    "description": "Early Stopping（早停）的策略是什么？",
+    "questionType": "choice",
+    "options": [
+      "训练到设定的最大轮数",
+      "验证集性能不再提升时停止训练",
+      "训练集损失为零时停止",
+      "使用学习率衰减"
+    ],
+    "correctAnswer": 1,
+    "solution": "验证集性能不再提升时停止训练",
+    "explanation": "【解析】\nEarly Stopping机制：\n\n监控指标：验证集损失或准确率\n\n关键参数：\n- patience：容忍多少轮不提升\n- min_delta：最小改善量\n\n流程：\n1. 训练时监控验证集表现\n2. 超过patience没有提升则停止\n3. 恢复到最佳轮次的模型\n\n【记忆口诀】\"早停耐心等验证，效果不升就停止\""
+  },
+  {
+    "id": "86",
+    "title": "标签平滑",
+    "category": "deep-learning",
+    "difficulty": "hard",
+    "tags": [
+      "标签平滑",
+      "Label Smoothing",
+      "正则化",
+      "分类"
+    ],
+    "description": "标签平滑（Label Smoothing）的作用是什么？",
+    "questionType": "choice",
+    "options": [
+      "提高分类准确率",
+      "防止模型过度自信，增强泛化能力",
+      "加快训练速度",
+      "减少内存使用"
+    ],
+    "correctAnswer": 1,
+    "solution": "防止模型过度自信，增强泛化能力",
+    "explanation": "【解析】\n标签平滑原理：\n\n硬标签：[0, 1, 0, 0]（one-hot）\n软标签：[ε, 1-3ε, ε, ε]（平滑后）\n\n公式：\nq'_i = q_i × (1 - ε) + ε / K\n\n作用：\n- 防止模型对训练数据过度自信\n- 减少过拟合\n- 提高校准性\n\n【记忆口诀】\"标签平滑软化标签，防止过拟合增强泛化\""
+  },
+  {
+    "id": "87",
+    "title": "模型蒸馏",
+    "category": "deep-learning",
+    "difficulty": "hard",
+    "tags": [
+      "知识蒸馏",
+      "Distillation",
+      "Teacher-Student",
+      "轻量化"
+    ],
+    "description": "知识蒸馏（Knowledge Distillation）的核心思想是什么？",
+    "questionType": "choice",
+    "options": [
+      "训练多个小模型",
+      "使用大模型的\"软标签\"训练小模型",
+      "使用对抗训练",
+      "使用无监督学习"
+    ],
+    "correctAnswer": 1,
+    "solution": "使用大模型的\"软标签\"训练小模型",
+    "explanation": "【解析】\n知识蒸馏过程：\n\n大模型（Teacher）：训练完成，产生\"软标签\"\n\n小模型（Student）：学习大模型的软标签\n\n损失函数：\nL = α × CE(软标签) + (1-α) × CE(硬标签)\n\n温度T的作用：软化大模型的输出概率\n\n【记忆口诀】\"大模型教小学生，软标签传递知识\""
+  },
+  {
+    "id": "88",
+    "title": "Focal Loss",
+    "category": "deep-learning",
+    "difficulty": "hard",
+    "tags": [
+      "Focal Loss",
+      "类别不平衡",
+      "目标检测",
+      "损失函数"
+    ],
+    "description": "Focal Loss主要用于解决什么问题？",
+    "questionType": "choice",
+    "options": [
+      "收敛速度慢",
+      "目标检测中正负样本严重不平衡",
+      "梯度消失",
+      "模型参数过多"
+    ],
+    "correctAnswer": 1,
+    "solution": "目标检测中正负样本严重不平衡",
+    "explanation": "【解析】\nFocal Loss公式：\nFL(p) = -α(1-p)^γ × log(p)\n\n核心思想：\n- 降低易分类样本的权重\n- 聚焦于难分类的样本\n\n参数：\n- α：平衡正负样本\n- γ：聚焦参数（γ越大，越关注难样本）\n\n【记忆口诀】\"Focal Loss降易重难，解决正负不平衡\""
+  },
+  {
+    "id": "89",
+    "title": "数据增强-图像",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "数据增强",
+      "图像增强",
+      "翻转",
+      "旋转"
+    ],
+    "description": "以下哪项不是常用的图像数据增强方法？",
+    "questionType": "choice",
+    "options": [
+      "随机翻转",
+      "随机旋转",
+      "随机裁剪",
+      "删除像素"
+    ],
+    "correctAnswer": 3,
+    "solution": "删除像素",
+    "explanation": "【解析】\n常用图像增强方法：\n\n几何变换：\n- 随机翻转（水平/垂直）\n- 随机旋转\n- 随机裁剪（Resize）\n\n颜色变换：\n- 随机亮度/对比度\n- 色彩抖动\n\n高级增强：\n- Cutout、Mixup、CutMix、AutoAugment\n\n删除像素会破坏图像完整性，一般不使用。\n\n【记忆口诀】\"几何颜色随机变，删除像素不推荐\""
+  },
+  {
+    "id": "90",
+    "title": "多头注意力",
+    "category": "deep-learning",
+    "difficulty": "hard",
+    "tags": [
+      "多头注意力",
+      "Multi-Head",
+      "Transformer",
+      "并行注意力"
+    ],
+    "description": "Transformer中使用多头注意力（Multi-Head Attention）的目的是什么？",
+    "questionType": "choice",
+    "options": [
+      "减少计算量",
+      "让模型关注不同类型的表示子空间",
+      "加快收敛速度",
+      "减少参数数量"
+    ],
+    "correctAnswer": 1,
+    "solution": "让模型关注不同类型的表示子空间",
+    "explanation": "【解析】\n多头注意力：\n- 并行多个注意力头\n- 每个头有独立的W_Q, W_K, W_V\n- 关注不同类型的依赖关系\n\n公式：\nMultiHead(Q,K,V) = Concat(head₁,...,headₕ) × W⁰\n\n常见设置：\n- 8-16个头\n- 每个头维度 dₖ = d_model / h\n\n【记忆口诀】\"多头注意力多子空间，关注关系更全面\""
+  },
+  {
+    "id": "91",
+    "title": "CAP理论",
+    "category": "system-design",
+    "difficulty": "hard",
+    "tags": [
+      "CAP理论",
+      "分布式系统",
+      "一致性",
+      "可用性"
+    ],
+    "description": "CAP理论指出，分布式系统无法同时满足哪三个特性？",
+    "questionType": "choice",
+    "options": [
+      "一致性、可排序性、分区容错性",
+      "一致性、可用性、分区容错性",
+      "一致性、可用性、持久性",
+      "可用性、排序性、容错性"
+    ],
+    "correctAnswer": 1,
+    "solution": "一致性、可用性、分区容错性",
+    "explanation": "【解析】\nCAP理论：\n- Consistency（一致性）：所有节点看到相同数据\n- Availability（可用性）：每个请求都能获得响应\n- Partition Tolerance（分区容错）：系统容忍网络分区\n\n分布式系统必须选择CP或AP：\n- CP：放弃可用性（如ZooKeeper）\n- AP：放弃强一致性（如Cassandra）\n\n【记忆口诀】\"CAP三选二，分区容错必须，P不是可选\""
+  },
+  {
+    "id": "92",
+    "title": "数据库索引",
+    "category": "system-design",
+    "difficulty": "medium",
+    "tags": [
+      "索引",
+      "B+树",
+      "数据库",
+      "查询优化"
+    ],
+    "description": "为什么数据库索引通常使用B+树而不是红黑树？",
+    "questionType": "choice",
+    "options": [
+      "B+树更简单",
+      "B+树更扁平，磁盘IO次数更少",
+      "红黑树不能排序",
+      "B+树支持更多数据类型"
+    ],
+    "correctAnswer": 1,
+    "solution": "B+树更扁平，磁盘IO次数更少",
+    "explanation": "【解析】\nB+树特点：\n- 多叉树，更扁平\n- 高度通常为2-4层\n- 所有数据在叶子节点\n- 叶子节点链表连接\n\n磁盘IO考虑：\n- 磁盘读写以页为单位（4KB-16KB）\n- B+树每页可存更多节点\n- IO次数 = 树高度\n\n【记忆口诀】\"B+树平而宽，磁盘IO少而快\""
+  },
+  {
+    "id": "93",
+    "title": "负载均衡算法",
+    "category": "system-design",
+    "difficulty": "medium",
+    "tags": [
+      "负载均衡",
+      "轮询",
+      "最少连接",
+      "哈希"
+    ],
+    "description": "以下哪种负载均衡算法可以保证同一客户端请求始终打到同一服务器？",
+    "questionType": "choice",
+    "options": [
+      "轮询（Round Robin）",
+      "加权轮询",
+      "IP哈希（IP Hash）",
+      "随机"
+    ],
+    "correctAnswer": 2,
+    "solution": "IP哈希（IP Hash）",
+    "explanation": "【解析】\n常见负载均衡算法：\n\n1. 轮询（Round Robin）：依次分配\n\n2. 加权轮询：性能好的服务器多分配\n\n3. IP哈希：hash(client_ip) % server_count，同一IP总到同一服务器 ✓\n\n4. 最少连接：选择连接数最少的服务器\n\n5. 一致性哈希：解决服务器增减时的rehash问题\n\n【记忆口诀】\"IP哈希保证会话，轮询公平忽略差异\""
+  },
+  {
+    "id": "94",
+    "title": "缓存穿透",
+    "category": "system-design",
+    "difficulty": "hard",
+    "tags": [
+      "缓存",
+      "穿透",
+      "布隆过滤器",
+      "空值缓存"
+    ],
+    "description": "缓存穿透（Cache Penetration）指的是什么？",
+    "questionType": "choice",
+    "options": [
+      "缓存数据过期",
+      "大量请求查询不存在的数据，绕过缓存",
+      "缓存服务器宕机",
+      "缓存数据不一致"
+    ],
+    "correctAnswer": 1,
+    "solution": "大量请求查询不存在的数据，绕过缓存",
+    "explanation": "【解析】\n缓存穿透问题：\n\n场景：\n- 查询不存在的数据\n- 每次都查数据库\n\n解决方案：\n\n1. 空值缓存：查询不存在的结果也缓存\n\n2. 布隆过滤器（Bloom Filter）：使用bitmap存储合法key\n\n3. 参数校验：过滤非法参数\n\n【记忆口诀】\"缓存穿透查不到，空值缓存布隆挡\""
+  },
+  {
+    "id": "95",
+    "title": "分布式ID生成",
+    "category": "system-design",
+    "difficulty": "hard",
+    "tags": [
+      "分布式ID",
+      "雪花算法",
+      "唯一ID",
+      "ID生成器"
+    ],
+    "description": "雪花算法（Snowflake）生成的ID由哪些部分组成？",
+    "questionType": "choice",
+    "options": [
+      "时间戳 + 随机数",
+      "时间戳 + 机器ID + 序列号",
+      "UUID",
+      "数据库自增ID"
+    ],
+    "correctAnswer": 1,
+    "solution": "时间戳 + 机器ID + 序列号",
+    "explanation": "【解析】\n雪花ID结构（64位）：\n\n1. 符号位：1位（固定0）\n2. 时间戳：41位（毫秒）\n3. 机器ID：10位（5位数据中心+5位机器ID）\n4. 序列号：12位（每毫秒递增）\n\n优势：有序递增、支持分布式、趋势增长\n\n【记忆口诀】\"雪花64位分四段，时钟机器序列号\""
+  },
+  {
+    "id": "96",
+    "title": "消息队列作用",
+    "category": "system-design",
+    "difficulty": "medium",
+    "tags": [
+      "消息队列",
+      "MQ",
+      "解耦",
+      "异步"
+    ],
+    "description": "消息队列（Message Queue）的主要作用是什么？",
+    "questionType": "choice",
+    "options": [
+      "提高数据安全性",
+      "实现系统解耦、异步处理、流量削峰",
+      "减少服务器数量",
+      "替代数据库"
+    ],
+    "correctAnswer": 1,
+    "solution": "实现系统解耦、异步处理、流量削峰",
+    "explanation": "【解析】\n消息队列三大作用：\n\n1. 解耦：生产者和消费者独立\n\n2. 异步：非同步处理，提高响应速度\n\n3. 削峰：峰值流量缓存，保护下游系统\n\n常见MQ产品：\n- RabbitMQ：功能丰富\n- Kafka：高吞吐量\n- RocketMQ：阿里巴巴开源\n\n【记忆口诀】\"消息队列三件套，解耦异步来削峰\""
+  },
+  {
+    "id": "97",
+    "title": "数据库分库分表",
+    "category": "system-design",
+    "difficulty": "hard",
+    "tags": [
+      "分库分表",
+      "水平分片",
+      "垂直分片",
+      "Sharding"
+    ],
+    "description": "水平分表和垂直分表的主要区别是什么？",
+    "questionType": "choice",
+    "options": [
+      "水平分表按行拆分，垂直分表按列拆分",
+      "水平分表按列拆分，垂直分表按行拆分",
+      "两者没有区别",
+      "水平分表用于减少字段"
+    ],
+    "correctAnswer": 0,
+    "solution": "水平分表按行拆分，垂直分表按列拆分",
+    "explanation": "【解析】\n水平分表：\n- 按行拆分\n- 表结构相同，数据不同\n- 解决数据量大的问题\n\n垂直分表：\n- 按列拆分\n- 将大表按字段拆分\n- 冷热数据分离\n\nSharding策略：哈希分片、范围分片\n\n【记忆口诀】\"水平按行垂直按列，数据量大要分表\""
+  },
+  {
+    "id": "98",
+    "title": "CDN",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "CDN",
+      "内容分发",
+      "缓存",
+      "静态资源"
+    ],
+    "description": "CDN（内容分发网络）的核心原理是什么？",
+    "questionType": "choice",
+    "options": [
+      "增加源站服务器数量",
+      "将内容缓存到离用户最近的节点",
+      "压缩传输内容",
+      "使用更快的数据库"
+    ],
+    "correctAnswer": 1,
+    "solution": "将内容缓存到离用户最近的节点",
+    "explanation": "【解析】\nCDN工作原理：\n\n1. 用户访问域名\n2. DNS解析到最近CDN节点\n3. CDN节点检查缓存：\n   - 有缓存 → 直接返回\n   - 无缓存 → 回源获取 → 缓存 → 返回\n\nCDN优势：\n- 就近访问，低延迟\n- 减轻源站压力\n- 抵抗DDoS攻击\n\n【记忆口诀】\"CDN就近缓存，静态资源快响应\""
+  },
+  {
+    "id": "99",
+    "title": "数据库范式",
+    "category": "system-design",
+    "difficulty": "medium",
+    "tags": [
+      "范式",
+      "数据库设计",
+      "规范化",
+      "BCNF"
+    ],
+    "description": "在数据库设计中，第三范式（3NF）要求什么？",
+    "questionType": "choice",
+    "options": [
+      "所有字段必须唯一",
+      "非主属性不传递依赖于主键",
+      "每个字段不可再分",
+      "所有表必须有关联"
+    ],
+    "correctAnswer": 1,
+    "solution": "非主属性不传递依赖于主键",
+    "explanation": "【解析】\n数据库三大范式：\n\n1NF（第一范式）：字段原子性，不可再分\n\n2NF（第二范式）：满足1NF，非主属性完全依赖于主键\n\n3NF（第三范式）：满足2NF，非主属性不传递依赖于主键 ✓\n\nBCNF（巴斯范式）：满足3NF，主属性对候选键无依赖\n\n【记忆口诀】\"一范不可分，二范消除部分，三范消除传递\""
+  },
+  {
+    "id": "100",
+    "title": "一致性哈希",
+    "category": "system-design",
+    "difficulty": "hard",
+    "tags": [
+      "一致性哈希",
+      "分布式缓存",
+      "哈希环",
+      "虚拟节点"
+    ],
+    "description": "一致性哈希（Consistent Hashing）解决了什么问题？",
+    "questionType": "choice",
+    "options": [
+      "数据加密问题",
+      "分布式系统中服务器增减时的数据迁移问题",
+      "数据库连接问题",
+      "负载均衡问题"
+    ],
+    "correctAnswer": 1,
+    "solution": "分布式系统中服务器增减时的数据迁移问题",
+    "explanation": "【解析】\n普通哈希问题：\n- hash(key) % N\n- 服务器增减时，大量数据需要rehash\n\n一致性哈希解决方案：\n- 将服务器和数据映射到哈希环\n- 数据顺时针找到第一个服务器\n- 只需移动相邻服务器间的数据\n\n虚拟节点：解决负载不均问题\n\n【记忆口诀】\"一致性哈希成环，服务器增减只动相邻\""
+  },
+  {
+    "id": "101",
+    "title": "Redis数据结构",
+    "category": "system-design",
+    "difficulty": "medium",
+    "tags": [
+      "Redis",
+      "数据类型",
+      "String",
+      "Hash",
+      "List"
+    ],
+    "description": "Redis中，ZSet（有序集合）底层使用什么数据结构实现？",
+    "questionType": "choice",
+    "options": [
+      "简单链表",
+      "压缩列表或跳表",
+      "哈希表",
+      "数组"
+    ],
+    "correctAnswer": 1,
+    "solution": "压缩列表或跳表",
+    "explanation": "【解析】\nRedis数据类型与底层实现：\n\n1. String：int、embstr、raw\n\n2. List：ziplist 或 linkedlist\n\n3. Hash：ziplist 或 hashtable\n\n4. Set：intset 或 hashtable\n\n5. ZSet（有序集合）：ziplist（小数据）或 skiplist + hashtable ✓\n\n跳表保证有序，哈希表保证O(1)查找\n\n【记忆口诀】\"ZSet底层是跳表，有序查找两不误\""
+  },
+  {
+    "id": "102",
+    "title": "微服务架构",
+    "category": "system-design",
+    "difficulty": "medium",
+    "tags": [
+      "微服务",
+      "SOA",
+      "服务拆分",
+      "架构"
+    ],
+    "description": "微服务架构相比单体架构的主要优势是什么？",
+    "questionType": "choice",
+    "options": [
+      "开发更简单",
+      "部署更容易",
+      "独立部署、技术异构、独立扩展",
+      "不需要数据库"
+    ],
+    "correctAnswer": 2,
+    "solution": "独立部署、技术异构、独立扩展",
+    "explanation": "【解析】\n微服务优势：\n\n1. 独立部署：每个服务独立发布\n\n2. 技术异构：不同服务可用不同技术栈\n\n3. 独立扩展：热门服务多部署几个实例\n\n4. 故障隔离：一个服务挂了不影响全局\n\n挑战：复杂度增加、服务间通信、运维要求高\n\n【记忆口诀】\"微服务独立部署，故障隔离扩展快\""
+  },
+  {
+    "id": "103",
+    "title": "API网关",
+    "category": "system-design",
+    "difficulty": "medium",
+    "tags": [
+      "API网关",
+      "网关",
+      "统一入口",
+      "鉴权"
+    ],
+    "description": "API网关的主要职责是什么？",
+    "questionType": "choice",
+    "options": [
+      "存储数据",
+      "作为所有请求的统一入口，提供路由、鉴权、限流等功能",
+      "处理数据库连接",
+      "提供前端UI"
+    ],
+    "correctAnswer": 1,
+    "solution": "作为所有请求的统一入口，提供路由、鉴权、限流等功能",
+    "explanation": "【解析】\nAPI网关功能：\n\n1. 路由转发：接收外部请求，路由到后端服务\n\n2. 认证鉴权：验证用户身份，Token校验\n\n3. 限流熔断：防止流量过大，保护后端服务\n\n4. 日志监控：记录请求日志，性能监控\n\n常见产品：Kong、Nginx、Spring Cloud Gateway\n\n【记忆口诀】\"网关是守门员，统一入口管一切\""
+  },
+  {
+    "id": "104",
+    "title": "分布式锁",
+    "category": "system-design",
+    "difficulty": "hard",
+    "tags": [
+      "分布式锁",
+      "Redis",
+      "ZooKeeper",
+      "互斥"
+    ],
+    "description": "Redis实现分布式锁，哪条命令是必须的？",
+    "questionType": "choice",
+    "options": [
+      "GET",
+      "SETNX + EXPIRE",
+      "LPUSH",
+      "HGET"
+    ],
+    "correctAnswer": 1,
+    "solution": "SETNX + EXPIRE",
+    "explanation": "【解析】\nRedis分布式锁：\n\n基础版：\n1. SETNX lock_key value\n2. EXPIRE lock_key 30\n\n标准版（Redis 2.6.12+）：\nSET lock_key value NX EX 30\n- NX：不存在才设置\n- EX：设置过期时间\n- 原子操作\n\n释放锁注意：判断value再删除（Lua脚本）\n\n【记忆口诀】\"Redis锁SETNX，原子设置要记清\""
+  },
+  {
+    "id": "105",
+    "title": "数据库事务隔离级别",
+    "category": "system-design",
+    "difficulty": "hard",
+    "tags": [
+      "事务",
+      "隔离级别",
+      "脏读",
+      "可重复读"
+    ],
+    "description": "MySQL默认的事务隔离级别是什么？",
+    "questionType": "choice",
+    "options": [
+      "读未提交（Read Uncommitted）",
+      "读已提交（Read Committed）",
+      "可重复读（Repeatable Read）",
+      "串行化（Serializable）"
+    ],
+    "correctAnswer": 2,
+    "solution": "可重复读（Repeatable Read）",
+    "explanation": "【解析】\nMySQL InnoDB默认隔离级别：\n- Repeatable Read（可重复读）✓\n\n各隔离级别：\n\n1. Read Uncommitted：最低级别，可能脏读\n\n2. Read Committed：解决脏读，Oracle默认\n\n3. Repeatable Read（MySQL默认）：解决脏读、不可重复读，使用MVCC解决幻读\n\n4. Serializable：最高级别，完全串行\n\n【记忆口诀】\"MySQL默认可重复读，RC是Oracle默认可用\""
+  },
+  {
+    "id": "106",
+    "title": "数据库连接池",
+    "category": "system-design",
+    "difficulty": "medium",
+    "tags": [
+      "连接池",
+      "数据库",
+      "性能优化",
+      "资源复用"
+    ],
+    "description": "数据库连接池的主要作用是什么？",
+    "questionType": "choice",
+    "options": [
+      "增加数据库存储容量",
+      "复用数据库连接，减少连接创建开销",
+      "自动备份数据",
+      "提高数据安全性"
+    ],
+    "correctAnswer": 1,
+    "solution": "复用数据库连接，减少连接创建开销",
+    "explanation": "【解析】\n数据库连接池：\n\n问题背景：\n- 数据库连接创建代价高\n- 每次请求都创建连接开销大\n\n解决方案：\n- 预先创建一组连接\n- 请求从池中获取，释放回池中\n- 复用连接，减少创建开销\n\n常见连接池：\n- Druid（阿里巴巴）\n- HikariCP（性能最优）\n- C3P0\n\n【记忆口诀】\"连接池预创建，复用减少开销\""
+  },
+  {
+    "id": "107",
+    "title": "缓存击穿",
+    "category": "system-design",
+    "difficulty": "hard",
+    "tags": [
+      "缓存",
+      "击穿",
+      "热点数据",
+      "分布式锁"
+    ],
+    "description": "缓存击穿（Cache Breakdown）指的是什么？",
+    "questionType": "choice",
+    "options": [
+      "大量请求查询不存在的数据",
+      "某个热点key过期，瞬间大量请求击穿到数据库",
+      "缓存服务器宕机",
+      "缓存容量不足"
+    ],
+    "correctAnswer": 1,
+    "solution": "某个热点key过期，瞬间大量请求击穿到数据库",
+    "explanation": "【解析】\n缓存击穿问题：\n\n场景：\n- 热点数据过期\n- 瞬间大量并发请求\n- 数据库压力剧增\n\n解决方案：\n\n1. 分布式锁：只有一个请求查数据库\n\n2. 热点数据永不过期\n\n3. 逻辑过期：数据永不过期，用逻辑判断过期\n\n4. 限流：控制并发访问\n\n【记忆口诀】\"热点击穿用锁控，永不过期逻辑充\""
+  },
+  {
+    "id": "108",
+    "title": "缓存雪崩",
+    "category": "system-design",
+    "difficulty": "hard",
+    "tags": [
+      "缓存",
+      "雪崩",
+      "过期时间",
+      "高可用"
+    ],
+    "description": "缓存雪崩（Cache Avalanche）指的是什么？",
+    "questionType": "choice",
+    "options": [
+      "单个缓存数据过期",
+      "大量缓存数据同时过期，导致数据库压力过大",
+      "缓存服务器全部宕机",
+      "缓存数据被清除"
+    ],
+    "correctAnswer": 1,
+    "solution": "大量缓存数据同时过期，导致数据库压力过大",
+    "explanation": "【解析】\n缓存雪崩问题：\n\n场景：\n- 大量缓存key同时过期\n- 或缓存服务宕机\n- 导致大量请求直接打到数据库\n\n解决方案：\n\n1. 过期时间加随机值：避免同时过期\n\n2. 缓存永不过期：定期更新\n\n3. 多级缓存：本地缓存 + Redis\n\n4. 限流降级：保护数据库\n\n【记忆口诀】\"雪崩过期加随机，多级缓存保平安\""
+  },
+  {
+    "id": "109",
+    "title": "读写分离",
+    "category": "system-design",
+    "difficulty": "medium",
+    "tags": [
+      "读写分离",
+      "主从复制",
+      "数据库架构",
+      "负载均衡"
+    ],
+    "description": "数据库读写分离的主要目的是什么？",
+    "questionType": "choice",
+    "options": [
+      "提高数据安全性",
+      "分担读写压力，提高系统性能",
+      "实现数据备份",
+      "减少数据库连接数"
+    ],
+    "correctAnswer": 1,
+    "solution": "分担读写压力，提高系统性能",
+    "explanation": "【解析】\n读写分离架构：\n\n主库（Master）：处理写操作\n\n从库（Slave）：处理读操作\n\n优势：\n- 读写分离，减少主库压力\n- 从库可以水平扩展\n- 提高并发处理能力\n\n问题：主从延迟、数据一致性问题\n\n【记忆口诀】\"读写分离减压力，主写从读扩展易\""
+  },
+  {
+    "id": "110",
+    "title": "BASE理论",
+    "category": "system-design",
+    "difficulty": "hard",
+    "tags": [
+      "BASE理论",
+      "分布式系统",
+      "最终一致性",
+      "CAP"
+    ],
+    "description": "BASE理论是对CAP理论中一致性和可用性权衡的总结，其中的BASE分别代表什么？",
+    "questionType": "choice",
+    "options": [
+      "Basic Available、Soft-state、Eventually Consistent",
+      "Base Available、State、Eventually",
+      "Basic、A同步、Consistent",
+      "Base、Atomic、Soft Eventually"
+    ],
+    "correctAnswer": 0,
+    "solution": "Basic Available、Soft-state、Eventually Consistent",
+    "explanation": "【解析】\nBASE理论：\n\n1. Basically Available（基本可用）：系统在故障时允许暂时不可用\n\n2. Soft-state（软状态）：允许数据在不同节点间有中间状态\n\n3. Eventually Consistent（最终一致性）：系统在一定时间后达到一致状态\n\n与ACID对比：\n- ACID：强一致性，适合本地事务\n- BASE：最终一致性，适合分布式系统\n\n【记忆口诀】\"BASE三要素，基本可用软状态最终一致\""
+  },
+  {
+    "id": "111",
+    "title": "反向代理",
+    "category": "system-design",
+    "difficulty": "medium",
+    "tags": [
+      "反向代理",
+      "Nginx",
+      "负载均衡",
+      "正向代理"
+    ],
+    "description": "反向代理和正向代理的主要区别是什么？",
+    "questionType": "choice",
+    "options": [
+      "正向代理代理客户端，反向代理代理服务端",
+      "两者完全相同",
+      "反向代理代理客户端",
+      "正向代理代理服务端"
+    ],
+    "correctAnswer": 0,
+    "solution": "正向代理代理客户端，反向代理代理服务端",
+    "explanation": "【解析】\n正向代理：\n- 代理客户端\n- 客户端知道目标服务器\n- 常用于突破访问限制、翻墙\n\n反向代理：\n- 代理服务端\n- 客户端不知道真实服务器\n- 常用于负载均衡、CDN、安全防护\n\n【记忆口诀】\"正向代客户端，反向代服务端\""
+  },
+  {
+    "id": "112",
+    "title": "数据库事务ACID",
+    "category": "system-design",
+    "difficulty": "medium",
+    "tags": [
+      "事务",
+      "ACID",
+      "数据库",
+      "一致性"
+    ],
+    "description": "数据库事务的ACID特性中，\"I\"代表什么？",
+    "questionType": "choice",
+    "options": [
+      "独立性",
+      "完整性",
+      "隔离性",
+      "独立性或隔离性"
+    ],
+    "correctAnswer": 3,
+    "solution": "独立性或隔离性",
+    "explanation": "【解析】\nACID特性：\n\n1. Atomicity（原子性）：事务是最小执行单位，要么全成功要么全失败\n\n2. Consistency（一致性）：事务执行前后，数据库状态保持一致\n\n3. Isolation（隔离性）：并发事务之间相互隔离，互不干扰\n\n4. Durability（持久性）：事务提交后，其结果永久保存\n\n【记忆口诀】\"原一隔离持持久，ACID记心头\""
+  },
+  {
+    "id": "113",
+    "title": "接口幂等性",
+    "category": "system-design",
+    "difficulty": "medium",
+    "tags": [
+      "幂等性",
+      "接口设计",
+      "分布式",
+      "重复请求"
+    ],
+    "description": "接口幂等性指的是什么？",
+    "questionType": "choice",
+    "options": [
+      "接口执行速度很快",
+      "接口执行一次和执行多次的效果相同",
+      "接口可以并行执行",
+      "接口必须返回相同结果"
+    ],
+    "correctAnswer": 1,
+    "solution": "接口执行一次和执行多次的效果相同",
+    "explanation": "【解析】\n幂等性（Idempotency）：\n\n定义：接口执行一次和执行多次的效果相同\n\n常见场景：\n- 支付接口（不能重复扣款）\n- 订单创建（不能重复创建）\n- 库存扣减（不能重复扣减）\n\n实现方法：\n1. Token机制：使用唯一token\n2. 乐观锁：版本号控制\n3. 分布式锁：防止并发\n\n【记忆口诀】\"幂等执行多次同，防重复要记心中\""
+  },
+  {
+    "id": "114",
+    "title": "分布式事务",
+    "category": "system-design",
+    "difficulty": "hard",
+    "tags": [
+      "分布式事务",
+      "两阶段提交",
+      "TCC",
+      "最终一致性"
+    ],
+    "description": "以下哪种不是分布式事务的解决方案？",
+    "questionType": "choice",
+    "options": [
+      "两阶段提交（2PC）",
+      "TCC模式",
+      "本地消息表",
+      "一阶段提交"
+    ],
+    "correctAnswer": 3,
+    "solution": "一阶段提交",
+    "explanation": "【解析】\n分布式事务解决方案：\n\n1. 两阶段提交（2PC）：准备阶段 + 提交阶段\n   - 优点：强一致性\n   - 缺点：同步阻塞、单点故障\n\n2. TCC模式（Try-Confirm-Cancel）：\n   - Try：资源预留\n   - Confirm：确认执行\n   - Cancel：取消回滚\n\n3. 本地消息表：最终一致性\n\n4. Seata：阿里的分布式事务框架\n\n【记忆口诀】\"分布式事务三板斧，2PC、TCC、消息表\""
+  },
+  {
+    "id": "115",
+    "title": "RPC vs HTTP",
+    "category": "system-design",
+    "difficulty": "medium",
+    "tags": [
+      "RPC",
+      "HTTP",
+      "远程调用",
+      "微服务"
+    ],
+    "description": "RPC（远程过程调用）和HTTP接口调用的主要区别是什么？",
+    "questionType": "choice",
+    "options": [
+      "RPC更轻量，HTTP更重",
+      "RPC是透明的网络调用，HTTP是文本协议",
+      "两者没有区别",
+      "HTTP可以传输二进制"
+    ],
+    "correctAnswer": 1,
+    "solution": "RPC是透明的网络调用，HTTP是文本协议",
+    "explanation": "【解析】\nRPC（Remote Procedure Call）：\n- 透明的网络调用\n- 像调用本地函数一样调用远程函数\n- 常用协议：gRPC、Dubbo、Thrift\n- 通常使用二进制序列化\n\nHTTP接口：\n- 基于HTTP协议\n- 文本格式（JSON/XML）\n- RESTful API\n\n对比：\n- RPC效率更高，适合内部服务调用\n- HTTP通用性更好，适合对外开放\n\n【记忆口诀】\"RPC透明像本地，HTTP文本通用广\""
+  },
+  {
+    "id": "116",
+    "title": "服务熔断与降级",
+    "category": "system-design",
+    "difficulty": "medium",
+    "tags": [
+      "熔断",
+      "降级",
+      "Sentinel",
+      "Hystrix",
+      "服务保护"
+    ],
+    "description": "服务降级和服务熔断的区别是什么？",
+    "questionType": "choice",
+    "options": [
+      "降级是放弃服务，熔断是降低性能",
+      "降级是临时关闭非核心功能，熔断是快速失败防止级联故障",
+      "两者完全相同",
+      "降级用于保护下游服务"
+    ],
+    "correctAnswer": 1,
+    "solution": "降级是临时关闭非核心功能，熔断是快速失败防止级联故障",
+    "explanation": "【解析】\n服务降级：\n- 临时关闭非核心功能\n- 保证核心功能可用\n- 返回兜底数据或友好提示\n\n服务熔断：\n- 当失败率达到阈值时开启\"断路器\"\n- 后续请求快速失败，不调用下游\n- 防止级联故障\n- 一段时间后尝试恢复\n\n常用框架：\n- Sentinel（阿里巴巴）\n- Hystrix（Netflix，已停止维护）\n\n【记忆口诀】\"降级关非核，熔断防级联\""
+  },
+  {
+    "id": "117",
+    "title": "雪花算法时钟回拨",
+    "category": "system-design",
+    "difficulty": "hard",
+    "tags": [
+      "雪花算法",
+      "时钟回拨",
+      "分布式ID",
+      "时间同步"
+    ],
+    "description": "雪花算法（Snowflake）面临的主要问题是什么？",
+    "questionType": "choice",
+    "options": [
+      "ID生成太慢",
+      "ID不唯一",
+      "机器时钟回拨导致ID重复",
+      "ID太长"
+    ],
+    "correctAnswer": 2,
+    "solution": "机器时钟回拨导致ID重复",
+    "explanation": "【解析】\n雪花算法问题：\n\n时钟回拨：\n- 雪花算法依赖本机时钟\n- 如果时钟回拨，之前生成的ID可能重复\n\n解决方案：\n1. 拒绝回拨：直接拒绝生成ID\n2. 等待回拨恢复：等待时钟追上\n3. 使用上一时刻：记录上一时刻ID\n\n变体算法：\n- 百度UidGenerator\n- 美团Leaf\n- Sonyflake\n\n【记忆口诀】\"雪花算法依赖时钟，回拨问题是克星\""
+  },
+  {
+    "id": "118",
+    "title": "数据库连接泄漏",
+    "category": "system-design",
+    "difficulty": "medium",
+    "tags": [
+      "数据库",
+      "连接池",
+      "连接泄漏",
+      "资源管理"
+    ],
+    "description": "什么是数据库连接泄漏？",
+    "questionType": "choice",
+    "options": [
+      "数据库连接数不足",
+      "获取连接后未正确关闭，导致连接被占用",
+      "连接创建太慢",
+      "连接被恶意攻击"
+    ],
+    "correctAnswer": 1,
+    "solution": "获取连接后未正确关闭，导致连接被占用",
+    "explanation": "【解析】\n连接泄漏原因：\n\n1. 未关闭连接：获取连接后忘记close()\n\n2. 异常未关闭：发生异常时未释放连接\n\n3. 结果集未关闭：查询后未关闭ResultSet\n\n危害：\n- 连接池耗尽\n- 新请求无法获取连接\n- 系统假死\n\n解决方案：\n1. 使用try-with-resources\n2.finally块确保关闭\n3. 监控连接池使用情况\n\n【记忆口诀】\"连接泄漏是隐患，用完必须关闭\""
+  },
+  {
+    "id": "119",
+    "title": "倒排索引",
+    "category": "system-design",
+    "difficulty": "medium",
+    "tags": [
+      "倒排索引",
+      "搜索引擎",
+      "ElasticSearch",
+      "索引"
+    ],
+    "description": "倒排索引（Inverted Index）是什么？",
+    "questionType": "choice",
+    "options": [
+      "按文档ID排序的索引",
+      "从词到文档的映射，快速查找包含某词的所有文档",
+      "按时间排序的索引",
+      "压缩后的索引"
+    ],
+    "correctAnswer": 1,
+    "solution": "从词到文档的映射，快速查找包含某词的所有文档",
+    "explanation": "【解析】\n倒排索引：\n\n正排索引：文档 → 词\n倒排索引：词 → 文档\n\n结构：\n- Term Dictionary（词典）：所有词\n- Posting List（倒排列表）：包含该词的文档列表\n\n搜索引擎工作流程：\n1. 用户输入查询词\n2. 查词典找到对应倒排列表\n3. 合并倒排列表得到结果\n\n应用：\n- Elasticsearch\n- Lucene\n- Solr\n\n【记忆口诀】\"正排文档到词，倒排词到文档\""
+  },
+  {
+    "id": "120",
+    "title": "布隆过滤器",
+    "category": "system-design",
+    "difficulty": "hard",
+    "tags": [
+      "布隆过滤器",
+      "BloomFilter",
+      "大数据",
+      "去重"
+    ],
+    "description": "布隆过滤器（Bloom Filter）的主要特点是什么？",
+    "questionType": "choice",
+    "options": [
+      "精确去重，零误差",
+      "可能出现假阳性，但不会假阴性",
+      "占用内存很大",
+      "不支持动态添加"
+    ],
+    "correctAnswer": 1,
+    "solution": "可能出现假阳性，但不会假阴性",
+    "explanation": "【解析】\n布隆过滤器原理：\n\n- 使用bitmap和多个哈希函数\n- 添加元素：用多个哈希函数映射，置位\n- 查询元素：所有哈希位置都为1才存在\n\n特点：\n1. 可能假阳性：说存在可能不存在\n2. 不会假阴性：说不存在一定不存在 ✓\n3. 空间效率高\n4. 支持批量添加\n\n应用：\n- 缓存穿透保护\n- 黑名单过滤\n- 爬虫URL去重\n\n【记忆口诀】\"布隆过滤假阳不断，定不存在就真不存在\""
+  },
+  {
+    "id": "121",
+    "title": "数组与链表的区别",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "数组",
+      "链表",
+      "基础",
+      "数据结构"
+    ],
+    "description": "数组和链表的主要区别是什么？",
+    "questionType": "choice",
+    "options": [
+      "数组插入快",
+      "链表查找快",
+      "数组随机访问O(1)，链表插入/删除O(1)",
+      "两者完全相同"
+    ],
+    "correctAnswer": 2,
+    "solution": "数组随机访问O(1)，链表插入/删除O(1)",
+    "explanation": "【解析】\n数组特点：\n- 连续内存空间\n- 随机访问O(1)\n- 插入/删除O(n)\n\n链表特点：\n- 非连续内存空间\n- 随机访问O(n)\n- 插入/删除O(1)（已知位置）\n\n【记忆口诀】\"数组访问快，链表改写快\""
+  },
+  {
+    "id": "122",
+    "title": "栈和队列的区别",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "栈",
+      "队列",
+      "基础",
+      "数据结构"
+    ],
+    "description": "栈（Stack）和队列（Queue）的区别是什么？",
+    "questionType": "choice",
+    "options": [
+      "栈是FIFO，队列是FILO",
+      "栈是FILO，队列是FIFO",
+      "两者没有区别",
+      "栈和队列都是FIFO"
+    ],
+    "correctAnswer": 1,
+    "solution": "栈是FILO，队列是FIFO",
+    "explanation": "【解析】\n栈（Stack）：\n- FILO：先进后出（First In Last Out）\n- 只能在一端操作\n- 典型应用：函数调用栈、括号匹配\n\n队列（Queue）：\n- FIFO：先进先出（First In First Out）\n- 两端操作（入队、出队）\n- 典型应用：任务队列、缓冲区\n\n【记忆口诀】\"栈像弹匣后进先出，队列像排队先进先出\""
+  },
+  {
+    "id": "123",
+    "title": "哈希表冲突",
+    "category": "data-structures",
+    "difficulty": "medium",
+    "tags": [
+      "哈希表",
+      "冲突",
+      "数据结构",
+      "哈希"
+    ],
+    "description": "以下哪种不是处理哈希表冲突的方法？",
+    "questionType": "choice",
+    "options": [
+      "开放地址法",
+      "链地址法",
+      "再哈希法",
+      "二分查找法"
+    ],
+    "correctAnswer": 3,
+    "solution": "二分查找法",
+    "explanation": "【解析】\n哈希表冲突处理方法：\n1. 开放地址法：线性探测、二次探测\n2. 链地址法：用链表存储冲突元素\n3. 再哈希法：使用第二个哈希函数\n4. 建立公共溢出区\n\n二分查找法用于有序数组搜索，与哈希冲突无关。\n\n【记忆口诀】\"哈希冲突三板斧，开放链式再哈希\""
+  },
+  {
+    "id": "124",
+    "title": "二叉树遍历",
+    "category": "data-structures",
+    "difficulty": "medium",
+    "tags": [
+      "二叉树",
+      "遍历",
+      "前序",
+      "中序",
+      "后序"
+    ],
+    "description": "二叉树的前序遍历顺序是什么？",
+    "questionType": "choice",
+    "options": [
+      "左-根-右",
+      "根-左-右",
+      "左-右-根",
+      "右-左-根"
+    ],
+    "correctAnswer": 1,
+    "solution": "根-左-右",
+    "explanation": "【解析】\n二叉树遍历三种顺序：\n\n1. 前序遍历（Pre-order）：根-左-右\n2. 中序遍历（In-order）：左-根-右\n3. 后序遍历（Post-order）：左-右-根\n\n【记忆口诀】\"前序根在先，中序根在中，后序根在后\""
+  },
+  {
+    "id": "125",
+    "title": "堆的性质",
+    "category": "data-structures",
+    "difficulty": "medium",
+    "tags": [
+      "堆",
+      "完全二叉树",
+      "数据结构"
+    ],
+    "description": "最大堆（Max Heap）的性质是什么？",
+    "questionType": "choice",
+    "options": [
+      "每个节点都大于其子节点",
+      "每个节点都小于其子节点",
+      "所有叶子节点在同一层",
+      "可以用数组实现"
+    ],
+    "correctAnswer": 0,
+    "solution": "每个节点都大于其子节点",
+    "explanation": "【解析】\n堆的性质：\n\n1. 完全二叉树\n2. 最大堆：父节点 >= 子节点（堆顶最大）\n3. 最小堆：父节点 <= 子节点（堆顶最小）\n4. 可用数组实现\n\n堆排序利用最大堆/最小堆的性质进行排序。\n\n【记忆口诀】\"最大堆顶最大，最小堆顶最小\""
+  },
+  {
+    "id": "126",
+    "title": "图的表示",
+    "category": "data-structures",
+    "difficulty": "medium",
+    "tags": [
+      "图",
+      "邻接矩阵",
+      "邻接表",
+      "数据结构"
+    ],
+    "description": "邻接表和邻接矩阵相比，哪个更适合稀疏图？",
+    "questionType": "choice",
+    "options": [
+      "邻接矩阵",
+      "邻接表",
+      "两者一样",
+      "取决于具体情况"
+    ],
+    "correctAnswer": 1,
+    "solution": "邻接表",
+    "explanation": "【解析】\n邻接矩阵：\n- O(V²) 空间\n- 查询边O(1)\n- 适合稠密图\n\n邻接表：\n- O(V+E) 空间\n- 查询边O(V)\n- 适合稀疏图\n\n【记忆口诀】\"稀疏图用邻接表省空间，稠密图用矩阵查询快\""
+  },
+  {
+    "id": "127",
+    "title": "B树与B+树",
+    "category": "data-structures",
+    "difficulty": "hard",
+    "tags": [
+      "B树",
+      "B+树",
+      "数据库索引",
+      "数据结构"
+    ],
+    "description": "B+树相比B树的优势是什么？",
+    "questionType": "choice",
+    "options": [
+      "树高更矮",
+      "所有数据在叶子节点，叶子节点链表连接，范围查询快",
+      "插入更快",
+      "内存占用更少"
+    ],
+    "correctAnswer": 1,
+    "solution": "所有数据在叶子节点，叶子节点链表连接，范围查询快",
+    "explanation": "【解析】\nB+树 vs B树：\n\nB+树特点：\n- 所有数据在叶子节点\n- 叶子节点链表连接\n- 内部节点只存索引\n- 范围查询更快\n\nB树特点：\n- 所有节点都存数据\n- 查询可能提前结束\n- 范围查询不如B+树\n\n数据库索引常用B+树。\n\n【记忆口诀】\"B+树数据在叶子，叶子链表连成串\""
+  },
+  {
+    "id": "128",
+    "title": "红黑树性质",
+    "category": "data-structures",
+    "difficulty": "hard",
+    "tags": [
+      "红黑树",
+      "平衡二叉树",
+      "数据结构"
+    ],
+    "description": "红黑树的红黑规则不包括以下哪项？",
+    "questionType": "choice",
+    "options": [
+      "根节点是黑色",
+      "红色节点的子节点必须是黑色",
+      "所有路径黑色高度相同",
+      "所有节点必须是红色或黑色"
+    ],
+    "correctAnswer": 3,
+    "solution": "所有节点必须是红色或黑色",
+    "explanation": "【解析】\n红黑树的5个性质：\n\n1. 每个节点非红即黑 ✓\n2. 根节点是黑色 ✓\n3. 叶节点（NIL）是黑色 ✓\n4. 红节点的子节点必须是黑色 ✓\n5. 任一节点到叶节点的路径包含相同数目的黑节点 ✓\n\n选项3应该是\"所有路径黑色高度相同\"而不是\"所有节点必须是红色或黑色\"。\n\n【记忆口诀】\"红黑树五规则，根黑叶黑路径同\""
+  },
+  {
+    "id": "129",
+    "title": "二叉搜索树",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "二叉搜索树",
+      "BST",
+      "查找",
+      "数据结构"
+    ],
+    "description": "在二叉搜索树（BST）中，左子树所有节点的值与右子树所有节点的值的关系是？",
+    "questionType": "choice",
+    "options": [
+      "左子树值大于右子树",
+      "左子树值小于右子树",
+      "两者相等",
+      "没有关系"
+    ],
+    "correctAnswer": 1,
+    "solution": "左子树值小于右子树",
+    "explanation": "【解析】\n二叉搜索树（BST）的性质：\n\n左子树的节点值 < 根节点值 < 右子树的节点值\n\n中序遍历BST可以得到有序序列。\n\n【记忆口诀】\"BST左小右大，中序遍历有序\""
+  },
+  {
+    "id": "130",
+    "title": "优先队列实现",
+    "category": "data-structures",
+    "difficulty": "medium",
+    "tags": [
+      "优先队列",
+      "堆",
+      "数据结构"
+    ],
+    "description": "优先队列通常用什么数据结构实现效率最高？",
+    "questionType": "choice",
+    "options": [
+      "数组",
+      "链表",
+      "堆",
+      "栈"
+    ],
+    "correctAnswer": 2,
+    "solution": "堆",
+    "explanation": "【解析】\n优先队列可以用以下方式实现：\n\n1. 数组/链表：O(n) 入队，O(1) 出队（或相反）\n\n2. 堆：O(log n) 入队和出队 ✓\n\n3. 二叉平衡树：O(log n) 入队和出队\n\n堆是实现优先队列最常用的数据结构。\n\n【记忆口诀】\"优先队列用堆，入队出队log n\""
+  },
+  {
+    "id": "131",
+    "title": "Python深拷贝与浅拷贝",
+    "category": "python",
+    "difficulty": "medium",
+    "tags": [
+      "Python",
+      "拷贝",
+      "引用",
+      "内存"
+    ],
+    "description": "Python中，浅拷贝（shallow copy）和深拷贝（deep copy）的主要区别是什么？",
+    "questionType": "choice",
+    "options": [
+      "浅拷贝不复制对象，深拷贝复制整个对象",
+      "浅拷贝只复制顶层对象，深拷贝递归复制所有嵌套对象",
+      "两者没有区别",
+      "深拷贝更快"
+    ],
+    "correctAnswer": 1,
+    "solution": "浅拷贝只复制顶层对象，深拷贝递归复制所有嵌套对象",
+    "explanation": "【解析】\nPython中的拷贝：\n\n1. 赋值：只是创建引用\n\n2. 浅拷贝：copy.copy()\n   - 复制顶层对象\n   - 嵌套对象仍共享引用\n\n3. 深拷贝：copy.deepcopy()\n   - 递归复制所有嵌套对象\n   - 完全独立的副本\n\n【记忆口诀】\"浅拷贝只拷贝一层，深拷贝递归全拷\""
+  },
+  {
+    "id": "132",
+    "title": "Python生成器",
+    "category": "python",
+    "difficulty": "medium",
+    "tags": [
+      "Python",
+      "生成器",
+      "迭代器",
+      "yield"
+    ],
+    "description": "Python中，生成器（Generator）和普通函数的区别是什么？",
+    "questionType": "choice",
+    "options": [
+      "生成器返回列表",
+      "生成器使用yield返回值，每次调用返回一个值",
+      "生成器不能迭代",
+      "生成器运行更快"
+    ],
+    "correctAnswer": 1,
+    "solution": "生成器使用yield返回值，每次调用返回一个值",
+    "explanation": "【解析】\n生成器的特点：\n\n1. 使用yield而不是return\n2. 每次调用只返回一个值\n3. 惰性计算，节省内存\n4. 可以迭代\n\n对比：\n- 普通函数：一次性返回所有结果\n- 生成器：按需产生结果\n\n【记忆口诀】\"生成器用yield，惰性计算省内存\""
+  },
+  {
+    "id": "133",
+    "title": "Python装饰器",
+    "category": "python",
+    "difficulty": "hard",
+    "tags": [
+      "Python",
+      "装饰器",
+      "闭包",
+      "语法糖"
+    ],
+    "description": "Python装饰器（Decorator）的用途是什么？",
+    "questionType": "choice",
+    "options": [
+      "创建新类",
+      "在运行时动态修改函数或类的行为",
+      "加快函数执行",
+      "创建全局变量"
+    ],
+    "correctAnswer": 1,
+    "solution": "在运行时动态修改函数或类的行为",
+    "explanation": "【解析】\n装饰器是Python的重要特性：\n\n基本结构：\n```python\n@decorator\ndef func():\n    pass\n```\n\n等效于：\n```python\nfunc = decorator(func)\n```\n\n常用装饰器：\n- @property、@classmethod、@staticmethod\n- @wraps（functools）\n\n【记忆口诀】\"装饰器改行为，不动原函数\""
+  },
+  {
+    "id": "134",
+    "title": "Python GIL",
+    "category": "python",
+    "difficulty": "hard",
+    "tags": [
+      "Python",
+      "GIL",
+      "多线程",
+      "并发"
+    ],
+    "description": "Python的GIL（全局解释器锁）限制了什么的执行？",
+    "questionType": "choice",
+    "options": [
+      "单线程",
+      "多线程的CPU密集型任务",
+      "多进程",
+      "异步编程"
+    ],
+    "correctAnswer": 1,
+    "solution": "多线程的CPU密集型任务",
+    "explanation": "【解析】\nGIL的影响：\n\n1. 同一时刻只有一个线程执行Python字节码\n2. CPU密集型任务：多线程无法利用多核\n3. IO密集型任务：影响不大\n\n解决方案：\n- multiprocessing（多进程）\n- asyncio（异步IO）\n- C扩展（释放GIL）\n\n【记忆口诀】\"GIL锁住CPU线程，IO密集不受影响\""
+  },
+  {
+    "id": "135",
+    "title": "Python列表推导式",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "Python",
+      "列表推导",
+      "语法",
+      "简洁"
+    ],
+    "description": "以下哪个是Python列表推导式的正确语法？",
+    "questionType": "choice",
+    "options": [
+      "[x for x in items if x > 0]",
+      "for x in items: if x > 0: result.append(x)",
+      "[x if x > 0 for x in items]",
+      "(x for x in items)"
+    ],
+    "correctAnswer": 0,
+    "solution": "[x for x in items if x > 0]",
+    "explanation": "【解析】\n列表推导式语法：\n\n```python\n[表达式 for 变量 in 可迭代对象 if 条件]\n```\n\n示例：\n```python\n# 筛选大于0的数\n[x for x in nums if x > 0]\n\n# 平方\n[x**2 for x in range(5)]\n```\n\n【记忆口诀】\"列表推导中括号，for在前条件在后\""
+  },
+  {
+    "id": "136",
+    "title": "Python可变默认参数",
+    "category": "python",
+    "difficulty": "medium",
+    "tags": [
+      "Python",
+      "默认参数",
+      "陷阱",
+      "可变对象"
+    ],
+    "description": "为什么不应使用可变对象作为函数的默认参数？",
+    "questionType": "choice",
+    "options": [
+      "占用更多内存",
+      "可变默认参数会在多次调用间共享，导致意外修改",
+      "运行更慢",
+      "语法不支持"
+    ],
+    "correctAnswer": 1,
+    "solution": "可变默认参数会在多次调用间共享，导致意外修改",
+    "explanation": "【解析】\n可变默认参数的问题：\n\n```python\ndef add_item(item, lst=[]):\n    lst.append(item)\n    return lst\n\nprint(add_item(1))  # [1]\nprint(add_item(2))  # [1, 2] 而不是 [2]!\n```\n\n正确做法：\n```python\ndef add_item(item, lst=None):\n    if lst is None:\n        lst = []\n    lst.append(item)\n    return lst\n```\n\n【记忆口诀】\"默认参数要避坑，可用None来替代\""
+  },
+  {
+    "id": "137",
+    "title": "Python闭包",
+    "category": "python",
+    "difficulty": "hard",
+    "tags": [
+      "Python",
+      "闭包",
+      "作用域",
+      " nonlocal"
+    ],
+    "description": "Python闭包中，如何在内部函数修改外部函数的变量？",
+    "questionType": "choice",
+    "options": [
+      "直接赋值",
+      "使用global声明",
+      "使用nonlocal声明",
+      "使用self关键字"
+    ],
+    "correctAnswer": 2,
+    "solution": "使用nonlocal声明",
+    "explanation": "【解析】\n闭包修改外部变量：\n\n```python\ndef outer():\n    x = 10\n    def inner():\n        nonlocal x  # 声明x不是局部变量\n        x = 20\n    return inner\n```\n\n对比：\n- global：声明全局变量\n- nonlocal：声明外部嵌套函数的变量\n\n【记忆口诀】\"闭包修改用nonlocal，global用于全局\""
+  },
+  {
+    "id": "138",
+    "title": "Python装饰器带参数",
+    "category": "python",
+    "difficulty": "hard",
+    "tags": [
+      "Python",
+      "装饰器",
+      "参数",
+      "高阶函数"
+    ],
+    "description": "如何定义一个带参数的装饰器？",
+    "questionType": "choice",
+    "options": [
+      "直接在装饰器函数加参数",
+      "装饰器返回的函数加参数",
+      "使用三层函数嵌套",
+      "装饰器不能带参数"
+    ],
+    "correctAnswer": 2,
+    "solution": "使用三层函数嵌套",
+    "explanation": "【解析】\n带参数装饰器的结构：\n\n```python\ndef repeat(times=3):  # 第一层：装饰器参数\n    def decorator(func):  # 第二层：被装饰函数\n        @wraps(func)\n        def wrapper(*args, **kwargs):  # 第三层：包装函数\n            for _ in range(times):\n                func(*args, **kwargs)\n        return wrapper\n    return decorator\n\n@repeat(times=3)\ndef greet():\n    print(\"Hello\")\n```\n\n【记忆口诀】\"带参装饰器三层，参数函数包装层\""
+  },
+  {
+    "id": "139",
+    "title": "Python元类",
+    "category": "python",
+    "difficulty": "hard",
+    "tags": [
+      "Python",
+      "元类",
+      "type",
+      "面向对象"
+    ],
+    "description": "Python中，元类（Metaclass）的主要用途是什么？",
+    "questionType": "choice",
+    "options": [
+      "创建对象实例",
+      "控制类的创建过程",
+      "加快程序运行",
+      "创建模块"
+    ],
+    "correctAnswer": 1,
+    "solution": "控制类的创建过程",
+    "explanation": "【解析】\n元类是类的类：\n\n- 普通类：实例的创建由type控制\n- 元类：类的创建由元类控制\n\n```python\nclass MyMeta(type):\n    def __new__(cls, name, bases, attrs):\n        # 控制类的创建\n        return super().__new__(cls, name, bases, attrs)\n\nclass MyClass(metaclass=MyMeta):\n    pass\n```\n\n应用：ORM、API框架\n\n【记忆口诀】\"元类是类的类，控制创建过程\""
+  },
+  {
+    "id": "140",
+    "title": "Python异步编程",
+    "category": "python",
+    "difficulty": "hard",
+    "tags": [
+      "Python",
+      "async",
+      "await",
+      "协程"
+    ],
+    "description": "Python中，async/await的主要作用是什么？",
+    "questionType": "choice",
+    "options": [
+      "创建线程",
+      "实现协程，处理IO密集型任务",
+      "提高CPU利用率",
+      "替代多进程"
+    ],
+    "correctAnswer": 1,
+    "solution": "实现协程，处理IO密集型任务",
+    "explanation": "【解析】\nasync/await 异步编程：\n\n```python\nasync def fetch():\n    response = await asyncio.sleep(1)\n    return response\n```\n\n特点：\n- 单线程内实现并发\n- 适合IO密集型任务\n- 不受GIL限制\n- 使用事件循环\n\n【记忆口诀】\"async await协程，IO密集不用线程\""
+  },
+  {
+    "id": "141",
+    "title": "哈希表查找、数组访问的时间复杂度是什么？",
+    "category": "algorithms",
+    "difficulty": "medium",
+    "tags": [
+      "复杂度",
+      "时间复杂度",
+      "哈希表查找、数组访问"
+    ],
+    "description": "以下算法的平均时间复杂度是多少？",
+    "questionType": "choice",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n log n)",
+      "O(n²)",
+      "O(2ⁿ)"
+    ],
+    "correctAnswer": 0,
+    "codeTemplate": null,
+    "solution": "答案是O(1)",
+    "explanation": "哈希表查找、数组访问采用分治策略，平均时间复杂度为O(1)"
+  },
+  {
+    "id": "142",
+    "title": "监督学习的特点",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "机器学习",
+      "监督学习"
+    ],
+    "description": "监督学习的主要特点是什么？",
+    "questionType": "choice",
+    "options": [
+      "有标签数据",
+      "无标签数据",
+      "奖励驱动",
+      "全是标签"
+    ],
+    "correctAnswer": 0,
+    "codeTemplate": null,
+    "solution": "有标签数据",
+    "explanation": "监督学习的核心是有标签数据"
+  },
+  {
+    "id": "143",
+    "title": "无监督学习的特点",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "机器学习",
+      "无监督学习"
+    ],
+    "description": "无监督学习的主要特点是什么？",
+    "questionType": "choice",
+    "options": [
+      "无标签数据",
+      "无标签数据",
+      "奖励驱动",
+      "全是标签"
+    ],
+    "correctAnswer": 0,
+    "codeTemplate": null,
+    "solution": "无标签数据",
+    "explanation": "无监督学习的核心是无标签数据"
+  },
+  {
+    "id": "144",
+    "title": "半监督学习的特点",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "机器学习",
+      "半监督学习"
+    ],
+    "description": "半监督学习的主要特点是什么？",
+    "questionType": "choice",
+    "options": [
+      "部分有标签",
+      "无标签数据",
+      "奖励驱动",
+      "全是标签"
+    ],
+    "correctAnswer": 0,
+    "codeTemplate": null,
+    "solution": "部分有标签",
+    "explanation": "半监督学习的核心是部分有标签"
+  },
+  {
+    "id": "145",
+    "title": "强化学习的特点",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "机器学习",
+      "强化学习"
+    ],
+    "description": "强化学习的主要特点是什么？",
+    "questionType": "choice",
+    "options": [
+      "奖励机制",
+      "无标签数据",
+      "奖励驱动",
+      "全是标签"
+    ],
+    "correctAnswer": 0,
+    "codeTemplate": null,
+    "solution": "奖励机制",
+    "explanation": "强化学习的核心是奖励机制"
+  },
+  {
+    "id": "146",
+    "title": "ReLU的作用",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "深度学习",
+      "激活函数",
+      "ReLU"
+    ],
+    "description": "ReLU激活函数的作用是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "引入非线性，使网络可以学习复杂函数",
+    "codeTemplate": null,
+    "solution": "ReLU可以引入非线性",
+    "explanation": "ReLU的优点：缓解梯度消失，注意：dying ReLU"
+  },
+  {
+    "id": "147",
+    "title": "Sigmoid的作用",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "深度学习",
+      "激活函数",
+      "Sigmoid"
+    ],
+    "description": "Sigmoid激活函数的作用是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "引入非线性，使网络可以学习复杂函数",
+    "codeTemplate": null,
+    "solution": "Sigmoid可以引入非线性",
+    "explanation": "Sigmoid的优点：输出(0,1)，注意：梯度消失"
+  },
+  {
+    "id": "148",
+    "title": "Tanh的作用",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "深度学习",
+      "激活函数",
+      "Tanh"
+    ],
+    "description": "Tanh激活函数的作用是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "引入非线性，使网络可以学习复杂函数",
+    "codeTemplate": null,
+    "solution": "Tanh可以引入非线性",
+    "explanation": "Tanh的优点：输出(-1,1)，注意：梯度消失"
+  },
+  {
+    "id": "149",
+    "title": "Softmax的作用",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "深度学习",
+      "激活函数",
+      "Softmax"
+    ],
+    "description": "Softmax激活函数的作用是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "引入非线性，使网络可以学习复杂函数",
+    "codeTemplate": null,
+    "solution": "Softmax可以引入非线性",
+    "explanation": "Softmax的优点：多分类，注意：类别概率"
+  },
+  {
+    "id": "150",
+    "title": "LeakyReLU的作用",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "深度学习",
+      "激活函数",
+      "LeakyReLU"
+    ],
+    "description": "LeakyReLU激活函数的作用是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "引入非线性，使网络可以学习复杂函数",
+    "codeTemplate": null,
+    "solution": "LeakyReLU可以引入非线性",
+    "explanation": "LeakyReLU的优点：解决dying ReLU，注意："
+  },
+  {
+    "id": "151",
+    "title": "CAP的C代表什么？",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "系统设计",
+      "CAP",
+      "一致性"
+    ],
+    "description": "CAP定理中的C代表什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "一致性",
+    "codeTemplate": null,
+    "solution": "一致性",
+    "explanation": "C代表一致性：所有节点同时看到相同数据"
+  },
+  {
+    "id": "152",
+    "title": "CAP的A代表什么？",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "系统设计",
+      "CAP",
+      "可用性"
+    ],
+    "description": "CAP定理中的A代表什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "可用性",
+    "codeTemplate": null,
+    "solution": "可用性",
+    "explanation": "A代表可用性：每个请求都有响应"
+  },
+  {
+    "id": "153",
+    "title": "CAP的P代表什么？",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "系统设计",
+      "CAP",
+      "分区容错"
+    ],
+    "description": "CAP定理中的P代表什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "分区容错",
+    "codeTemplate": null,
+    "solution": "分区容错",
+    "explanation": "P代表分区容错：系统能处理网络分区"
+  },
+  {
+    "id": "154",
+    "title": "数组的时间复杂度",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "数据结构",
+      "数组"
+    ],
+    "description": "数组的访问/插入时间复杂度是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "随机访问O(1)",
+    "codeTemplate": null,
+    "solution": "随机访问O(1)",
+    "explanation": "数组基于连续内存，随机访问O(1)"
+  },
+  {
+    "id": "155",
+    "title": "链表的时间复杂度",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "数据结构",
+      "链表"
+    ],
+    "description": "链表的访问/插入时间复杂度是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "插入删除O(1)",
+    "codeTemplate": null,
+    "solution": "插入删除O(1)",
+    "explanation": "链表基于指针相连，插入删除O(1)"
+  },
+  {
+    "id": "156",
+    "title": "栈的时间复杂度",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "数据结构",
+      "栈"
+    ],
+    "description": "栈的访问/插入时间复杂度是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "后进先出",
+    "codeTemplate": null,
+    "solution": "后进先出",
+    "explanation": "栈基于LIFO，后进先出"
+  },
+  {
+    "id": "157",
+    "title": "队列的时间复杂度",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "数据结构",
+      "队列"
+    ],
+    "description": "队列的访问/插入时间复杂度是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "先进先出",
+    "codeTemplate": null,
+    "solution": "先进先出",
+    "explanation": "队列基于FIFO，先进先出"
+  },
+  {
+    "id": "158",
+    "title": "Python列表推导式的语法",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "Python",
+      "列表推导式"
+    ],
+    "description": "列表推导式的基本语法是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "[x for x in ...]",
+    "codeTemplate": null,
+    "solution": "[x for x in ...]",
+    "explanation": "列表推导式是Python的常用特性，简洁高效创建列表"
+  },
+  {
+    "id": "159",
+    "title": "Python字典推导式的语法",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "Python",
+      "字典推导式"
+    ],
+    "description": "字典推导式的基本语法是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "{k:v for ...}",
+    "codeTemplate": null,
+    "solution": "{k:v for ...}",
+    "explanation": "字典推导式是Python的常用特性，创建字典"
+  },
+  {
+    "id": "160",
+    "title": "Python装饰器的语法",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "Python",
+      "装饰器"
+    ],
+    "description": "装饰器的基本语法是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "@decorator",
+    "codeTemplate": null,
+    "solution": "@decorator",
+    "explanation": "装饰器是Python的常用特性，增强函数"
+  },
+  {
+    "id": "161",
+    "title": "Python生成器的语法",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "Python",
+      "生成器"
+    ],
+    "description": "生成器的基本语法是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "(x for x in ...)",
+    "codeTemplate": null,
+    "solution": "(x for x in ...)",
+    "explanation": "生成器是Python的常用特性，惰性求值"
+  },
+  {
+    "id": "162",
+    "title": "Python上下文管理器的语法",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "Python",
+      "上下文管理器"
+    ],
+    "description": "上下文管理器的基本语法是？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "with ...",
+    "codeTemplate": null,
+    "solution": "with ...",
+    "explanation": "上下文管理器是Python的常用特性，资源管理"
+  },
+  {
+    "id": "163",
+    "title": "SQLSELECT的作用",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SQL",
+      "SELECT"
+    ],
+    "description": "SQL中SELECT关键字的作用是什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "查询数据",
+    "codeTemplate": null,
+    "solution": "查询数据",
+    "explanation": "SELECT用于查询数据"
+  },
+  {
+    "id": "164",
+    "title": "SQLINSERT的作用",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SQL",
+      "INSERT"
+    ],
+    "description": "SQL中INSERT关键字的作用是什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "插入数据",
+    "codeTemplate": null,
+    "solution": "插入数据",
+    "explanation": "INSERT用于插入数据"
+  },
+  {
+    "id": "165",
+    "title": "SQLUPDATE的作用",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SQL",
+      "UPDATE"
+    ],
+    "description": "SQL中UPDATE关键字的作用是什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "更新数据",
+    "codeTemplate": null,
+    "solution": "更新数据",
+    "explanation": "UPDATE用于更新数据"
+  },
+  {
+    "id": "166",
+    "title": "SQLDELETE的作用",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SQL",
+      "DELETE"
+    ],
+    "description": "SQL中DELETE关键字的作用是什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "删除数据",
+    "codeTemplate": null,
+    "solution": "删除数据",
+    "explanation": "DELETE用于删除数据"
+  },
+  {
+    "id": "167",
+    "title": "SQLCREATE的作用",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SQL",
+      "CREATE"
+    ],
+    "description": "SQL中CREATE关键字的作用是什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "创建表",
+    "codeTemplate": null,
+    "solution": "创建表",
+    "explanation": "CREATE用于创建表"
+  },
+  {
+    "id": "168",
+    "title": "SQLJOIN的作用",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SQL",
+      "JOIN"
+    ],
+    "description": "SQL中JOIN关键字的作用是什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "连接查询",
+    "codeTemplate": null,
+    "solution": "连接查询",
+    "explanation": "JOIN用于连接查询"
+  },
+  {
+    "id": "169",
+    "title": "SQLWHERE的作用",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SQL",
+      "WHERE"
+    ],
+    "description": "SQL中WHERE关键字的作用是什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "条件过滤",
+    "codeTemplate": null,
+    "solution": "条件过滤",
+    "explanation": "WHERE用于条件过滤"
+  },
+  {
+    "id": "170",
+    "title": "SQLGROUP BY的作用",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SQL",
+      "GROUP BY"
+    ],
+    "description": "SQL中GROUP BY关键字的作用是什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "分组",
+    "codeTemplate": null,
+    "solution": "分组",
+    "explanation": "GROUP BY用于分组"
+  },
+  {
+    "id": "171",
+    "title": "SQLHAVING的作用",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SQL",
+      "HAVING"
+    ],
+    "description": "SQL中HAVING关键字的作用是什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "分组过滤",
+    "codeTemplate": null,
+    "solution": "分组过滤",
+    "explanation": "HAVING用于分组过滤"
+  },
+  {
+    "id": "172",
+    "title": "SQLORDER BY的作用",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SQL",
+      "ORDER BY"
+    ],
+    "description": "SQL中ORDER BY关键字的作用是什么？",
+    "questionType": "fill",
+    "options": null,
+    "correctAnswer": "排序",
+    "codeTemplate": null,
+    "solution": "排序",
+    "explanation": "ORDER BY用于排序"
+  },
+  {
+    "id": "173",
+    "title": "时间复杂度O(n)表示",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "时间复杂度"
+    ],
+    "description": "算法执行时间与输入规模呈线性关系的复杂度是？",
+    "questionType": "choice",
+    "options": [
+      "O(n)",
+      "O(n²)",
+      "O(log n)",
+      "O(1)"
+    ],
+    "correctAnswer": 0,
+    "solution": "O(n)",
+    "explanation": "这是第1道关于时间复杂度的题目。正确答案是O(n)。"
+  },
+  {
+    "id": "174",
+    "title": "时间复杂度O(n²)表示",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "时间复杂度"
+    ],
+    "description": "算法执行时间与输入规模呈平方关系的复杂度是？",
+    "questionType": "choice",
+    "options": [
+      "O(n)",
+      "O(n²)",
+      "O(log n)",
+      "O(1)"
+    ],
+    "correctAnswer": 1,
+    "solution": "O(n²)",
+    "explanation": "这是第1道关于时间复杂度的题目。正确答案是O(n²)。"
+  },
+  {
+    "id": "175",
+    "title": "时间复杂度O(log n)表示",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "时间复杂度"
+    ],
+    "description": "二分查找的时间复杂度是？",
+    "questionType": "choice",
+    "options": [
+      "O(n)",
+      "O(n²)",
+      "O(log n)",
+      "O(1)"
+    ],
+    "correctAnswer": 2,
+    "solution": "O(log n)",
+    "explanation": "这是第10道关于时间复杂度的题目。正确答案是O(log n)。"
+  },
+  {
+    "id": "176",
+    "title": "常数时间复杂度",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "时间复杂度"
+    ],
+    "description": "访问数组特定位置元素的时间复杂度是？",
+    "questionType": "choice",
+    "options": [
+      "O(n)",
+      "O(n²)",
+      "O(log n)",
+      "O(1)"
+    ],
+    "correctAnswer": 3,
+    "solution": "O(1)",
+    "explanation": "这是第1道关于时间复杂度的题目。正确答案是O(1)。"
+  },
+  {
+    "id": "177",
+    "title": "线性时间复杂度",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "时间复杂度"
+    ],
+    "description": "遍历数组的时间复杂度是____",
+    "questionType": "fill",
+    "correctAnswer": "O(n)",
+    "solution": "O(n)",
+    "explanation": "这是第1道关于时间复杂度的题目。正确答案是O(n)。"
+  },
+  {
+    "id": "178",
+    "title": "冒泡排序原理",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "冒泡排序"
+    ],
+    "description": "冒泡排序通过____元素实现排序",
+    "questionType": "fill",
+    "correctAnswer": "交换",
+    "solution": "交换",
+    "explanation": "这是第1道关于冒泡排序的题目。正确答案是交换。"
+  },
+  {
+    "id": "179",
+    "title": "选择排序过程",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "选择排序"
+    ],
+    "description": "选择排序每次选择____放到已排序序列末尾",
+    "questionType": "fill",
+    "correctAnswer": "最小元素",
+    "solution": "最小元素",
+    "explanation": "这是第1道关于选择排序的题目。正确答案是最小元素。"
+  },
+  {
+    "id": "180",
+    "title": "插入排序特点",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "插入排序"
+    ],
+    "description": "插入排序将元素____到已排序序列中",
+    "questionType": "fill",
+    "correctAnswer": "插入",
+    "solution": "插入",
+    "explanation": "这是第1道关于插入排序的题目。正确答案是插入。"
+  },
+  {
+    "id": "181",
+    "title": "快速排序基准",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "快速排序"
+    ],
+    "description": "快速排序选择一个元素作为____",
+    "questionType": "fill",
+    "correctAnswer": "基准",
+    "solution": "基准",
+    "explanation": "这是第1道关于快速排序的题目。正确答案是基准。"
+  },
+  {
+    "id": "182",
+    "title": "归并排序核心",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "归并排序"
+    ],
+    "description": "归并排序核心是____和合并",
+    "questionType": "fill",
+    "correctAnswer": "分治",
+    "solution": "分治",
+    "explanation": "这是第1道关于归并排序的题目。正确答案是分治。"
+  },
+  {
+    "id": "183",
+    "title": "链表遍历",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "链表"
+    ],
+    "description": "链表遍历时需要使用什么变量？",
+    "questionType": "choice",
+    "options": [
+      "临时指针",
+      "数组",
+      "栈",
+      "队列"
+    ],
+    "correctAnswer": 0,
+    "solution": "临时指针",
+    "explanation": "这是第1道关于链表的题目。正确答案是临时指针。"
+  },
+  {
+    "id": "184",
+    "title": "栈的应用场景",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "栈"
+    ],
+    "description": "函数调用栈使用的数据结构是？",
+    "questionType": "choice",
+    "options": [
+      "队列",
+      "栈",
+      "链表",
+      "数组"
+    ],
+    "correctAnswer": 1,
+    "solution": "栈",
+    "explanation": "这是第1道关于栈的题目。正确答案是栈。"
+  },
+  {
+    "id": "185",
+    "title": "队列特点",
+    "category": "algorithms",
+    "difficulty": "easy",
+    "tags": [
+      "队列"
+    ],
+    "description": "队列的数据处理顺序是？",
+    "questionType": "choice",
+    "options": [
+      "LIFO",
+      "FIFO",
+      "随机",
+      "优先"
+    ],
+    "correctAnswer": 1,
+    "solution": "FIFO",
+    "explanation": "这是第1道关于队列的题目。正确答案是FIFO。"
+  },
+  {
+    "id": "186",
+    "title": "有监督学习需要",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "有监督学习"
+    ],
+    "description": "有监督学习训练数据需要？",
+    "questionType": "choice",
+    "options": [
+      "有标签",
+      "无标签",
+      "半标签",
+      "无数据"
+    ],
+    "correctAnswer": 0,
+    "solution": "有标签",
+    "explanation": "这是第1道关于有监督学习的题目。正确答案是有标签。"
+  },
+  {
+    "id": "187",
+    "title": "无监督学习特点",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "无监督学习"
+    ],
+    "description": "无监督学习通常用于？",
+    "questionType": "choice",
+    "options": [
+      "分类",
+      "聚类",
+      "回归",
+      "预测"
+    ],
+    "correctAnswer": 1,
+    "solution": "聚类",
+    "explanation": "这是第1道关于无监督学习的题目。正确答案是聚类。"
+  },
+  {
+    "id": "188",
+    "title": "分类问题输出",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "分类"
+    ],
+    "description": "分类问题的输出是？",
+    "questionType": "choice",
+    "options": [
+      "连续值",
+      "离散类别",
+      "连续值和离散类别",
+      "任意值"
+    ],
+    "correctAnswer": 1,
+    "solution": "离散类别",
+    "explanation": "这是第1道关于分类的题目。正确答案是离散类别。"
+  },
+  {
+    "id": "189",
+    "title": "回归问题输出",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "回归"
+    ],
+    "description": "回归问题的输出是？",
+    "questionType": "choice",
+    "options": [
+      "连续值",
+      "离散类别",
+      "连续值和离散类别",
+      "任意值"
+    ],
+    "correctAnswer": 0,
+    "solution": "连续值",
+    "explanation": "这是第1道关于回归的题目。正确答案是连续值。"
+  },
+  {
+    "id": "190",
+    "title": "过拟合特征",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "过拟合"
+    ],
+    "description": "过拟合表现为训练集表现____而测试集表现差",
+    "questionType": "fill",
+    "correctAnswer": "好",
+    "solution": "好",
+    "explanation": "这是第1道关于过拟合的题目。正确答案是好。"
+  },
+  {
+    "id": "191",
+    "title": "欠拟合特征",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "欠拟合"
+    ],
+    "description": "欠拟合表现为训练集表现____",
+    "questionType": "fill",
+    "correctAnswer": "差",
+    "solution": "差",
+    "explanation": "这是第1道关于欠拟合的题目。正确答案是差。"
+  },
+  {
+    "id": "192",
+    "title": "L2正则化",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "正则化"
+    ],
+    "description": "L2正则化添加权重平方的____",
+    "questionType": "fill",
+    "correctAnswer": "惩罚",
+    "solution": "惩罚",
+    "explanation": "这是第1道关于正则化的题目。正确答案是惩罚。"
+  },
+  {
+    "id": "193",
+    "title": "L1正则化",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "正则化"
+    ],
+    "description": "L1正则化可以实现____选择",
+    "questionType": "fill",
+    "correctAnswer": "特征",
+    "solution": "特征",
+    "explanation": "这是第1道关于正则化的题目。正确答案是特征。"
+  },
+  {
+    "id": "194",
+    "title": "学习率",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "优化"
+    ],
+    "description": "学习率控制参数更新的____",
+    "questionType": "choice",
+    "options": [
+      "速度",
+      "方向",
+      "大小",
+      "频率"
+    ],
+    "correctAnswer": 2,
+    "solution": "大小",
+    "explanation": "这是第1道关于优化的题目。正确答案是大小。"
+  },
+  {
+    "id": "195",
+    "title": "交叉验证折数",
+    "category": "machine-learning",
+    "difficulty": "easy",
+    "tags": [
+      "交叉验证"
+    ],
+    "description": "常用的交叉验证折数是？",
+    "questionType": "choice",
+    "options": [
+      "3",
+      "10",
+      "50",
+      "100"
+    ],
+    "correctAnswer": 1,
+    "solution": "10",
+    "explanation": "这是第1道关于交叉验证的题目。正确答案是10。"
+  },
+  {
+    "id": "196",
+    "title": "神经网络层",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "神经网络"
+    ],
+    "description": "神经网络的基本组成单元是？",
+    "questionType": "choice",
+    "options": [
+      "神经元",
+      "节点",
+      "突触",
+      "以上都对"
+    ],
+    "correctAnswer": 0,
+    "solution": "神经元",
+    "explanation": "这是第1道关于神经网络的题目。正确答案是神经元。"
+  },
+  {
+    "id": "197",
+    "title": "激活函数",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "激活函数"
+    ],
+    "description": "激活函数的作用是引入？",
+    "questionType": "choice",
+    "options": [
+      "线性",
+      "非线性",
+      "正则化",
+      "优化"
+    ],
+    "correctAnswer": 1,
+    "solution": "非线性",
+    "explanation": "这是第1道关于激活函数的题目。正确答案是非线性。"
+  },
+  {
+    "id": "198",
+    "title": "Sigmoid输出范围",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "Sigmoid"
+    ],
+    "description": "Sigmoid函数的输出范围是？",
+    "questionType": "choice",
+    "options": [
+      "[-1, 1]",
+      "[0, 1]",
+      "[0, ∞)",
+      "(-∞, ∞)"
+    ],
+    "correctAnswer": 1,
+    "solution": "[0, 1]",
+    "explanation": "这是第10道关于Sigmoid的题目。正确答案是[0, 1]。"
+  },
+  {
+    "id": "199",
+    "title": "ReLU函数",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "ReLU"
+    ],
+    "description": "ReLU激活函数的优点是？",
+    "questionType": "choice",
+    "options": [
+      "计算快",
+      "梯度消失",
+      "梯度爆炸",
+      "以上都对"
+    ],
+    "correctAnswer": 0,
+    "solution": "计算快",
+    "explanation": "这是第1道关于ReLU的题目。正确答案是计算快。"
+  },
+  {
+    "id": "200",
+    "title": "Tanh函数",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "Tanh"
+    ],
+    "description": "Tanh函数的输出范围是____到1",
+    "questionType": "fill",
+    "correctAnswer": "-1",
+    "solution": "-1",
+    "explanation": "这是第1道关于Tanh的题目。正确答案是-1。"
+  },
+  {
+    "id": "201",
+    "title": "Softmax层",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "Softmax"
+    ],
+    "description": "Softmax用于____分类问题",
+    "questionType": "fill",
+    "correctAnswer": "多",
+    "solution": "多",
+    "explanation": "这是第1道关于Softmax的题目。正确答案是多。"
+  },
+  {
+    "id": "202",
+    "title": "损失函数",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "损失函数"
+    ],
+    "description": "损失函数衡量预测与真实的____",
+    "questionType": "fill",
+    "correctAnswer": "差距",
+    "solution": "差距",
+    "explanation": "这是第1道关于损失函数的题目。正确答案是差距。"
+  },
+  {
+    "id": "203",
+    "title": "梯度下降",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "梯度下降"
+    ],
+    "description": "梯度下降是____优化算法",
+    "questionType": "fill",
+    "correctAnswer": "迭代",
+    "solution": "迭代",
+    "explanation": "这是第1道关于梯度下降的题目。正确答案是迭代。"
+  },
+  {
+    "id": "204",
+    "title": "反向传播",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "反向传播"
+    ],
+    "description": "反向传播用于计算？",
+    "questionType": "choice",
+    "options": [
+      "梯度",
+      "损失",
+      "准确率",
+      "预测"
+    ],
+    "correctAnswer": 0,
+    "solution": "梯度",
+    "explanation": "这是第1道关于反向传播的题目。正确答案是梯度。"
+  },
+  {
+    "id": "205",
+    "title": "过拟合方法",
+    "category": "deep-learning",
+    "difficulty": "easy",
+    "tags": [
+      "过拟合"
+    ],
+    "description": "防止过拟合的方法是？",
+    "questionType": "choice",
+    "options": [
+      "数据增强",
+      "Dropout",
+      "L2正则化",
+      "以上都对"
+    ],
+    "correctAnswer": 3,
+    "solution": "以上都对",
+    "explanation": "这是第1道关于过拟合的题目。正确答案是以上都对。"
+  },
+  {
+    "id": "206",
+    "title": "可扩展性",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "可扩展性"
+    ],
+    "description": "系统处理更大负载的能力是？",
+    "questionType": "choice",
+    "options": [
+      "可扩展性",
+      "可用性",
+      "一致性",
+      "安全性"
+    ],
+    "correctAnswer": 0,
+    "solution": "可扩展性",
+    "explanation": "这是第1道关于可扩展性的题目。正确答案是可扩展性。"
+  },
+  {
+    "id": "207",
+    "title": "可用性",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "可用性"
+    ],
+    "description": "系统保持正常运行的时间比例是？",
+    "questionType": "choice",
+    "options": [
+      "一致性",
+      "可用性",
+      "分区容错",
+      "性能"
+    ],
+    "correctAnswer": 1,
+    "solution": "可用性",
+    "explanation": "这是第1道关于可用性的题目。正确答案是可用性。"
+  },
+  {
+    "id": "208",
+    "title": "一致性",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "一致性"
+    ],
+    "description": "所有节点数据保持同步的特性是？",
+    "questionType": "choice",
+    "options": [
+      "可用性",
+      "一致性",
+      "分区容错",
+      "性能"
+    ],
+    "correctAnswer": 1,
+    "solution": "一致性",
+    "explanation": "这是第1道关于一致性的题目。正确答案是一致性。"
+  },
+  {
+    "id": "209",
+    "title": "CAP三选一",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "CAP"
+    ],
+    "description": "CAP定理指出分布式系统必须在三者中放弃一个？",
+    "questionType": "choice",
+    "options": [
+      "正确",
+      "错误",
+      "不确定",
+      "视情况而定"
+    ],
+    "correctAnswer": 0,
+    "solution": "正确",
+    "explanation": "这是第1道关于CAP的题目。正确答案是正确。"
+  },
+  {
+    "id": "210",
+    "title": "缓存命中率",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "缓存"
+    ],
+    "description": "缓存命中次数占总请求数的____",
+    "questionType": "fill",
+    "correctAnswer": "比例",
+    "solution": "比例",
+    "explanation": "这是第1道关于缓存的题目。正确答案是比例。"
+  },
+  {
+    "id": "211",
+    "title": "缓存穿透",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "缓存"
+    ],
+    "description": "缓存穿透是查询____的数据",
+    "questionType": "fill",
+    "correctAnswer": "不存在",
+    "solution": "不存在",
+    "explanation": "这是第1道关于缓存的题目。正确答案是不存在。"
+  },
+  {
+    "id": "212",
+    "title": "缓存雪崩",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "缓存"
+    ],
+    "description": "缓存雪崩是大量key____",
+    "questionType": "fill",
+    "correctAnswer": "同时过期",
+    "solution": "同时过期",
+    "explanation": "这是第1道关于缓存的题目。正确答案是同时过期。"
+  },
+  {
+    "id": "213",
+    "title": "数据库索引",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "索引"
+    ],
+    "description": "索引的主要作用是？",
+    "questionType": "choice",
+    "options": [
+      "节省空间",
+      "加速查询",
+      "加密数据",
+      "备份数据"
+    ],
+    "correctAnswer": 1,
+    "solution": "加速查询",
+    "explanation": "这是第1道关于索引的题目。正确答案是加速查询。"
+  },
+  {
+    "id": "214",
+    "title": "负载均衡",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "负载均衡"
+    ],
+    "description": "负载均衡将请求分发到？",
+    "questionType": "choice",
+    "options": [
+      "单台服务器",
+      "多台服务器",
+      "数据库",
+      "缓存"
+    ],
+    "correctAnswer": 1,
+    "solution": "多台服务器",
+    "explanation": "这是第1道关于负载均衡的题目。正确答案是多台服务器。"
+  },
+  {
+    "id": "215",
+    "title": "微服务架构",
+    "category": "system-design",
+    "difficulty": "easy",
+    "tags": [
+      "微服务"
+    ],
+    "description": "微服务架构特点是？",
+    "questionType": "choice",
+    "options": [
+      "单进程",
+      "多服务独立部署",
+      "紧耦合",
+      "以上都对"
+    ],
+    "correctAnswer": 1,
+    "solution": "多服务独立部署",
+    "explanation": "这是第1道关于微服务的题目。正确答案是多服务独立部署。"
+  },
+  {
+    "id": "216",
+    "title": "数组访问",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "数组"
+    ],
+    "description": "数组支持什么访问方式？",
+    "questionType": "choice",
+    "options": [
+      "随机访问",
+      "顺序访问",
+      "跳跃访问",
+      "以上都对"
+    ],
+    "correctAnswer": 0,
+    "solution": "随机访问",
+    "explanation": "这是第1道关于数组的题目。正确答案是随机访问。"
+  },
+  {
+    "id": "217",
+    "title": "链表访问",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "链表"
+    ],
+    "description": "链表访问元素需要？",
+    "questionType": "choice",
+    "options": [
+      "随机访问",
+      "顺序访问",
+      "索引访问",
+      "哈希访问"
+    ],
+    "correctAnswer": 1,
+    "solution": "顺序访问",
+    "explanation": "这是第1道关于链表的题目。正确答案是顺序访问。"
+  },
+  {
+    "id": "218",
+    "title": "栈LIFO",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "栈"
+    ],
+    "description": "栈遵循什么原则？",
+    "questionType": "choice",
+    "options": [
+      "FIFO",
+      "LIFO",
+      "优先级",
+      "随机"
+    ],
+    "correctAnswer": 1,
+    "solution": "LIFO",
+    "explanation": "这是第1道关于栈的题目。正确答案是LIFO。"
+  },
+  {
+    "id": "219",
+    "title": "队列FIFO",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "队列"
+    ],
+    "description": "队列遵循什么原则？",
+    "questionType": "choice",
+    "options": [
+      "LIFO",
+      "FIFO",
+      "优先级",
+      "随机"
+    ],
+    "correctAnswer": 1,
+    "solution": "FIFO",
+    "explanation": "这是第1道关于队列的题目。正确答案是FIFO。"
+  },
+  {
+    "id": "220",
+    "title": "树的高度",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "树"
+    ],
+    "description": "树的高度是从根到____的最长路径",
+    "questionType": "fill",
+    "correctAnswer": "叶子",
+    "solution": "叶子",
+    "explanation": "这是第1道关于树的题目。正确答案是叶子。"
+  },
+  {
+    "id": "221",
+    "title": "二叉树度",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "二叉树"
+    ],
+    "description": "二叉树每个节点最多有____个子节点",
+    "questionType": "fill",
+    "correctAnswer": "2",
+    "solution": "2",
+    "explanation": "这是第1道关于二叉树的题目。正确答案是2。"
+  },
+  {
+    "id": "222",
+    "title": "哈希冲突",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "哈希表"
+    ],
+    "description": "哈希冲突是不同键得到____哈希值",
+    "questionType": "fill",
+    "correctAnswer": "相同",
+    "solution": "相同",
+    "explanation": "这是第1道关于哈希表的题目。正确答案是相同。"
+  },
+  {
+    "id": "223",
+    "title": "堆的类型",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "堆"
+    ],
+    "description": "堆的两种类型是？",
+    "questionType": "choice",
+    "options": [
+      "最大堆和最小堆",
+      "树堆和图堆",
+      "静态堆和动态堆",
+      "以上都对"
+    ],
+    "correctAnswer": 0,
+    "solution": "最大堆和最小堆",
+    "explanation": "这是第1道关于堆的题目。正确答案是最大堆和最小堆。"
+  },
+  {
+    "id": "224",
+    "title": "图的表示",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "图"
+    ],
+    "description": "图的常见表示方法是？",
+    "questionType": "choice",
+    "options": [
+      "邻接矩阵",
+      "邻接表",
+      "两者都是",
+      "两者都不是"
+    ],
+    "correctAnswer": 2,
+    "solution": "两者都是",
+    "explanation": "这是第1道关于图的题目。正确答案是两者都是。"
+  },
+  {
+    "id": "225",
+    "title": "二分查找条件",
+    "category": "data-structures",
+    "difficulty": "easy",
+    "tags": [
+      "二分查找"
+    ],
+    "description": "二分查找要求数组是____的",
+    "questionType": "fill",
+    "correctAnswer": "有序",
+    "solution": "有序",
+    "explanation": "这是第1道关于二分查找的题目。正确答案是有序。"
+  },
+  {
+    "id": "226",
+    "title": "Python类型",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "Python基础"
+    ],
+    "description": "Python是什么类型语言？",
+    "questionType": "choice",
+    "options": [
+      "编译型",
+      "解释型",
+      "机器语言",
+      "汇编语言"
+    ],
+    "correctAnswer": 1,
+    "solution": "解释型",
+    "explanation": "这是第1道关于Python基础的题目。正确答案是解释型。"
+  },
+  {
+    "id": "227",
+    "title": "列表可变",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "列表"
+    ],
+    "description": "Python列表是？",
+    "questionType": "choice",
+    "options": [
+      "可变",
+      "不可变",
+      "半可变",
+      "以上都对"
+    ],
+    "correctAnswer": 0,
+    "solution": "可变",
+    "explanation": "这是第1道关于列表的题目。正确答案是可变。"
+  },
+  {
+    "id": "228",
+    "title": "元组不可变",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "元组"
+    ],
+    "description": "Python元组是？",
+    "questionType": "choice",
+    "options": [
+      "可变",
+      "不可变",
+      "半可变",
+      "以上都对"
+    ],
+    "correctAnswer": 1,
+    "solution": "不可变",
+    "explanation": "这是第1道关于元组的题目。正确答案是不可变。"
+  },
+  {
+    "id": "229",
+    "title": "字典键要求",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "字典"
+    ],
+    "description": "Python字典的键必须是？",
+    "questionType": "choice",
+    "options": [
+      "可变",
+      "不可变",
+      "任意类型",
+      "数值类型"
+    ],
+    "correctAnswer": 1,
+    "solution": "不可变",
+    "explanation": "这是第1道关于字典的题目。正确答案是不可变。"
+  },
+  {
+    "id": "230",
+    "title": "列表推导式",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "列表推导式"
+    ],
+    "description": "列表推导式用____创建列表",
+    "questionType": "fill",
+    "correctAnswer": "表达式",
+    "solution": "表达式",
+    "explanation": "这是第1道关于列表推导式的题目。正确答案是表达式。"
+  },
+  {
+    "id": "231",
+    "title": "装饰器作用",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "装饰器"
+    ],
+    "description": "装饰器用于____函数功能",
+    "questionType": "fill",
+    "correctAnswer": "增强",
+    "solution": "增强",
+    "explanation": "这是第1道关于装饰器的题目。正确答案是增强。"
+  },
+  {
+    "id": "232",
+    "title": "生成器特点",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "生成器"
+    ],
+    "description": "生成器使用____逐个产出值",
+    "questionType": "fill",
+    "correctAnswer": "yield",
+    "solution": "yield",
+    "explanation": "这是第1道关于生成器的题目。正确答案是yield。"
+  },
+  {
+    "id": "233",
+    "title": "lambda函数",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "lambda"
+    ],
+    "description": "lambda函数是？",
+    "questionType": "choice",
+    "options": [
+      "匿名函数",
+      "具名函数",
+      "递归函数",
+      "异步函数"
+    ],
+    "correctAnswer": 0,
+    "solution": "匿名函数",
+    "explanation": "这是第1道关于lambda的题目。正确答案是匿名函数。"
+  },
+  {
+    "id": "234",
+    "title": "Python缩进",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "Python语法"
+    ],
+    "description": "Python使用什么表示代码块？",
+    "questionType": "choice",
+    "options": [
+      "大括号",
+      "缩进",
+      "begin/end",
+      "关键字"
+    ],
+    "correctAnswer": 1,
+    "solution": "缩进",
+    "explanation": "这是第1道关于Python语法的题目。正确答案是缩进。"
+  },
+  {
+    "id": "235",
+    "title": "异常处理",
+    "category": "python",
+    "difficulty": "easy",
+    "tags": [
+      "异常"
+    ],
+    "description": "Python异常处理使用？",
+    "questionType": "choice",
+    "options": [
+      "try/catch",
+      "try/except",
+      "if/else",
+      "switch/case"
+    ],
+    "correctAnswer": 1,
+    "solution": "try/except",
+    "explanation": "这是第1道关于异常的题目。正确答案是try/except。"
+  },
+  {
+    "id": "236",
+    "title": "SQL全称",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SQL基础"
+    ],
+    "description": "SQL的全称是____查询语言",
+    "questionType": "fill",
+    "correctAnswer": "结构化",
+    "solution": "结构化",
+    "explanation": "这是第1道关于SQL基础的题目。正确答案是结构化。"
+  },
+  {
+    "id": "237",
+    "title": "SELECT查询",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "SELECT"
+    ],
+    "description": "SELECT用于什么操作？",
+    "questionType": "choice",
+    "options": [
+      "插入",
+      "查询",
+      "更新",
+      "删除"
+    ],
+    "correctAnswer": 1,
+    "solution": "查询",
+    "explanation": "这是第1道关于SELECT的题目。正确答案是查询。"
+  },
+  {
+    "id": "238",
+    "title": "WHERE条件",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "WHERE"
+    ],
+    "description": "WHERE用于什么操作？",
+    "questionType": "choice",
+    "options": [
+      "分组",
+      "过滤",
+      "排序",
+      "连接"
+    ],
+    "correctAnswer": 1,
+    "solution": "过滤",
+    "explanation": "这是第1道关于WHERE的题目。正确答案是过滤。"
+  },
+  {
+    "id": "239",
+    "title": "ORDER BY排序",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "ORDER BY"
+    ],
+    "description": "ORDER BY用于什么操作？",
+    "questionType": "choice",
+    "options": [
+      "分组",
+      "过滤",
+      "排序",
+      "连接"
+    ],
+    "correctAnswer": 2,
+    "solution": "排序",
+    "explanation": "这是第1道关于ORDER BY的题目。正确答案是排序。"
+  },
+  {
+    "id": "240",
+    "title": "GROUP BY分组",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "GROUP BY"
+    ],
+    "description": "GROUP BY用于什么操作？",
+    "questionType": "choice",
+    "options": [
+      "分组",
+      "过滤",
+      "排序",
+      "连接"
+    ],
+    "correctAnswer": 0,
+    "solution": "分组",
+    "explanation": "这是第1道关于GROUP BY的题目。正确答案是分组。"
+  },
+  {
+    "id": "241",
+    "title": "INNER JOIN内连接",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "JOIN"
+    ],
+    "description": "INNER JOIN返回____匹配的记录",
+    "questionType": "fill",
+    "correctAnswer": "两边",
+    "solution": "两边",
+    "explanation": "这是第1道关于JOIN的题目。正确答案是两边。"
+  },
+  {
+    "id": "242",
+    "title": "LEFT JOIN左连接",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "JOIN"
+    ],
+    "description": "LEFT JOIN返回____的所有记录",
+    "questionType": "fill",
+    "correctAnswer": "左表",
+    "solution": "左表",
+    "explanation": "这是第1道关于JOIN的题目。正确答案是左表。"
+  },
+  {
+    "id": "243",
+    "title": "COUNT聚合",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "聚合函数"
+    ],
+    "description": "COUNT用于？",
+    "questionType": "choice",
+    "options": [
+      "求和",
+      "计数",
+      "求平均",
+      "最大值"
+    ],
+    "correctAnswer": 1,
+    "solution": "计数",
+    "explanation": "这是第1道关于聚合函数的题目。正确答案是计数。"
+  },
+  {
+    "id": "244",
+    "title": "SUM聚合",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "聚合函数"
+    ],
+    "description": "SUM用于？",
+    "questionType": "choice",
+    "options": [
+      "求和",
+      "计数",
+      "求平均",
+      "最大值"
+    ],
+    "correctAnswer": 0,
+    "solution": "求和",
+    "explanation": "这是第1道关于聚合函数的题目。正确答案是求和。"
+  },
+  {
+    "id": "245",
+    "title": "索引加速",
+    "category": "sql",
+    "difficulty": "easy",
+    "tags": [
+      "索引"
+    ],
+    "description": "索引的主要作用是____查询",
+    "questionType": "fill",
+    "correctAnswer": "加速",
+    "solution": "加速",
+    "explanation": "这是第1道关于索引的题目。正确答案是加速。"
+  }
+]
